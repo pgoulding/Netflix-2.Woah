@@ -1,16 +1,23 @@
-export const selectCategory = (category) => ({
+export const getAllMovies = movies => ({
+  type: 'GET_ALL_MOVIES',
+  payload: {
+    movies
+  }
+});
+
+export const selectCategory = category => ({
   type: 'SELECT_CATEGORY',
   payload: {
     category
   }
-})
+});
 
-export const toggleFavorite = (id) => ({
+export const toggleFavorite = id => ({
   type: 'TOGGLE_FAVORITE',
   payload: {
     id
   }
-})
+});
 
 export const signIn = (userName, password) => ({
   type: 'SIGN_IN',
@@ -18,14 +25,14 @@ export const signIn = (userName, password) => ({
     userName,
     password
   }
-})
+});
 
-export const signOut = (email) => ({
+export const signOut = email => ({
   type: 'SIGN_OUT',
   payload: {
     email
   }
-})
+});
 
 export const createAccount = (name, userName, password, email) => ({
   type: 'CREATE_ACCOUNT',
@@ -35,4 +42,4 @@ export const createAccount = (name, userName, password, email) => ({
     password,
     email
   }
-})
+});
