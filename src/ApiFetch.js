@@ -1,14 +1,14 @@
-import { getAllMovies } from './actions';
+// import { getAllMovies } from './actions';
+import apiKey from './apikey'
 
 const getData = async () => {
-  const url = '';
+  const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
   try {
-    const response = await fetch(url);
-    const parsed = await response.json();
-    getAllMovies(parsed.results);
+    const response = await fetch(nowPlaying);
+    const parsed = await response.json()
+    return parsed.results
   } catch (error) {
-    getAllMovies(error.message);
-    // throw Error(error.message);
+    throw Error(error.message);
   }
 };
 
