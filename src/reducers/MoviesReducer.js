@@ -1,8 +1,9 @@
 export const MoviesReducer = (state = [], action) => {
   const { type, payload } = action;
+  console.log(payload);
   switch (type) {
     case 'GET_ALL_MOVIES':
-      return [...payload.movies];
+      return payload.movies
     case 'SELECT_CATEGORY':
       return [...payload.movies];
     case 'TOGGLE_FAVORITE':

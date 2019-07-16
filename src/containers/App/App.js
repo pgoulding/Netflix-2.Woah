@@ -2,12 +2,14 @@ import './App.css';
 import { getDefaultData }from '../../ApiFetch'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getAllMovies } from '../../actions'
 
 export class App extends Component {
 
   async componentDidMount() {
-    const something = await getDefaultData()
-    console.log(something)
+    const movieData = await getDefaultData()
+    console.log('movieData', movieData)
+    getAllMovies(await movieData)
   }
 
   render() {
@@ -19,12 +21,12 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = ({movies}) => ({
+  movies
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  getAllMovies: (movieData) => dispatch( getAllMovies(movieData) )
 }) 
 
 
