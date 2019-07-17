@@ -1,13 +1,13 @@
-import React from 'react';
-import {
-	combineReducers
-} from 'redux';
-import MoviesReducer from './MoviesReducer';
-import FavoritesReducer from './FavoritesReducer';
-import UserSignInReducer from './UserSignInReducer';
+// import React from 'react';
+import { combineReducers } from 'redux';
+import { MoviesReducer }from './MoviesReducer';
+// import FavoritesReducer from './FavoritesReducer';
+import UserReducer from './UserReducer';
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
 	movies: MoviesReducer,
-	favorites: FavoritesReducer,
+	// favorites: FavoritesReducer,
 	signin: UserReducer
 });
+
+export default rootReducer
