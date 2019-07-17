@@ -67,40 +67,33 @@ describe('Actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   it('should have a type of CREATE_ACCOUNT', () => {
-    
+    const name = 'Scooby';
+    const userName = 'coolGui420';
+    const password = 'ilikeburritos';
+    const email = 'muscleWoman49@email.org';
+    const expectedAction = {
+      type: 'CREATE_ACCOUNT',
+      payload: {
+        name,
+        userName,
+        password,
+        email
+      }
+    };
+    const result = actions.createAccount(name, userName, password, email);
+    expect(result).toEqual(expectedAction);
+  });
+
+  it('should have a type of THROW_ERROR', () => {
+    const error = 'Cannot load content';
+    const expectedAction = {
+      type: 'THROW_ERROR',
+      payload: {
+        error
+      }
+    }
+    const result = actions.throwError(error);
+    expect(result).toEqual(expectedAction);
   })
 });
