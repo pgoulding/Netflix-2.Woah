@@ -3,19 +3,20 @@ import { getDefaultData }from '../../ApiFetch'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getAllMovies } from '../../actions'
-
+import Gallery from '../../components/Gallery'
 export class App extends Component {
 
   async componentDidMount() {
-    const movieData = await getDefaultData()
-    console.log('movieData', movieData)
-    getAllMovies(await movieData)
+      const results = await getDefaultData()
+      await this.props.getAllMovies(results)
   }
 
   render() {
     return (
       <div>
-        
+        {this.props.movies.length && <Gallery genre={'Now Playing'} data={this.props.movies[0]}/>}
+        {this.props.movies.length && <Gallery genre={'Popular'}data={this.props.movies[1]} />}
+        {this.props.movies.length && <Gallery genre={'Top Rated'}data={this.props.movies[2]} />}
       </div>
     )
   }
@@ -26,7 +27,7 @@ const mapStateToProps = ({movies}) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllMovies: (movieData) => dispatch( getAllMovies(movieData) )
+  getAllMovies: (movie) => dispatch( getAllMovies(movie) )
 }) 
 
 
