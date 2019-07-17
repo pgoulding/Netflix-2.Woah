@@ -1,6 +1,6 @@
 export const cleanDefaultCategories = (movie, results) => {
-  const newResults = results.map(movie => {
-    return {...movie, isFavorited: false}
+  const newResults = results.map(movieData => {
+    return {...movieData, isFavorited: false}
   })
-  return {[movie]: newResults}
+  return [...newResults]
 }
