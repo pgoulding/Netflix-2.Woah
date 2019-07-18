@@ -1,11 +1,10 @@
-export const cleanDefaultCategories = (movie, results) => {
-  const newResults = results.map(movie => {
+export const cleanDefaultCategories = (genre, results) => {
+  const newResults = results.map(movieData => {
     return {
-      ...movie,
-      isFavorited: false
+      ...movieData,
+      isFavorited: false,
+      genre
     }
   })
-  return {
-    [movie]: newResults
-  }
+  return [...newResults]
 }

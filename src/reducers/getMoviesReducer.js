@@ -1,6 +1,8 @@
-export const MoviesReducer = (state = [], action) => {
-  const { type, payload } = action;
-  console.log(payload);
+export const getMoviesReducer = (state = [], action) => {
+  const {
+    type,
+    payload
+  } = action;
   switch (type) {
     case 'GET_ALL_MOVIES':
       return payload.movies
