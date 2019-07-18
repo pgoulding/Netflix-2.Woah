@@ -17,10 +17,8 @@ export class UserMenu extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  submitForm = async (e) => {
+  loginUser = async (e) => {
     e.preventDefault()
-    // await sendNewAccount({...this.state})
-    // await console.log(user)
     
     try {
       const user = await sendUserLogin(this.state.email, this.state.password)
@@ -30,11 +28,18 @@ export class UserMenu extends Component {
       this.setState({error})
     }
   }
+  
+  createNewAccount = async (e) => {
+    e.preventDefault()
+    await sendNewAccount({...this.state})
+    await this.loginUser(e)
+  }
+
   loginMenu = () => {
     //this is ugly, lets refactor later.
     if(this.state.page === 'create-account') {
       return (
-        <form onSubmit={(e) => this.submitForm(e)}>
+        <form>
         <h2>Create a new Account!</h2>
           <label>
             Name:
@@ -61,13 +66,13 @@ export class UserMenu extends Component {
                 placeholder="P@$$w0rD"
                 onChange={this.handleChange} />
             </label>
-            <button onClick={(e) => this.submitForm(e)}>click me</button>
+            <button onClick={(e) => this.createNewAccount(e)}>Create Account</button>
             <button onClick={() => this.setState({ page: '' })}>Back</button>
           </form >
       ) 
     } else if (this.state.page === 'log-in') {
       return (
-        <form onSubmit={(e) => this.submitForm(e)}>
+        <form>
         <h2> Log In</h2>
           <label>
             Log in (email):
@@ -86,7 +91,7 @@ export class UserMenu extends Component {
               placeholder="P@$$w0rD"
               onChange={this.handleChange} />
           </label>
-          <button onClick={(e) => this.submitForm(e)}>click me</button>
+          <button onClick={(e) => this.loginUser(e)}>Log In</button>
           <button onClick={()=> this.setState({page:''})}>Back</button>
         </form>
       )
