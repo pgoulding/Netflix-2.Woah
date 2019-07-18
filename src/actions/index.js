@@ -44,3 +44,10 @@ export const createAccount = ({ name, password, email }) => ({
     email
   }
 });
+
+export const throwError = error => ({
+  type: 'THROW_ERROR',
+  payload: {
+    error
+  }
+});
