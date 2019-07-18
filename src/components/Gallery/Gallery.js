@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import './Gallery.css'
 
 
-const Gallery = ( {data, genre} ) => {
+const Gallery = ({ data, genre }) => {
 
   let details = data.map(movie => {
       return <Card key={data.id} movieInfo={movie} />

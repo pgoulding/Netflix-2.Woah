@@ -15,16 +15,31 @@ export class App extends Component {
 
   render() {
     return (
-      <Route exact path='/'
-        render={ () => (
-          <main>
-            <UserMenu />
-            {this.props.movies.length && ( <Gallery genre={'Now Playing'} data={this.props.movies[0]} />)}
-            {this.props.movies.length && ( <Gallery genre={'Popular'} data={this.props.movies[1]} />)}
-            {this.props.movies.length && ( <Gallery genre={'Top Rated'} data={this.props.movies[2]} /> )}
-          </main>
-        )}
-      />
+      <main>
+        <UserMenu />
+          <Route exact path='/'
+            render={ () => (
+              <section>
+                {this.props.movies.length && ( <Gallery genre={'Now Playing'} data={this.props.movies[0]} />)}
+                {this.props.movies.length && ( <Gallery genre={'Popular'} data={this.props.movies[1]} />)}
+                {this.props.movies.length && ( <Gallery genre={'Top Rated'} data={this.props.movies[2]} /> )}
+              </section>
+            )}
+          />
+          <Route path='/categories'
+            render={ () => (
+              <section>
+                {this.props.categories.length && ( <Gallery genre={'Action'} data={this.props.categories[0]} />)}
+                {this.props.categories.length && ( <Gallery genre={'Comedy'} data={this.props.categories[1]} />)}
+                {this.props.categories.length && ( <Gallery genre={'Documentary'} data={this.props.categories[2]} /> )}
+                {this.props.categories.length && ( <Gallery genre={'Family'} data={this.props.categories[3]} /> )}
+                {this.props.categories.length && ( <Gallery genre={'Horror'} data={this.props.categories[4]} /> )}
+                {this.props.categories.length && ( <Gallery genre={'Romance'} data={this.props.categories[5]} /> )}
+                {this.props.categories.length && ( <Gallery genre={'Science Fiction'} data={this.props.categories[6]} /> )}
+              </section>
+            )}
+          />
+      </main>
     );
   }
 }

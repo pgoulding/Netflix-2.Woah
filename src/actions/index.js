@@ -19,12 +19,12 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = ({email, password, id, name}) => ({
+export const signIn = ({ email, password, id, name }) => ({
   type: 'SIGN_IN',
   payload: {
     email,
     password,
-    id, 
+    id,
     name
   }
 });
