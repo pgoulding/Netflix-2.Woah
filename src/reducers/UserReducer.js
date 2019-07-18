@@ -1,6 +1,6 @@
-import * as user from '../utils//API/ApiFetch'
+import * as user from '../utils/API/ApiFetch'
 
-const UserReducer = (state = {}, action) => {
+const userReducer = (state = {}, action) => {
   const {
     type,
     payload
@@ -22,6 +22,6 @@ const UserReducer = (state = {}, action) => {
   }
 };
 
-export default UserReducer;
+export default userReducer;
 
 //toggle log in - bool vs obj
