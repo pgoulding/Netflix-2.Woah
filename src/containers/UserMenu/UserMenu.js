@@ -8,7 +8,8 @@ export class UserMenu extends Component {
     this.state = {
       name:'',
       password:'',
-      email:''
+      email:'',
+      page:''
     }
   }
 
@@ -28,31 +29,29 @@ export class UserMenu extends Component {
     } catch (error) {
       this.setState({error})
     }
-    // this.props.createAccount({thisstae})
   }
-
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={(e)=> this.submitForm(e)}>
+  loginMenu = () => {
+    //this is ugly, lets refactor later.
+    if(this.state.page === 'create-account') {
+      return (
+        <form onSubmit={(e) => this.submitForm(e)}>
+        <h2>Create a new Account!</h2>
           <label>
             Name:
             <input
               name="name"
-              type="text"
               value={this.state.name}
               placeholder="Name"
               onChange={this.handleChange} />
           </label>
-          <label>
-            Log in (email):
-            <input 
-              name="email"
-              value={this.state.email}
-              placeholder="Email"
-              onChange={this.handleChange} />
-              </label>
+            <label>
+              Log in (email):
+            <input
+                name="email"
+                value={this.state.email}
+                placeholder="Email"
+                onChange={this.handleChange} />
+            </label>
             <label>
               Password:
             <input
@@ -62,8 +61,50 @@ export class UserMenu extends Component {
                 placeholder="P@$$w0rD"
                 onChange={this.handleChange} />
             </label>
-            <button onClick={(e)=> this.submitForm(e)}>click me</button>
+            <button onClick={(e) => this.submitForm(e)}>click me</button>
+            <button onClick={() => this.setState({ page: '' })}>Back</button>
+          </form >
+      ) 
+    } else if (this.state.page === 'log-in') {
+      return (
+        <form onSubmit={(e) => this.submitForm(e)}>
+        <h2> Log In</h2>
+          <label>
+            Log in (email):
+              <input
+              name="email"
+              value={this.state.email}
+              placeholder="Email"
+              onChange={this.handleChange} />
+          </label>
+          <label>
+            Password:
+              <input
+              name="password"
+              type="password"
+              value={this.state.password}
+              placeholder="P@$$w0rD"
+              onChange={this.handleChange} />
+          </label>
+          <button onClick={(e) => this.submitForm(e)}>click me</button>
+          <button onClick={()=> this.setState({page:''})}>Back</button>
         </form>
+      )
+    } else {
+      return (
+        <form>
+          <button onClick={() => this.setState({ page:'create-account'})}>Create Account</button>
+          <button onClick={() => this.setState({ page: 'log-in'})}>Log In</button>
+        </form>
+      )
+    }
+  }
+
+
+  render() {
+    return (
+      <div>
+        { this.loginMenu() }
       </div>
     )
   }
@@ -74,7 +115,6 @@ const mapStateToProps = ({ user }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // createAccount: (userInfo) => dispatch(createAccount(userInfo)),
   signIn: (userInfo) => dispatch(signIn(userInfo))
 })
 
