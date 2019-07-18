@@ -1,3 +1,5 @@
+import * as user from '../ApiFetch'
+
 const UserReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -6,11 +8,12 @@ const UserReducer = (state = {}, action) => {
       // find user from all users
       // if they do exsist/and password matches, return user object
       // if they don't exsist
-      return; // user object ? {...object} : null
+      return {...payload}
     case 'SIGN_OUT':
       return {};
-    case 'CREATE_ACCOUNT':
-      return { ...payload };
+    // case 'CREATE_ACCOUNT':
+    //   console.log(payload)
+    //   return user.sendNewAccount(payload);
     default:
       return state;
   }
