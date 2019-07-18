@@ -1,7 +1,10 @@
-import * as user from '../ApiFetch'
+import * as user from '../utils/ApiFetch'
 
 const UserReducer = (state = {}, action) => {
-  const { type, payload } = action;
+  const {
+    type,
+    payload
+  } = action;
   switch (type) {
     case 'SIGN_IN':
       // fetch from backend
@@ -19,4 +22,6 @@ const UserReducer = (state = {}, action) => {
   }
 };
 
-export default UserReducer
+export default UserReducer;
+
+//toggle log in - bool vs obj

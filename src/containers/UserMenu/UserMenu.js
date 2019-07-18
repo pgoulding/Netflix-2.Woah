@@ -1,31 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAccount, signIn } from '../../actions'
-import { sendNewAccount, sendUserLogin } from '../../ApiFetch'
+import { sendNewAccount, sendUserLogin } from '../../utils/ApiFetch'
 export class UserMenu extends Component {
   constructor() {
     super()
     this.state = {
-      name:'',
-      password:'',
-      email:'',
-      page:''
+      name: '',
+      password: '',
+      email: '',
+      page: ''
     }
   }
 
-  handleChange = (e) =>{
-    this.setState({[e.target.name]: e.target.value})
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   loginUser = async (e) => {
     e.preventDefault()
-    
+    // await sendNewAccount({...this.state})
+    // await console.log(user)
+
     try {
       const user = await sendUserLogin(this.state.email, this.state.password)
       const results = await user.data
       this.props.signIn(results)
     } catch (error) {
-      this.setState({error})
+      this.setState({
+        error
+      })
     }
   }
   
@@ -97,9 +103,9 @@ export class UserMenu extends Component {
       )
     } else {
       return (
-        <form>
-          <button onClick={() => this.setState({ page:'create-account'})}>Create Account</button>
-          <button onClick={() => this.setState({ page: 'log-in'})}>Log In</button>
+         <form >
+        < button onClick = { () => this.setState({ page: 'create-account'})}> Create Account</ button>
+         <button onClick = { () => this.setState({ page: 'log-in'}) } ></button>
         </form>
       )
     }
@@ -107,10 +113,8 @@ export class UserMenu extends Component {
 
 
   render() {
-    return (
-      <div>
-        { this.loginMenu() }
-      </div>
+    return ( 
+      <div > { this.loginMenu() } </div>
     )
   }
 }

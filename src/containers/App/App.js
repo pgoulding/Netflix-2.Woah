@@ -15,21 +15,13 @@ export class App extends Component {
 
   render() {
     return (
-      <Route
-        exact
-        path='/'
-        render={() => (
+      <Route exact path='/'
+        render={ () => (
           <main>
             <UserMenu />
-            {this.props.movies.length && (
-              <Gallery genre={'Now Playing'} data={this.props.movies[0]} />
-            )}
-            {this.props.movies.length && (
-              <Gallery genre={'Popular'} data={this.props.movies[1]} />
-            )}
-            {this.props.movies.length && (
-              <Gallery genre={'Top Rated'} data={this.props.movies[2]} />
-            )}
+            {this.props.movies.length && ( <Gallery genre={'Now Playing'} data={this.props.movies[0]} />)}
+            {this.props.movies.length && ( <Gallery genre={'Popular'} data={this.props.movies[1]} />)}
+            {this.props.movies.length && ( <Gallery genre={'Top Rated'} data={this.props.movies[2]} /> )}
           </main>
         )}
       />

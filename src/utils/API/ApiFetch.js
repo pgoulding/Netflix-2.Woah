@@ -1,6 +1,8 @@
 // import { getAllMovies } from './actions';
-import apiKey from './apikey'
-import { cleanDefaultCategories } from './utils/cleanerFunction'
+import apiKey from '../apikey'
+import { cleanDefaultCategories } from './cleanerFunction';
+import { newUserUrl, userSignInURL } from './apiUrls';
+//import nowPlaying url and move url to apiurls file
 
 const getDefaultData = async () => {
   const movieList = ['now_playing', 'popular', 'top_rated']
@@ -17,8 +19,6 @@ const getDefaultData = async () => {
   }))
 };
 
-const userURL = 'http://localhost:3001/api/users'
-
 const sendUserLogin = async (email, password) => {
   const user = {
     email,
@@ -32,7 +32,7 @@ const sendUserLogin = async (email, password) => {
       },
       body: JSON.stringify(user)
     }
-    const response = await fetch(userURL, options)
+    const response = await fetch(userSignInURL, options)
     const parsed = await response.json()
     return parsed
   } catch (error) {
@@ -49,7 +49,7 @@ const sendNewAccount = async (newAccount) => {
       },
       body: JSON.stringify(newAccount)
     }
-    const response = await fetch(`${userURL}/new`, options)
+    const response = await fetch(newUserUrl, options)
     return response
   } catch(error) {
     throw Error('Failed to create account ', error)
@@ -66,7 +66,7 @@ const sendFavorite = async (favoriteMovie) => {
       },
       body: JSON.stringify(favoriteMovie)
     }
-    const response = await fetch(`${userURL}/favorites/new`, options)
+    const response = await fetch(`${userSignInURL}/favorites/new`, options)
     const parsed = await response.json()
     return parsed
   } catch (error) {
