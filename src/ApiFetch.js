@@ -2,8 +2,6 @@
 import apiKey from './apikey'
 import { cleanDefaultCategories } from './utils/cleanerFunction'
 
-// const localUser = 'http://localhost:3001/api/users/'
-
 const getDefaultData = async () => {
   const movieList = ['now_playing', 'popular', 'top_rated']
   return Promise.all(movieList.map(async genre => {
@@ -19,6 +17,8 @@ const getDefaultData = async () => {
   }))
 };
 
+const userURL = 'http://localhost:3001/api/users'
+
 const sendUserLogin = async (email, password) => {
   const user = {
     email,
@@ -32,12 +32,11 @@ const sendUserLogin = async (email, password) => {
       },
       body: JSON.stringify(user)
     }
-    const userSignInURL = 'http://localhost:3001/api/users/'
-    const response = await fetch(userSignInURL, options)
+    const response = await fetch(userURL, options)
     const parsed = await response.json()
     return parsed
   } catch (error) {
-    throw Error('we have encoutnered an error: ', error)
+    throw Error('Failed to log in ', error)
   }
 } 
 
@@ -50,13 +49,30 @@ const sendNewAccount = async (newAccount) => {
       },
       body: JSON.stringify(newAccount)
     }
-    const newUserUrl = 'http://localhost:3001/api/users/new'
-    const response = await fetch(newUserUrl, options)
+    const response = await fetch(`${userURL}/new`, options)
     return response
   } catch(error) {
-    throw Error('we have encoutnered an error: ', error)
+    throw Error('Failed to create account ', error)
   }
 }
 
+const sendFavorite = async (favoriteMovie) => {
+  console.log(favoriteMovie)
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(favoriteMovie)
+    }
+    const response = await fetch(`${userURL}/favorites/new`, options)
+    const parsed = await response.json()
+    return parsed
+  } catch (error) {
+    throw Error('Failed to favorite', error)
+  }
+} 
 
-export {getDefaultData, sendNewAccount, sendUserLogin};
+
+export {getDefaultData, sendNewAccount, sendUserLogin, sendFavorite};
