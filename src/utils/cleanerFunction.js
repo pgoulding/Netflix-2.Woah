@@ -8,3 +8,5 @@ export const cleanDefaultCategories = (genre, results) => {
   })
   return [...newResults]
 }
+
+//do we want to add a category to each movie?

@@ -1,7 +1,7 @@
 import './App.css';
 import {
   getDefaultData
-} from '../../ApiFetch';
+} from '../../utils/ApiFetch';
 import React, {
   Component
 } from 'react';

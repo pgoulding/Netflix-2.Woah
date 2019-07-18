@@ -1,8 +1,15 @@
 // import { getAllMovies } from './actions';
-import apiKey from './apikey'
+import apiKey from '../apikey'
 import {
   cleanDefaultCategories
-} from './utils/cleanerFunction'
+} from './cleanerFunction';
+import {
+  newUserUrl
+} from './apiUrls';
+import {
+  userSignInURL
+} from './apiUrls';
+//import nowPlaying url and move url to apiurls file
 
 // const localUser = 'http://localhost:3001/api/users/'
 
@@ -34,7 +41,6 @@ const sendUserLogin = async (email, password) => {
       },
       body: JSON.stringify(user)
     }
-    const userSignInURL = 'http://localhost:3001/api/users/'
     const response = await fetch(userSignInURL, options)
     const parsed = await response.json()
     return parsed
@@ -52,7 +58,6 @@ const sendNewAccount = async (newAccount) => {
       },
       body: JSON.stringify(newAccount)
     }
-    const newUserUrl = 'http://localhost:3001/api/users/new'
     const response = await fetch(newUserUrl, options)
     return response
   } catch (error) {

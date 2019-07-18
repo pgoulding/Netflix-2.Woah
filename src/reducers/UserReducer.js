@@ -1,22 +1,29 @@
-import * as user from '../ApiFetch'
+import * as user from '../utils/ApiFetch'
 
 const UserReducer = (state = {}, action) => {
-  const { type, payload } = action;
+  const {
+    type,
+    payload
+  } = action;
   switch (type) {
     case 'SIGN_IN':
       // fetch from backend
       // find user from all users
       // if they do exsist/and password matches, return user object
       // if they don't exsist
-      return {...payload}
-    case 'SIGN_OUT':
-      return {};
-    // case 'CREATE_ACCOUNT':
-    //   console.log(payload)
-    //   return user.sendNewAccount(payload);
-    default:
-      return state;
+      return {
+        ...payload
+      }
+      case 'SIGN_OUT':
+        return {};
+        // case 'CREATE_ACCOUNT':
+        //   console.log(payload)
+        //   return user.sendNewAccount(payload);
+      default:
+        return state;
   }
 };
 
-export default UserReducer
+export default UserReducer;
+
+//toggle log in - bool vs obj
