@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './Card.css'
-import { sendFavorite } from '../../ApiFetch'
+import { sendFavorite } from '../../utils/API/ApiFetch'
 
 const Card = ({ movieInfo, user }) => {
   const { title, poster_path, movie_id, release_date, vote_average, overview } = movieInfo

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAccount, signIn } from '../../actions'
-import { sendNewAccount, sendUserLogin } from '../../utils/ApiFetch'
+import { sendNewAccount, sendUserLogin } from '../../utils//API/ApiFetch'
 export class UserMenu extends Component {
   constructor() {
     super()
