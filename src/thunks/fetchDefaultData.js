@@ -1,6 +1,14 @@
-import { isLoading, getAllMovies, throwError } from '../actions';
-import { url } from '../Util/ApiCalls/urls';
-import { cleanerFunction } from '../utils/cleanerFunction';
+import {
+	isLoading,
+	getAllMovies,
+	throwError
+} from '../actions';
+import {
+	url
+} from '../utils/API/apiUrls';
+import {
+	cleanDefaultMovies
+} from '../utils/cleanerFunction';
 
 export const fetchDefaultData = url => {
 	return async dispatch => {
@@ -12,7 +20,7 @@ export const fetchDefaultData = url => {
 			}
 			const data = await response.json();
 			const movieData = data.results;
-			const movies = await cleanerFunction(movieData);
+			const movies = await cleanerDefaultMovies(movieData);
 			dispatch(getAllMovies(movies));
 			dispatch(isLoading(false));
 		} catch (error) {
@@ -20,8 +28,3 @@ export const fetchDefaultData = url => {
 		}
 	};
 };
-
-import { isLoading, getNowPlaying, hasErrored } from '../actions';
-import { fetchPopular } from './fetchPopular';
-import { urlPopular } from '../Util/ApiCalls/urls';
-import { fetchNowPlayingCleaner } from '../Util/Cleaners/fetchNowPlayingCleaner';
