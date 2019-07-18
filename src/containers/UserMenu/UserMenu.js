@@ -105,7 +105,7 @@ export class UserMenu extends Component {
       return (
          <form >
         < button onClick = { () => this.setState({ page: 'create-account'})}> Create Account</ button>
-         <button onClick = { () => this.setState({ page: 'log-in'}) } ></button>
+         <button onClick = { () => this.setState({ page: 'log-in'}) } >Log In</button>
         </form>
       )
     }
