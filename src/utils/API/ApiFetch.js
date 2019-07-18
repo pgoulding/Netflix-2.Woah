@@ -1,6 +1,6 @@
 // import { getAllMovies } from './actions';
-import apiKey from '../apikey'
-import { cleanDefaultCategories } from './cleanerFunction';
+import apiKey from '../../apikey'
+import { cleanDefaultCategories } from '../cleanerFunction';
 import { newUserUrl, userSignInURL } from './apiUrls';
 //import nowPlaying url and move url to apiurls file
 

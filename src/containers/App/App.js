@@ -1,5 +1,5 @@
 import './App.css';
-import { getDefaultData } from '../../ApiFetch';
+import { getDefaultData } from '../../utils/API/ApiFetch'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllMovies } from '../../actions';

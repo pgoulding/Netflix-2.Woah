@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAccount, signIn } from '../../actions'
-import { sendNewAccount, sendUserLogin } from '../../utils/ApiFetch'
+import { sendNewAccount, sendUserLogin } from '../../utils//API/ApiFetch'
 export class UserMenu extends Component {
   constructor() {
     super()
@@ -105,7 +105,7 @@ export class UserMenu extends Component {
       return (
          <form >
         < button onClick = { () => this.setState({ page: 'create-account'})}> Create Account</ button>
-         <button onClick = { () => this.setState({ page: 'log-in'}) } ></button>
+         <button onClick = { () => this.setState({ page: 'log-in'}) } >Log In</button>
         </form>
       )
     }
