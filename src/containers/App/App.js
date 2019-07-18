@@ -1,36 +1,28 @@
 import './App.css';
-import { getDefaultData }from '../../ApiFetch'
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { getAllMovies } from '../../actions'
+import { getDefaultData } from '../../ApiFetch';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getAllMovies } from '../../actions';
 
 export class App extends Component {
+	async componentDidMount() {
+		const movieData = await getDefaultData();
+		console.log('movieData', movieData);
+		this.props.getAllMovies(movieData);
+		// this.props.addMovies(movies)
+	}
 
-  async componentDidMount() {
-    const movieData = await getDefaultData()
-    console.log('movieData', movieData)
-    getAllMovies(await movieData)
-  }
-
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+	render() {
+		return <div />;
+	}
 }
 
-const mapStateToProps = ({movies}) => ({
-  movies
-})
+const mapStateToProps = ({ movies }) => ({
+	movies
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  getAllMovies: (movieData) => dispatch( getAllMovies(movieData) )
-}) 
+const mapDispatchToProps = dispatch => ({
+	getAllMovies: movieData => dispatch(getAllMovies(movieData))
+});
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);
