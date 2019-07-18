@@ -1,8 +1,6 @@
 // import { getAllMovies } from './actions';
 import apiKey from './apikey'
-import {
-  cleanDefaultCategories
-} from './utils/cleanerFunction'
+import { cleanDefaultCategories } from './utils/cleanerFunction'
 
 // const localUser = 'http://localhost:3001/api/users/'
 
@@ -41,14 +39,14 @@ const sendUserLogin = async (email, password) => {
   } catch (error) {
     throw Error('we have encoutnered an error: ', error)
   }
-}
+} 
 
 const sendNewAccount = async (newAccount) => {
   try {
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type':'application/json'
       },
       body: JSON.stringify(newAccount)
     }
@@ -61,8 +59,4 @@ const sendNewAccount = async (newAccount) => {
 }
 
 
-export {
-  getDefaultData,
-  sendNewAccount,
-  sendUserLogin
-};
+export {  getDefaultData, sendNewAccount,  sendUserLogin };
