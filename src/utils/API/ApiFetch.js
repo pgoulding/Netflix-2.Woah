@@ -1,17 +1,8 @@
 // import { getAllMovies } from './actions';
 import apiKey from '../apikey'
-import {
-  cleanDefaultCategories
-} from './cleanerFunction';
-import {
-  newUserUrl
-} from './apiUrls';
-import {
-  userSignInURL
-} from './apiUrls';
+import { cleanDefaultCategories } from './cleanerFunction';
+import { newUserUrl, userSignInURL } from './apiUrls';
 //import nowPlaying url and move url to apiurls file
-
-// const localUser = 'http://localhost:3001/api/users/'
 
 const getDefaultData = async () => {
   const movieList = ['now_playing', 'popular', 'top_rated']
@@ -45,29 +36,42 @@ const sendUserLogin = async (email, password) => {
     const parsed = await response.json()
     return parsed
   } catch (error) {
-    throw Error('we have encoutnered an error: ', error)
+    throw Error('Failed to log in ', error)
   }
-}
+} 
 
 const sendNewAccount = async (newAccount) => {
   try {
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type':'application/json'
       },
       body: JSON.stringify(newAccount)
     }
     const response = await fetch(newUserUrl, options)
     return response
-  } catch (error) {
-    throw Error('we have encoutnered an error: ', error)
+  } catch(error) {
+    throw Error('Failed to create account ', error)
   }
 }
 
+const sendFavorite = async (favoriteMovie) => {
+  console.log(favoriteMovie)
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(favoriteMovie)
+    }
+    const response = await fetch(`${userSignInURL}/favorites/new`, options)
+    const parsed = await response.json()
+    return parsed
+  } catch (error) {
+    throw Error('Failed to favorite', error)
+  }
+} 
 
-export {
-  getDefaultData,
-  sendNewAccount,
-  sendUserLogin
-};
+export {getDefaultData, sendNewAccount, sendUserLogin, sendFavorite};
