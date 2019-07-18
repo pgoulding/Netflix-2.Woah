@@ -19,11 +19,13 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = (userName, password) => ({
+export const signIn = ({email, password, id, name}) => ({
   type: 'SIGN_IN',
   payload: {
-    userName,
-    password
+    email,
+    password,
+    id, 
+    name
   }
 });
 
@@ -34,11 +36,10 @@ export const signOut = email => ({
   }
 });
 
-export const createAccount = (name, userName, password, email) => ({
+export const createAccount = ({ name, password, email }) => ({
   type: 'CREATE_ACCOUNT',
   payload: {
     name,
-    userName,
     password,
     email
   }
