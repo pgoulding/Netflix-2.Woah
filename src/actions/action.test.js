@@ -13,21 +13,21 @@ describe('Actions', () => {
         movies
       }
     };
-    const result = actions.getAllMovies(movies);
+    const result = actions.getDefaultMovies(movies);
     expect(result).toEqual(expectedAction);
   });
 
-  it('should have a type of SELECT_CATEGORY', () => {
-    const category = 'Drama';
-    const expectedAction = {
-      type: 'SELECT_CATEGORY',
-      payload: {
-        category
-      }
-    };
-    const result = actions.selectCategory(category);
-    expect(result).toEqual(expectedAction);
-  });
+  // it('should have a type of SELECT_CATEGORY', () => {
+  //   const category = 'Drama';
+  //   const expectedAction = {
+  //     type: 'SELECT_CATEGORY',
+  //     payload: {
+  //       category
+  //     }
+  //   };
+  //   const result = actions.selectCategory(category);
+  //   expect(result).toEqual(expectedAction);
+  // });
 
   it('should have a type of TOGGLE_FAVORITE', () => {
     const id = 1;

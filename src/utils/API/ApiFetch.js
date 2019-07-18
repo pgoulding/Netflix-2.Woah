@@ -1,4 +1,4 @@
-// import { getAllMovies } from './actions';
+// import { getDefaultMovies } from './actions';
 import apiKey from '../../apikey'
 import { cleanDefaultCategories } from '../cleanerFunction';
 import { newUserUrl, userSignInURL } from './apiUrls';

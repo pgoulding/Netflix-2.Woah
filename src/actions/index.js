@@ -1,14 +1,14 @@
-export const getAllMovies = movies => ({
+export const getDefaultMovies = movies => ({
   type: 'GET_ALL_MOVIES',
   payload: {
     movies
   }
 });
 
-export const selectCategory = category => ({
-  type: 'SELECT_CATEGORY',
+export const getCategories = categories => ({
+  type: 'GET_CATEGORIES',
   payload: {
-    category
+    categories
   }
 });
 

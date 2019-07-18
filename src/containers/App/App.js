@@ -2,7 +2,7 @@ import './App.css';
 import { getDefaultData } from '../../utils/API/ApiFetch'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllMovies } from '../../actions';
+import { getDefaultMovies } from '../../actions';
 import Gallery from '../../components/Gallery/Gallery';
 import UserMenu from '../UserMenu/UserMenu';
 import { Route, Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { Route, Link } from 'react-router-dom';
 export class App extends Component {
   async componentDidMount() {
     const results = await getDefaultData();
-    await this.props.getAllMovies(results);
+    await this.props.getDefaultMovies(results);
   }
 
   render() {
@@ -49,7 +49,7 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllMovies: movie => dispatch(getAllMovies(movie))
+  getDefaultMovies: movie => dispatch(getDefaultMovies(movie))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
