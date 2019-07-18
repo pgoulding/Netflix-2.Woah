@@ -1,5 +1,5 @@
 import React from 'react'
-import './card.css'
+import './Card.css'
 const Card = ({ movieInfo }) => {
   const { title, poster_path } = movieInfo
 
@@ -7,7 +7,7 @@ const Card = ({ movieInfo }) => {
   return (
     <article className="card">
       <h3>{ title }</h3>
-      <img src={imageUrl}/>
+      <img alt={ title && ' movie poster' } src={ imageUrl }/>
     </article>
   )
 }

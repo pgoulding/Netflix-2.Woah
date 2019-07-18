@@ -1,14 +1,12 @@
 import React from 'react'
-import Card from'./Card'
+import Card from'../Card/Card'
 import { connect } from 'react-redux'
-import './gallery.css'
+import './Gallery.css'
 
 
 const Gallery = ( {data, genre} ) => {
 
-console.log( data )
   let details = data.map(movie => {
-    console.log(movie)
       return <Card key={data.id} movieInfo={movie} />
     })
 
