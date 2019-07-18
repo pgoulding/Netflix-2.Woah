@@ -56,5 +56,23 @@ const sendNewAccount = async (newAccount) => {
   }
 }
 
+const sendFavorite = async (favoriteMovie) => {
+  console.log(favoriteMovie)
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(favoriteMovie)
+    }
+    const response = await fetch(`${userURL}/favorites/new`, options)
+    const parsed = await response.json()
+    return parsed
+  } catch (error) {
+    throw Error('Failed to favorite', error)
+  }
+} 
 
-export {getDefaultData, sendNewAccount, sendUserLogin};
+
+export {getDefaultData, sendNewAccount, sendUserLogin, sendFavorite};
