@@ -74,5 +74,4 @@ const sendFavorite = async (favoriteMovie) => {
   }
 } 
 
-
 export {getDefaultData, sendNewAccount, sendUserLogin, sendFavorite};
