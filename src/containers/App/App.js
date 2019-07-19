@@ -6,6 +6,9 @@ import { getDefaultMovies } from '../../actions';
 import Gallery from '../../components/Gallery/Gallery';
 import UserMenu from '../UserMenu/UserMenu';
 import { Route, Link } from 'react-router-dom';
+import Header from '../Header/Header';
+import './App.css';
+import MainGallery from '../../components/MainGallery/MainGallery';
 
 export class App extends Component {
   
@@ -20,12 +23,14 @@ export class App extends Component {
   render() {
     return (
       <main>
+        <Header />
         <UserMenu />
           <Route exact path='/'
             render={ () => (
               <section>
+              {this.props.movies.popular && <MainGallery movies={this.props.movies.popular}/>}
                 {this.props.movies.now_playing && ( <Gallery genre={'now_playing'} data={this.props.movies.now_playing} />)}
-                {this.props.movies.popular && ( <Gallery genre={'popular'} data={this.props.movies.popular} />)}
+                {/* {this.props.movies.popular && ( <Gallery genre={'popular'} data={this.props.movies.popular} />)} */}
                 {this.props.movies.top_rated && ( <Gallery genre={'top_rated'} data={this.props.movies.top_rated} /> )}
               </section>
             )}

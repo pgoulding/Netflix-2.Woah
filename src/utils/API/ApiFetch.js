@@ -46,7 +46,7 @@ const sendUserLogin = async (email, password) => {
     const parsed = await response.json();
     return parsed;
   } catch (error) {
-    throw Error('Failed to log in ', error);
+    throw Error('Failed to log in ', error.message)
   }
 };
 
@@ -74,10 +74,11 @@ const sendFavorite = async favoriteMovie => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(favoriteMovie)
-    };
-    const response = await fetch(`${userSignInURL}/favorites/new`, options);
-    const parsed = await response.json();
-    return parsed;
+    }
+    const response = await fetch(`${userSignInURL}favorites/new`, options)
+    console.log(response)
+    const parsed = await response.json()
+    return parsed
   } catch (error) {
     throw Error('Failed to favorite', error);
   }

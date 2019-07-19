@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 import { getDefaultMoviesReducer } from './getDefaultMoviesReducer';
 // import FavoritesReducer from './FavoritesReducer';
-import userReducer from './userReducer';
+import userReducer from './UserReducer';
 import { throwErrorReducer } from './throwErrorReducer';
 import { isLoadingReducer } from './isLoadingReducer';
 import { getMoviesByCategoryReducer } from './getMoviesByCategoryReducer'

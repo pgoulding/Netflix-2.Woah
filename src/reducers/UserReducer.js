@@ -5,6 +5,7 @@ const userReducer = (state = {}, action) => {
     type,
     payload
   } = action;
+  console.log(type, payload)
   switch (type) {
     case 'SIGN_IN':
       // fetch from backend
@@ -13,7 +14,7 @@ const userReducer = (state = {}, action) => {
       // if they don't exsist
       return {...payload, user_id: payload.id}
     case 'SIGN_OUT':
-      return {};
+      return state = {};
     // case 'CREATE_ACCOUNT':
     //   console.log(payload)
     //   return user.sendNewAccount(payload);

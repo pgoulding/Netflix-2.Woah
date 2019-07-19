@@ -30,10 +30,10 @@ export const signIn = ({ email, password, id, name }) => ({
   }
 });
 
-export const signOut = email => ({
+export const signOut = state => ({
   type: 'SIGN_OUT',
   payload: {
-    email
+    ...state
   }
 });
 
