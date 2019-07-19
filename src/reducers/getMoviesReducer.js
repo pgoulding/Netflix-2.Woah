@@ -1,5 +1,8 @@
 export const getMoviesReducer = (state = [], action) => {
-  const { type, payload } = action;
+  const {
+    type,
+    payload
+  } = action;
   switch (type) {
     case 'GET_ALL_MOVIES':
       return payload.movies
@@ -17,5 +20,3 @@ export const getMoviesReducer = (state = [], action) => {
       return state;
   }
 };
-
-//add category and favorite prop to each movie object

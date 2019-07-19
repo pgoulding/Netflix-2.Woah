@@ -4,9 +4,6 @@ import {
 	throwError
 } from '../actions';
 import {
-	url
-} from '../utils/API/apiUrls';
-import {
 	cleanDefaultMovies
 } from '../utils/cleanerFunction';
 
@@ -20,7 +17,7 @@ export const fetchDefaultData = url => {
 			}
 			const data = await response.json();
 			const movieData = data.results;
-			const movies = await cleanerDefaultMovies(movieData);
+			const movies = await cleanDefaultMovies(movieData);
 			dispatch(getAllMovies(movies));
 			dispatch(isLoading(false));
 		} catch (error) {

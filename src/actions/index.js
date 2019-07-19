@@ -19,12 +19,17 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = ({email, password, id, name}) => ({
+export const signIn = ({
+  email,
+  password,
+  id,
+  name
+}) => ({
   type: 'SIGN_IN',
   payload: {
     email,
     password,
-    id, 
+    id,
     name
   }
 });
@@ -36,7 +41,11 @@ export const signOut = email => ({
   }
 });
 
-export const createAccount = ({ name, password, email }) => ({
+export const createAccount = ({
+  name,
+  password,
+  email
+}) => ({
   type: 'CREATE_ACCOUNT',
   payload: {
     name,
@@ -49,5 +58,12 @@ export const throwError = error => ({
   type: 'THROW_ERROR',
   payload: {
     error
+  }
+});
+
+export const isLoading = isLoading => ({
+  type: 'IS_LOADING',
+  payload: {
+    isLoading
   }
 });

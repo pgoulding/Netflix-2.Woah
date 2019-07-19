@@ -1,48 +1,30 @@
-// import { getAllMovies } from './actions';
 import apiKey from '../../apikey';
-import {
-	cleanDefaultCategories,
-	cleanCategoryMovies
-} from '../cleanerFunction';
 import {
 	newUserUrl,
 	userSignInURL
 } from './apiUrls';
-//import default and category url and move url to apiurls file
+import {
+	fetchCategoryData
+} from '../../thunks/fetchCategoryData';
+import {
+	fetchDefaultData
+} from '../../thunks/fetchDefaultData';
 
 const getDefaultData = async () => {
 	const movieList = ['now_playing', 'popular', 'top_rated'];
-	return Promise.all(
-		movieList.map(async genre => {
-			try {
-				const defaultMovies = `https://api.themoviedb.org/3/movie/${genre}?api_key=${apiKey}`;
-				const response = await fetch(defaultMovies);
-				const parsed = await response.json();
-				const cleaned = await cleanDefaultCategories(genre, parsed.results);
-				return cleaned;
-			} catch (error) {
-				throw Error(error.message);
-			}
-		})
-	);
+	movieList.forEach(async genre => {
+		const defaultMovies = `https://api.themoviedb.org/3/movie/${genre}?api_key=${apiKey}`;
+		await fetchDefaultData(defaultMovies);
+	});
 };
 
 const getCategoryData = async () => {
-	const categoryList = ['Action', 'Comedy', 'Documentary', 'Family', 'Horror', 'Romance', 'Science Fiction'];
+	// const categoryList = [ 'Action', 'Comedy', 'Documentary', 'Family', 'Horror', 'Romance', 'Science Fiction' ];
 	const categoryId = [28, 35, 99, 10751, 27, 10749, 878];
-	return Promise.all(
-		categoryList.map(async genre => {
-			try {
-				const categoryMovies = `https://api.themoviedb.org/3/movie/${genre}?api_key=${apiKey}`;
-				const response = await fetch(categoryMovies);
-				const parsed = await response.json();
-				const cleaned = await cleanCategoryMovies(genre, parsed.results);
-				return cleaned;
-			} catch (error) {
-				throw Error(error.message);
-			}
-		})
-	);
+	categoryId.forEach(async id => {
+		const categoryMovies = `https://api.themoviedb.org/3/discover/movie?api_key=6e6bbfd75ee71e1437638b9f37da8fd5&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${id}`;
+		// await fetchCategoryData(categoryMovies);
+	});
 };
 
 const sendUserLogin = async (email, password) => {
