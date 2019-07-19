@@ -1,14 +1,15 @@
-export const getAllMovies = movies => ({
+export const getDefaultMovies = (movies, category) => ({
   type: 'GET_ALL_MOVIES',
   payload: {
-    movies
+    movies,
+    category
   }
 });
 
-export const selectCategory = category => ({
-  type: 'SELECT_CATEGORY',
+export const getCategories = categories => ({
+  type: 'GET_CATEGORIES',
   payload: {
-    category
+    categories
   }
 });
 
@@ -19,20 +20,20 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = ({email, password, id, name}) => ({
+export const signIn = ({ email, password, id, name }) => ({
   type: 'SIGN_IN',
   payload: {
     email,
     password,
-    id, 
+    id,
     name
   }
 });
 
-export const signOut = email => ({
+export const signOut = state => ({
   type: 'SIGN_OUT',
   payload: {
-    email
+    ...state
   }
 });
 
