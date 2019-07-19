@@ -34,7 +34,7 @@ const Gallery = ( {data, genre, user} ) => {
     const imageUrl = `http://image.tmdb.org/t/p/original${backdrop_path}`
 
     return (
-      <div className="card">
+      <div className="card" key={movie.id}>
         {/* <h3>{title}</h3> */}
 
         <img alt={title && ' movie poster'} src={imageUrl} />
