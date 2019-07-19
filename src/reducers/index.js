@@ -1,19 +1,17 @@
 // import React from 'react';
 import { combineReducers } from 'redux';
-import { getDefaultMoviesReducer } from './getDefaultMoviesReducer';
+import { getMoviesReducer } from './getMoviesReducer';
 // import FavoritesReducer from './FavoritesReducer';
 import userReducer from './UserReducer';
 import { throwErrorReducer } from './throwErrorReducer';
 import { isLoadingReducer } from './isLoadingReducer';
-import { getMoviesByCategoryReducer } from './getMoviesByCategoryReducer'
 
 const rootReducer = combineReducers({
-	movies: getDefaultMoviesReducer,
+	movies: getMoviesReducer,
 	// favorites: FavoritesReducer,
 	user: userReducer,
 	isLoading: isLoadingReducer,
-	throwError: throwErrorReducer,
-	categories: getMoviesByCategoryReducer
+	throwError: throwErrorReducer
 });
 
 export default rootReducer

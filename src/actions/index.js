@@ -1,15 +1,8 @@
-export const getDefaultMovies = (movies, category) => ({
-  type: 'GET_ALL_MOVIES',
+export const updateMovies = (movies, genre) => ({
+  type: 'UPDATE_MOVIES',
   payload: {
     movies,
-    category
-  }
-});
-
-export const getCategories = categories => ({
-  type: 'GET_CATEGORIES',
-  payload: {
-    categories
+    genre
   }
 });
 
