@@ -11,7 +11,7 @@ section > h2 {
  color:  #FFFFFF;
 }
 
-.card:hovcr{
+.card:hover{
   position: absolute;
   z-index: -2;
 }
