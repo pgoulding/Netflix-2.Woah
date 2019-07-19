@@ -1,7 +1,8 @@
-export const getDefaultMovies = movies => ({
+export const getDefaultMovies = (movies, category) => ({
   type: 'GET_ALL_MOVIES',
   payload: {
-    movies
+    movies,
+    category
   }
 });
 

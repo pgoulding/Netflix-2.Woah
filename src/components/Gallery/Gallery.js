@@ -1,14 +1,13 @@
-import React from 'react'
-import Card from '../Card/Card'
-import { connect } from 'react-redux'
-import './Gallery.css'
+import React from 'react';
+import Card from '../Card/Card';
+import { connect } from 'react-redux';
+import './Gallery.css';
 
 
 const Gallery = ({ data, genre }) => {
-
   let details = data.map(movie => {
       return <Card key={data.id} movieInfo={movie} />
-    })
+    });
 
   return (
     <section>
@@ -22,11 +21,11 @@ const Gallery = ({ data, genre }) => {
 
 const mapStateToProps = ({ movies }) => ({
   movies
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
 
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery)

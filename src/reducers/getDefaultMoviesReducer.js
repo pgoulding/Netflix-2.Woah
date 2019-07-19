@@ -1,8 +1,8 @@
-export const getDefaultMoviesReducer = (state = [], action) => {
+export const getDefaultMoviesReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'GET_ALL_MOVIES':
-      return payload.movies
+      return {...state, [payload.category]: payload.movies}
     case 'TOGGLE_FAVORITE':
       const updatedState = state.map(category => {
         category.map(movie => {

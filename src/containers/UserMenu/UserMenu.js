@@ -22,7 +22,6 @@ export class UserMenu extends Component {
   loginUser = async (e) => {
     e.preventDefault()
     // await sendNewAccount({...this.state})
-    // await console.log(user)
 
     try {
       const user = await sendUserLogin(this.state.email, this.state.password)
