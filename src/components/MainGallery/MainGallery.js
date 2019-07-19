@@ -10,7 +10,7 @@ const MainGallery = ({ movies }) => {
 
   const movieBackdrop = movies.map(movie => {
     const movieImage = `http://image.tmdb.org/t/p/original${movie.backdrop_path}`
-    return <div data-src={movieImage} />
+    return <div data-src={movieImage} key={movie.id} />
   })
   return (
       <AwesomeSlider cssModule={AwsSliderStyles}>
