@@ -2,9 +2,13 @@ html {
   background-color: #333333;
 }
 
-main {
-  text-align: center;
-}
+/* main {
+  display: grid; 
+  grid-template-columns: 100px 1fr; 
+  grid-template-rows: 1fr; 
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; 
+} */
 
 /* .App-logo {
   animation: App-logo-spin infinite 20s linear;
