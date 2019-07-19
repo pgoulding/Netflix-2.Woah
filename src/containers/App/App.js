@@ -41,6 +41,8 @@ export class App extends Component {
               </section>
             )}
           /> */}
+        <Route path='/sign_in' component={UserLogin} />
+        <Route path='/create_account' component={UserSignup} />
       </main>
     );
   }
