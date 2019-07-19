@@ -8,7 +8,6 @@ import {
 } from '../utils/cleanerFunction';
 
 export const fetchDefaultData = url => {
-	console.log(url)
 	return async dispatch => {
 		try {
 			dispatch(isLoading(true));
