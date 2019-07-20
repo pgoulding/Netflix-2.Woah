@@ -42,9 +42,15 @@ export class UserLogin extends Component {
     } catch (error) {
       this.setState({ error: error.message });
     }
+    this.clearInputFields();
   };
 
-
+  clearInputFields = () => {
+    this.setState({
+      password: '',
+      email: ''
+    });
+  }
 
   render = () => {
     if(this.props.user.id) {
@@ -74,7 +80,7 @@ export class UserLogin extends Component {
             onChange={e => this.handleChange(e)}
           />
         </label>
-        <div className={!this.state.error ? 'hiddenError' : ''}>
+        <div className={this.state.error ? '' : 'hiddenError'}>
           <p>{this.state.error}</p>
         </div>
         <button onClick={e => this.loginUser(e)}>Log In</button>
