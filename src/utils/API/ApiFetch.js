@@ -15,6 +15,17 @@ const getMovies = async (genre, url) => {
   }
 };
 
+export const findGenres = async () => {
+  const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US` 
+  try {
+    const response  =  await fetch (genreUrl)
+    const parsed = await response.json()
+    return parsed
+  } catch (error) {
+    throw Error(error.message)
+  }
+}
+
 const sendUserLogin = async (email, password) => {
   const user = {
     email,
