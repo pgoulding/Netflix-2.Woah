@@ -21,7 +21,7 @@ export const fetchDefaultData = url => {
 	};
 };
 
-import { isLoading, getNowPlaying, hasErrored } from '../actions';
-import { fetchPopular } from './fetchPopular';
-import { urlPopular } from '../Util/ApiCalls/urls';
-import { fetchNowPlayingCleaner } from '../Util/Cleaners/fetchNowPlayingCleaner';
+// import { isLoading, getNowPlaying, hasErrored } from '../actions';
+// import { fetchPopular } from './fetchPopular';
+// import { urlPopular } from '../Util/ApiCalls/urls';
+// import { fetchNowPlayingCleaner } from '../Util/Cleaners/fetchNowPlayingCleaner';
