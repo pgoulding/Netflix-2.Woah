@@ -49,7 +49,7 @@ export class App extends Component {
 														                                    </section>
 														                                  )}
 														                                /> */}{' '}
-				  <Route exact path="/sign_in" render={UserLogin} />{' '}
+				  <Route exact path="/sign_in" component={UserLogin} />{' '}
 				<Route exact path="/create_account" component={UserSignup} />  {/* <Route component={<Error />} /> */}{' '}
 			</main>
 		);

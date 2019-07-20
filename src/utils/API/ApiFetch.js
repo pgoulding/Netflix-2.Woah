@@ -3,6 +3,7 @@ import {
 	userSignInURL
 } from './apiUrls';
 import apiKey from '../../apikey'
+
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
   try {
