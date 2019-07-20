@@ -39,7 +39,7 @@ const MainGallery = ({ movies }) => {
 				fadeOutAnimation={true}
 				mouseDragEnabled={true}
 				responsive={responsive}
-				autoPlayInterval={2000}
+				autoPlayInterval={5000}
 				autoPlayDirection="rtl"
 				autoPlayActionDisabled={true}>
 				{details}
