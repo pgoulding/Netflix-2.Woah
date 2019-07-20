@@ -43,7 +43,7 @@ export class App extends Component {
         <Route path='/categories'
           render={ () => (
             <section>
-              {this.props.categories.length && ( <Gallery genre={genre} data={this.props.categories.selected} />)}
+              {/* {this.props.categories.length && ( <Gallery genre={genre} data={this.props.categories.selected} />)} */}
             </section>
           )}
         />
