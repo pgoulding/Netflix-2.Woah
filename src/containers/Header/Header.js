@@ -8,15 +8,7 @@ export const Header = (user) => {
 
   const headerSignOut = (e) => {
     e.preventDefault()
-
-    const blankUser = {
-      name:'',
-      email:'',
-      password:'',
-      id:''
-    }
-
-    user.signOut(blankUser)
+    user.signOut()
   }
   const logout = (
     <form>
