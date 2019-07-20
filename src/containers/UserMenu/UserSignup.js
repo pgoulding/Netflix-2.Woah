@@ -94,7 +94,7 @@ export const mapStateToProps = store => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  signIn: (results) => dispatch(signIn(results))
+  signIn: results => dispatch(signIn(results))
 });
 
 export default connect(

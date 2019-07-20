@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import './UserMenu.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { signOut } from '../../actions';
 
 export class UserMenu extends Component {
-  // const signOutUser = async e => {
-  //   e.preventDefault();
-  //   await this.setState({
-  //     name: '',
-  //     password: '',
-  //     email: ''
-  //   });
-  //   await signOut({ ...this.state });
-  //   console.log(signOut({ ...this.state }));
-  //   console.log(this.state);
-  // };
+  signOutUser = async e => {
+    e.preventDefault();
+    await this.setState({
+      name: '',
+      password: '',
+      email: ''
+    });
+    await this.props.signOut();
+    console.log(this.props.signOut({ ...this.props.user }));
+    console.log(...this.props.user);
+  };
 
   // const loginMenu = () => {
   //   if (!this.props.user.id) {
@@ -37,28 +38,34 @@ export class UserMenu extends Component {
   //   }
   // };
   render = () => {
-    return (
-      <form>
-        <Link to='/create_account'>
-          <button>Create Account</button>
-        </Link>
-        <Link to='/sign_in'>
-          <button>Log In</button>
-        </Link>
-      </form>
-    );
+    if (this.props.user.id) {
+      return (
+        <form>
+          <button onClick={e => this.signOutUser(e)}>Log Out</button>
+        </form>
+      );
+    } else {
+      return (
+        <form>
+          <Link to='/create_account'>
+            <button>Create Account</button>
+          </Link>
+          <Link to='/sign_in'>
+            <button>Log In</button>
+          </Link>
+        </form>
+      );
+    }
   }
-// } else {
-//   return (
-//     <form>
-//       {/* <button onClick={e => this.signOutUser(e)}>Log Out</button> */}
-//     </form>
-//   );
 
 };
 
 export const mapStateToProps = state => ({
   user: state.user
+});
+
+export const mapDispatchToProps = dispatch => ({
+  signOut: ({...this.props.user}) = dispatch(signOut({...this.props.user}))
 })
 
-export default connect(mapStateToProps, null)(UserMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
