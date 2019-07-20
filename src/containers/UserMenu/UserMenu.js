@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { signIn, signOut } from '../../actions'
 import { sendNewAccount, sendUserLogin } from '../../utils//API/ApiFetch'
 import './UserMenu.css'
+import UserSignup from './UserSignup'
+import UserLogin from './UserLogin'
+
 export class UserMenu extends Component {
   constructor() {
     super()
@@ -10,7 +13,8 @@ export class UserMenu extends Component {
       name: '',
       password: '',
       email: '',
-      page: ''
+      page: '',
+      error:''
     }
   }
 
@@ -22,13 +26,17 @@ export class UserMenu extends Component {
 
   loginUser = async (e) => {
     e.preventDefault()
-    // await sendNewAccount({...this.state})
-
     try {
       const user = await sendUserLogin(this.state.email, this.state.password)
       const results = await user.data
       this.props.signIn(results)
-      this.setState({error: ''})
+      await this.setState({
+        name: '',
+        password: '',
+        email: '',
+        page: '',
+        error: ''
+      })
     } catch (error) {
       this.setState({ error: error.message})
     }
@@ -37,6 +45,7 @@ export class UserMenu extends Component {
   createNewAccount = async (e) => {
     e.preventDefault()
     await sendNewAccount({...this.state})
+    console.log(await sendNewAccount({...this.state}))
     await this.loginUser(e)
   }
 
@@ -54,77 +63,7 @@ export class UserMenu extends Component {
   }
 
   loginMenu = () => {
-    //this is ugly, lets refactor later.
-    if(this.state.page === 'create-account' && !this.props.user.id) {
-      return (
-        <form>
-        <h2>Create a new Account!</h2>
-          <label>
-            Name:
-            <input
-              className={this.state.error ? 'error' : ''}
-              name="name"
-              value={this.state.name}
-              placeholder="Name"
-              onChange={this.handleChange} />
-          </label>
-            <label>
-              Log in (email):
-            <input
-                className={this.state.error ? 'error': '' }
-                name="email"
-                value={this.state.email}
-                placeholder="Email"
-                onChange={this.handleChange} />
-            </label>
-            <label>
-              Password:
-            <input
-                className={this.state.error ? 'error' : ''}
-                name="password"
-                type="password"
-                value={this.state.password}
-                placeholder="P@$$w0rD"
-                onChange={this.handleChange} />
-            </label>
-            <button onClick={(e) => this.createNewAccount(e)}>Create Account</button>
-            <button onClick={() => this.setState({ page: '' })}>Back</button>
-          <div className={!this.state.error ? 'hiddenError' : ''}>
-          <p>{this.state.error}</p>
-          </div>
-          </form >
-      ) 
-    } else if (this.state.page === 'log-in' && !this.props.user.id) {
-      return (
-        <form>
-        <h2> Log In</h2>
-          <label>
-            Log in (email):
-              <input
-              className={this.state.error ? 'error' : ''}
-              name="email"
-              value={this.state.email}
-              placeholder="Email"
-              onChange={this.handleChange} />
-          </label>
-          <label>
-            Password:
-              <input
-              className={this.state.error ? 'error' : ''}
-              name="password"
-              type="password"
-              value={this.state.password}
-              placeholder="P@$$w0rD"
-              onChange={this.handleChange} />
-          </label>
-          <div className={!this.state.error ? 'hiddenError' : ''}>
-            <p>{this.state.error}</p>
-          </div>
-          <button onClick={(e) => this.loginUser(e)}>Log In</button>
-          <button onClick={()=> this.setState({page:''})}>Back</button>
-        </form>
-      )
-    } else  if (!this.props.user.id) {
+      if (!this.props.user.id) {
       return (
          <form >
         < button onClick = { () => this.setState({ page: 'create-account'})}> Create Account</ button>
@@ -143,7 +82,11 @@ export class UserMenu extends Component {
 
   render() {
     return ( 
-      <div > { this.loginMenu() } </div>
+      <div>
+        { this.loginMenu() }
+        <UserLogin state={this.state} loginUser={this.loginUser} handleChange={this.handleChange} />
+        <UserSignup state={this.state}  handleChange={this.handleChange} createNewAccount={this.createNewAccount} />
+      </div>
     )
   }
 }
