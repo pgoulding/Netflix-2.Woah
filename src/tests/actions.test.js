@@ -1,4 +1,4 @@
-import * as actions from './index';
+import * as actions from '../actions/index';
 
 const email = 'happy@sad.com';
 const password = 'ilikeburritos';
