@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sendNewAccount, sendUserLogin } from '../../utils//API/ApiFetch';
+import { sendNewAccount } from '../../utils//API/ApiFetch';
 import { signIn } from '../../actions';
+import { Redirect } from 'react-router-dom';
 
 export class UserSignup extends Component {
   constructor() {
@@ -10,8 +11,10 @@ export class UserSignup extends Component {
       name: '',
       password: '',
       email: '',
-      error: ''
+      error: '',
+      toSignIn: false
     };
+    // console.log('history', this.props.history);
   }
 
   handleChange = e => {
@@ -22,29 +25,32 @@ export class UserSignup extends Component {
 
   createNewAccount = async e => {
     e.preventDefault();
-    await sendNewAccount(this.state);
-    // console.log(await sendNewAccount({ ...this.state }));
-    await this.loginUser(e);
+    const response = await sendNewAccount(this.state);
+    // await console.log('resp', response.ok);
+    if (await response.ok) {
+      this.setState({
+        toSignIn: true
+      })
+    } else {
+      this.setState({
+        error: 'Sorry, we failed to create your account. Your email or password may already be in use. Please use a different email or password, or attempt to login, as you may already have an account.'
+      })
+    }
+    this.clearInputFields();
   };
 
-  loginUser = async e => {
-    e.preventDefault();
-    try {
-      const user = await sendUserLogin(this.state.email, this.state.password);
-      const results = await user.data;
-      this.props.signIn(results);
-      await this.setState({
-        name: '',
-        password: '',
-        email: '',
-        error: ''
-      });
-    } catch (error) {
-      this.setState({ error: error.message });
-    }
-  };
+  clearInputFields = () => {
+    this.setState({
+      password: '',
+      email: '',
+      name: ''
+    });
+  }
 
   render = () => {
+    if (this.state.toSignIn) {
+      return <Redirect to='/sign_in' />
+    }
     return (
       <form>
         <h2>Create a new Account!</h2>
@@ -80,7 +86,7 @@ export class UserSignup extends Component {
           />
         </label>
         <button onClick={e => this.createNewAccount(e)}>Create Account</button>
-        <div className={!this.state.error ? 'hiddenError' : ''}>
+        <div className={this.state.error ? '' : 'hiddenError'}>
           <p>{this.state.error}</p>
         </div>
       </form>

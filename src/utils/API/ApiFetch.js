@@ -46,9 +46,10 @@ const sendNewAccount = async newAccount => {
 			body: JSON.stringify(newAccount)
 		};
 		const response = await fetch(newUserUrl, options);
+		// console.log('new acc', response);
 		return response;
 	} catch (error) {
-		throw Error('Failed to create account ', error);
+		throw Error('Sorry, we failed to create your account. Your email or password may already be in use. Please use a different email or password, or attempt to login, as you may already have an account.', error);
 	}
 };
 
