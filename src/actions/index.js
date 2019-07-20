@@ -30,14 +30,14 @@ export const signOut = state => ({
   }
 });
 
-export const createAccount = ({ name, password, email }) => ({
-  type: 'CREATE_ACCOUNT',
-  payload: {
-    name,
-    password,
-    email
-  }
-});
+// export const createAccount = ({ name, password, email }) => ({
+//   type: 'CREATE_ACCOUNT',
+//   payload: {
+//     name,
+//     password,
+//     email
+//   }
+// });
 
 export const throwError = error => ({
   type: 'THROW_ERROR',

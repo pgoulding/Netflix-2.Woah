@@ -1,6 +1,6 @@
-import React from 'react'
-import './Header.css'
-import UserMenu from '../UserMenu/UserMenu'
+import React from 'react';
+import './Header.css';
+import { UserMenu } from '../UserMenu/UserMenu';
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
       <h1>BetterFlix</h1>
       <UserMenu />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
