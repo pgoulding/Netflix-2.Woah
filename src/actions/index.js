@@ -1,14 +1,8 @@
-export const getAllMovies = movies => ({
-  type: 'GET_ALL_MOVIES',
+export const updateMovies = (movies, genre) => ({
+  type: 'UPDATE_MOVIES',
   payload: {
-    movies
-  }
-});
-
-export const selectCategory = category => ({
-  type: 'SELECT_CATEGORY',
-  payload: {
-    category
+    movies,
+    genre
   }
 });
 
@@ -19,12 +13,7 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = ({
-  email,
-  password,
-  id,
-  name
-}) => ({
+export const signIn = ({ email, password, id, name }) => ({
   type: 'SIGN_IN',
   payload: {
     email,
@@ -34,10 +23,10 @@ export const signIn = ({
   }
 });
 
-export const signOut = email => ({
+export const signOut = state => ({
   type: 'SIGN_OUT',
   payload: {
-    email
+    ...state
   }
 });
 

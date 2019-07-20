@@ -1,11 +1,6 @@
-import {
-	isLoading,
-	getAllMovies,
-	throwError
-} from '../actions';
-import {
-	cleanDefaultMovies
-} from '../utils/cleanerFunction';
+import { isLoading, updateMovies, throwError } from '../actions';
+import { url } from '../Util/ApiCalls/urls';
+import { cleanerFunction } from '../utils/cleanerFunction';
 
 export const fetchDefaultData = url => {
 	return async dispatch => {
@@ -17,8 +12,8 @@ export const fetchDefaultData = url => {
 			}
 			const data = await response.json();
 			const movieData = data.results;
-			const movies = cleanDefaultMovies(movieData);
-			dispatch(getAllMovies(movies));
+			const movies = await cleanerFunction(movieData);
+			dispatch(updateMovies(movies));
 			dispatch(isLoading(false));
 		} catch (error) {
 			dispatch(throwError(error));

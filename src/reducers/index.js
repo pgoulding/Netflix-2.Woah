@@ -2,14 +2,14 @@
 import { combineReducers } from 'redux';
 import { getMoviesReducer } from './getMoviesReducer';
 // import FavoritesReducer from './FavoritesReducer';
-import UserReducer from './UserReducer';
+import userReducer from './UserReducer';
 import { throwErrorReducer } from './throwErrorReducer';
 import { isLoadingReducer } from './isLoadingReducer';
 
 const rootReducer = combineReducers({
 	movies: getMoviesReducer,
 	// favorites: FavoritesReducer,
-	user: UserReducer,
+	user: userReducer,
 	isLoading: isLoadingReducer,
 	throwError: throwErrorReducer
 });
