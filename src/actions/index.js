@@ -30,6 +30,7 @@ export const signOut = state => ({
   }
 });
 
+<<<<<<< HEAD
 // export const createAccount = ({ name, password, email }) => ({
 //   type: 'CREATE_ACCOUNT',
 //   payload: {
@@ -38,10 +39,31 @@ export const signOut = state => ({
 //     email
 //   }
 // });
+=======
+export const createAccount = ({
+  name,
+  password,
+  email
+}) => ({
+  type: 'CREATE_ACCOUNT',
+  payload: {
+    name,
+    password,
+    email
+  }
+});
+>>>>>>> thunks-revised
 
 export const throwError = error => ({
   type: 'THROW_ERROR',
   payload: {
     error
+  }
+});
+
+export const isLoading = isLoading => ({
+  type: 'IS_LOADING',
+  payload: {
+    isLoading
   }
 });

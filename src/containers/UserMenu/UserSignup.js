@@ -81,8 +81,6 @@ export class UserSignup extends Component {
           />
         </label>
         <button onClick={e => this.createNewAccount(e)}>Create Account</button>
-        {/* <button onClick={() => this.setState({ page: '' })}>Back</button> */}
-        // What's this for? ^
         <div className={!this.state.error ? 'hiddenError' : ''}>
           <p>{this.state.error}</p>
         </div>
