@@ -15,6 +15,7 @@ export class UserLogin extends Component {
     };
   }
 
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -26,10 +27,10 @@ export class UserLogin extends Component {
     try {
       const userLogin = await sendUserLogin(this.state.email, this.state.password);
       const results = await userLogin.data;
-      // if(results.respose)
       console.log('response ', results)
       this.props.signIn(results);
       if(results) {
+        // this.componentWillUnmount()
         this.props.history.push('/')
       }
       await this.setState({
@@ -42,6 +43,8 @@ export class UserLogin extends Component {
       this.setState({ error: error.message });
     }
   };
+
+
 
   render = () => {
     return (

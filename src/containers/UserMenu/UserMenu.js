@@ -40,13 +40,13 @@ export class UserMenu extends Component {
   // };
   render = () => {
     console.log('props', this.props);
-    if (this.props.id) {
-      return (
-        <form>
-          <button onClick={e => this.signOutUser(e)}>Log Out</button>
-        </form>
-      );
-    } else {
+    // if (this.props.id) {
+    //   return (
+    //     // <form>
+    //     //   <button onClick={e => this.signOutUser(e)}>Log Out</button>
+    //     // </form>
+    //   );
+    // } else {
       return (
         <form>
           <Link to='/create_account'>
@@ -58,7 +58,7 @@ export class UserMenu extends Component {
         </form>
       );
     }
-  };
+  // };
 }
 
 export const mapStateToProps = state => ({

@@ -23,11 +23,8 @@ export const signIn = ({ email, password, id, name }) => ({
   }
 });
 
-export const signOut = state => ({
-  type: 'SIGN_OUT',
-  payload: {
-    ...state
-  }
+export const signOut = () => ({
+  type: 'SIGN_OUT'
 });
 
 export const createAccount = ({
