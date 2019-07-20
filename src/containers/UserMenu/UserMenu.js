@@ -7,12 +7,13 @@ import { signOut } from '../../actions';
 export class UserMenu extends Component {
   signOutUser = async e => {
     e.preventDefault();
-    // await this.setState({
-    //   name: '',
-    //   password: '',
-    //   email: ''
-    // });
-    await this.props.signOut();
+    const user = {
+      id: '',
+      name: '',
+      password: '',
+      email: ''
+    }
+    await this.props.signOut(user);
     // console.log(this.props.signOut({ ...this.props.user }));
     // console.log(...this.props.user);
   };
@@ -38,6 +39,7 @@ export class UserMenu extends Component {
   //   }
   // };
   render = () => {
+    // console.log('props', this.props);
     if (this.props.id) {
       return (
         <form>
@@ -56,16 +58,15 @@ export class UserMenu extends Component {
         </form>
       );
     }
-  }
-
-};
+  };
+}
 
 export const mapStateToProps = state => ({
   user: state.user
 });
 
-export const mapDispatchToProps = (dispatch) => ({
-  signOut: (fake) => dispatch(signOut(fake))
-})
+export const mapDispatchToProps = dispatch => ({
+  signOut: user => dispatch(signOut(user))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);

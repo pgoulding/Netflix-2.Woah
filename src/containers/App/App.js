@@ -27,7 +27,7 @@ export class App extends Component {
 	};
 
 
-	render() {
+	render = () => {
 		return (
       <main>
         <Header />
@@ -47,7 +47,7 @@ export class App extends Component {
             </section>
           )}
         />
-        <Route path='/sign_in' render={UserLogin} />
+        <Route path='/sign_in' component={UserLogin} />
         <Route path='/create_account' component={UserSignup} />
       </main>
 		);

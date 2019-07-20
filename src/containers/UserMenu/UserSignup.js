@@ -37,7 +37,6 @@ export class UserSignup extends Component {
         name: '',
         password: '',
         email: '',
-        page: '',
         error: ''
       });
     } catch (error) {
@@ -97,7 +96,4 @@ export const mapDispatchToProps = dispatch => ({
   signIn: results => dispatch(signIn(results))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserSignup);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSignup);

@@ -7,8 +7,10 @@ export class UserLogin extends Component {
   constructor() {
     super();
     this.state = {
+      name: '',
+      password: '',
       email: '',
-      password: ''
+      error: ''
     };
   }
 
@@ -28,7 +30,6 @@ export class UserLogin extends Component {
         name: '',
         password: '',
         email: '',
-        page: '',
         error: ''
       });
     } catch (error) {
@@ -75,10 +76,7 @@ export const mapStateToProps = store => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  signIn: (results) => dispatch(signIn(results))
+  signIn: results => dispatch(signIn(results))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserLogin);
+export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
