@@ -1,24 +1,10 @@
-import apiKey from '../../apikey';
-import { cleanMovies } from '../cleanerFunction';
 import { newUserUrl, userSignInURL } from './apiUrls';
-
-const getMovies = async (genre, url) => {
-  let fetchUrl =
-    url || `https://api.themoviedb.org/3/movie/${genre}?api_key=${apiKey}`;
-  try {
-    const response = await fetch(fetchUrl);
-    const parsed = await response.json();
-    const cleaned = await cleanMovies(genre, parsed.results);
-    return cleaned;
-  } catch (error) {
-    throw Error(error.message);
-  }
-};
+import apiKey from '../../apikey'
 
 export const findGenres = async () => {
-  const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US` 
+  const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
   try {
-    const response  =  await fetch (genreUrl)
+    const response = await fetch(genreUrl)
     const parsed = await response.json()
     return parsed
   } catch (error) {
@@ -26,59 +12,76 @@ export const findGenres = async () => {
   }
 }
 
+
+// export const findGenres = async () => {
+//   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US` 
+//   try {
+//     const response  =  await fetch (genreUrl)
+//     const parsed = await response.json()
+//     return parsed
+//   } catch (error) {
+//     throw Error(error.message)
+//   }
+// }
+
 const sendUserLogin = async (email, password) => {
-  const user = {
-    email,
-    password
-  };
-  try {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    };
-    const response = await fetch(userSignInURL, options);
-    const parsed = await response.json();
-    return parsed;
-  } catch (error) {
-    throw Error('Failed to log in ', error.message);
-  }
+	const user = {
+		email,
+		password
+	};
+	try {
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		};
+		const response = await fetch(userSignInURL, options);
+		const parsed = await response.json();
+		return parsed;
+	} catch (error) {
+		throw Error('Failed to log in; either your email or your password are incorrect. Please try again, or create a new account.', error);
+	}
 };
 
 const sendNewAccount = async newAccount => {
-  try {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newAccount)
-    };
-    const response = await fetch(newUserUrl, options);
-    return response;
-  } catch (error) {
-    throw Error('Failed to create account ', error);
-  }
+	try {
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newAccount)
+		};
+		const response = await fetch(newUserUrl, options);
+		// console.log('new acc', response);
+		return response;
+	} catch (error) {
+		throw Error('Sorry, we failed to create your account. Your email or password may already be in use. Please use a different email or password, or attempt to login, as you may already have an account.', error);
+	}
 };
 
 const sendFavorite = async favoriteMovie => {
-  try {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(favoriteMovie)
-    };
-    const response = await fetch(`${userSignInURL}favorites/new`, options);
-    console.log(response);
-    const parsed = await response.json();
-    return parsed;
-  } catch (error) {
-    throw Error('Failed to favorite', error);
-  }
+	console.log(favoriteMovie);
+	try {
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(favoriteMovie)
+		};
+		const response = await fetch(`${userSignInURL}/favorites/new`, options);
+		const parsed = await response.json();
+		return parsed;
+	} catch (error) {
+		throw Error('Failed to favorite', error);
+	}
 };
 
-export { getMovies, sendNewAccount, sendUserLogin, sendFavorite };
+export {
+	sendNewAccount,
+	sendUserLogin,
+	sendFavorite
+};

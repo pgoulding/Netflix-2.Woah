@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {getMovies} from '../../utils/API/ApiFetch'
+import { getMovies } from '../../thunks/getMoviesThunk'
 import apiKey from '../../apikey'
 
 export class Search extends Component {
