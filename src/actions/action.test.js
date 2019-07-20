@@ -1,21 +1,37 @@
 import * as actions from './index';
 
-// describe('Actions', () => {
-//   it('should have a type of GET_ALL_MOVIES', () => {
-//     const movies = [
-//       { id: 1, title: 'movie1' },
-//       { id: 2, title: 'movie2' },
-//       { id: 3, title: 'movie3' }
-//     ];
-//     const expectedAction = {
-//       type: 'GET_ALL_MOVIES',
-//       payload: {
-//         movies
-//       }
-//     };
-//     const result = actions.getDefaultMovies(movies);
-//     expect(result).toEqual(expectedAction);
-//   });
+const email = 'happy@sad.com';
+const password = 'ilikeburritos';
+const id = 2;
+const name = 'coolGui420';
+
+describe('Actions', () => {
+  it('should have a type of UPDATE_MOVIES', () => {
+    const movies = [{
+        id: 1,
+        title: 'movie1'
+      },
+      {
+        id: 2,
+        title: 'movie2'
+      },
+      {
+        id: 3,
+        title: 'movie3'
+      }
+    ];
+    const genre = 'popular'
+
+    const expectedAction = {
+      type: 'GET_ALL_MOVIES',
+      payload: {
+        movies,
+        genre
+      }
+    };
+    const result = actions.getDefaultMovies(movies, genre);
+    expect(result).toEqual(expectedAction);
+  });
 
 
   it('should have a type of TOGGLE_FAVORITE', () => {
@@ -31,21 +47,20 @@ import * as actions from './index';
   });
 
   it('should have a type of SIGN_IN', () => {
-    const userName = 'coolGui420';
-    const password = 'ilikeburritos';
     const expectedAction = {
       type: 'SIGN_IN',
       payload: {
-        userName,
-        password
+        email,
+        password,
+        id,
+        name,
       }
     };
-    const result = actions.signIn(userName, password);
+    const result = actions.signIn(email, password, id, name);
     expect(result).toEqual(expectedAction);
   });
 
   it('should have a type of SIGN_OUT', () => {
-    const email = 'muscleWoman49@email.org';
     const expectedAction = {
       type: 'SIGN_OUT',
       payload: {
@@ -57,20 +72,15 @@ import * as actions from './index';
   });
 
   it('should have a type of CREATE_ACCOUNT', () => {
-    const name = 'Scooby';
-    const userName = 'coolGui420';
-    const password = 'ilikeburritos';
-    const email = 'muscleWoman49@email.org';
     const expectedAction = {
       type: 'CREATE_ACCOUNT',
       payload: {
         name,
-        userName,
         password,
         email
       }
     };
-    const result = actions.createAccount(name, userName, password, email);
+    const result = actions.createAccount(name, password, email);
     expect(result).toEqual(expectedAction);
   });
 
@@ -83,6 +93,18 @@ import * as actions from './index';
       }
     }
     const result = actions.throwError(error);
+    expect(result).toEqual(expectedAction);
+  });
+
+  it('should have a type of IS_LOADING', () => {
+    const isLoading = false;
+    const expectedAction = {
+      type: 'IS_LOADING',
+      payload: {
+        isLoading
+      }
+    }
+    const result = actions.isLoading(isLoading);
     expect(result).toEqual(expectedAction);
   })
 });
