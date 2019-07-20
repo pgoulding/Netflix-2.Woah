@@ -32,7 +32,7 @@ const sendUserLogin = async (email, password) => {
 		const parsed = await response.json();
 		return parsed;
 	} catch (error) {
-		throw Error('Failed to log in ', error);
+		throw Error('Failed to log in; either your email or your password are incorrect. Please try again, or create a new account.', error);
 	}
 };
 
