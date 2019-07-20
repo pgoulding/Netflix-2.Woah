@@ -24,7 +24,6 @@ export class App extends Component {
     return (
       <main>
         <Header />
-        <UserMenu />
           <Route exact path='/'
             render={ () => (
               <section>
