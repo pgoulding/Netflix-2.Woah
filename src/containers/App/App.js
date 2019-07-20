@@ -1,22 +1,24 @@
 import './App.css';
-import { getMoviesByCategory } from '../../utils/API/ApiFetch'
+import { getMovies } from '../../utils/API/ApiFetch'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getDefaultMovies } from '../../actions';
+import { updateMovies } from '../../actions';
 import Gallery from '../../components/Gallery/Gallery';
 import UserMenu from '../UserMenu/UserMenu';
 import { Route, Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import './App.css';
 import MainGallery from '../../components/MainGallery/MainGallery';
+import UserSignup from '../UserMenu/UserSignup'
+import UserLogin from '../UserMenu/UserLogin'
 
 export class App extends Component {
-  
+
   async componentDidMount() {
     const startingFetch = ['popular', 'now_playing', 'top_rated'];
     startingFetch.forEach(async genre => {
-      const results = await getMoviesByCategory(genre);
-      await this.props.getDefaultMovies(results, genre);
+      const results = await getMovies(genre, null);
+      await this.props.updateMovieState(results, genre);
     });
   }
 
@@ -24,7 +26,6 @@ export class App extends Component {
     return (
       <main>
         <Header />
-        <UserMenu />
           <Route exact path='/'
             render={ () => (
               <section>
@@ -42,6 +43,8 @@ export class App extends Component {
               </section>
             )}
           /> */}
+        <Route exact path='/sign_in' render={UserLogin} />
+        <Route exact path='/create_account' component={UserSignup} />
       </main>
     );
   }
@@ -52,7 +55,7 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getDefaultMovies: (results, genre) => dispatch(getDefaultMovies(results, genre))
+  updateMovieState: (results, genre) => dispatch(updateMovies(results, genre))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

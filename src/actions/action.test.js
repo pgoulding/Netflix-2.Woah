@@ -1,33 +1,22 @@
 import * as actions from './index';
 
-describe('Actions', () => {
-  it('should have a type of GET_ALL_MOVIES', () => {
-    const movies = [
-      { id: 1, title: 'movie1' },
-      { id: 2, title: 'movie2' },
-      { id: 3, title: 'movie3' }
-    ];
-    const expectedAction = {
-      type: 'GET_ALL_MOVIES',
-      payload: {
-        movies
-      }
-    };
-    const result = actions.getDefaultMovies(movies);
-    expect(result).toEqual(expectedAction);
-  });
+// describe('Actions', () => {
+//   it('should have a type of GET_ALL_MOVIES', () => {
+//     const movies = [
+//       { id: 1, title: 'movie1' },
+//       { id: 2, title: 'movie2' },
+//       { id: 3, title: 'movie3' }
+//     ];
+//     const expectedAction = {
+//       type: 'GET_ALL_MOVIES',
+//       payload: {
+//         movies
+//       }
+//     };
+//     const result = actions.getDefaultMovies(movies);
+//     expect(result).toEqual(expectedAction);
+//   });
 
-  // it('should have a type of SELECT_CATEGORY', () => {
-  //   const category = 'Drama';
-  //   const expectedAction = {
-  //     type: 'SELECT_CATEGORY',
-  //     payload: {
-  //       category
-  //     }
-  //   };
-  //   const result = actions.selectCategory(category);
-  //   expect(result).toEqual(expectedAction);
-  // });
 
   it('should have a type of TOGGLE_FAVORITE', () => {
     const id = 1;
