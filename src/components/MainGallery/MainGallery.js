@@ -1,23 +1,51 @@
-import React from 'react'
-import AwesomeSlider from 'react-awesome-slider';
-import AwsSliderStyles from 'react-awesome-slider/src/styles';
-import { connect } from 'react-redux'
-
-
+import React from 'react';
+import AliceCarousel from 'react-alice-carousel';
+import '../Gallery/Gallery.css';
+import 'react-alice-carousel/lib/alice-carousel.css';
 const MainGallery = ({ movies }) => {
-  // const { popular } = movies
-  console.log(movies)
+	const responsive = {
+		0: {
+			items: 1
+		},
+		600: {
+			items: 2
+		},
+		1024: {
+			items: 3
+		}
+	};
 
-  const movieBackdrop = movies.map(movie => {
-    const movieImage = `http://image.tmdb.org/t/p/original${movie.backdrop_path}`
-    return <div data-src={movieImage} key={movie.id} />
-  })
-  return (
-      <AwesomeSlider cssModule={AwsSliderStyles}>
-        { movieBackdrop }
-      </AwesomeSlider>
-  )
-}
+	let details = movies.map(movie => {
+		const { title, overview, backdrop_path } = movie;
+		const imageUrl = `http://image.tmdb.org/t/p/original${backdrop_path}`;
 
-export default MainGallery
-// export default connect(mapStateToProps)(MainGallery)
+		return (
+			<div className="mainCard" key={movie.id}>
+				<img alt={title && ' movie poster'} src={imageUrl} />
+				<div className="details-hover">
+					<h3>{title}</h3>
+					<p>{overview}</p>
+				</div>
+			</div>
+		);
+	});
+
+	return (
+		<section>
+			<AliceCarousel
+				duration={1000}
+				autoPlay={true}
+				startIndex={1}
+				fadeOutAnimation={true}
+				mouseDragEnabled={true}
+				responsive={responsive}
+				autoPlayInterval={5000}
+				autoPlayDirection="rtl"
+				autoPlayActionDisabled={true}>
+				{details}
+			</AliceCarousel>
+		</section>
+	);
+};
+
+export default MainGallery;

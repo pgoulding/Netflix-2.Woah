@@ -1,7 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {
+  connect
+} from 'react-redux'
 import './Card.css'
-import { sendFavorite } from '../../utils/API/ApiFetch'
+import {
+  sendFavorite
+} from '../../utils/API/apiFetch'
 
 const Card = ({ movieInfo, user }) => {
   const { title, poster_path } = movieInfo
@@ -16,13 +20,15 @@ const Card = ({ movieInfo, user }) => {
   )
 }
 
-const mapStateToProps = ({ user }) => ({
-  user
-})
+    const mapStateToProps = ({
+      user
+    }) => ({
+      user
+    })
 
-const mapDispatchToProps = (dispatch) => ({
-  // signIn: (userInfo) => dispatch(signIn(userInfo))
-})
+    const mapDispatchToProps = (dispatch) => ({
+      // signIn: (userInfo) => dispatch(signIn(userInfo))
+    })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card)
+    export default connect(mapStateToProps, mapDispatchToProps)(Card)
