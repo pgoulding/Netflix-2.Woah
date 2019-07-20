@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { sendUserLogin } from '../../utils//API/ApiFetch';
 import { signIn } from '../../actions';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 
 export class UserLogin extends Component {
   constructor() {
@@ -23,9 +24,14 @@ export class UserLogin extends Component {
   loginUser = async e => {
     e.preventDefault();
     try {
-      const user = await sendUserLogin(this.state.email, this.state.password);
-      const results = await user.data;
+      const userLogin = await sendUserLogin(this.state.email, this.state.password);
+      const results = await userLogin.data;
+      // if(results.respose)
+      console.log('response ', results)
       this.props.signIn(results);
+      if(results) {
+        this.props.history.push('/')
+      }
       await this.setState({
         name: '',
         password: '',
