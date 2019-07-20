@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import { signIn, signOut } from '../../actions'
 import { sendNewAccount, sendUserLogin } from '../../utils//API/ApiFetch'
 import './UserMenu.css'
-import UserSignup from './UserSignup'
-import UserLogin from './UserLogin'
-
+import UserSignup from '../UserMenu/UserSignup'
+import UserLogin from '../UserMenu/UserLogin'
 export class UserMenu extends Component {
   constructor() {
     super()

@@ -1,4 +1,4 @@
-import { isLoading, getDefaultMovies, throwError } from '../actions';
+import { isLoading, updateMovies, throwError } from '../actions';
 import { url } from '../Util/ApiCalls/urls';
 import { cleanerFunction } from '../utils/cleanerFunction';
 
@@ -13,7 +13,7 @@ export const fetchDefaultData = url => {
 			const data = await response.json();
 			const movieData = data.results;
 			const movies = await cleanerFunction(movieData);
-			dispatch(getDefaultMovies(movies));
+			dispatch(updateMovies(movies));
 			dispatch(isLoading(false));
 		} catch (error) {
 			dispatch(throwError(error));
