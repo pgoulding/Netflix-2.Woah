@@ -17,11 +17,11 @@ const MainGallery = ({ movies }) => {
 
 	let details = movies.map(movie => {
 		const { title, overview, poster_path } = movie;
-		const imageUrl = `http://image.tmdb.org/t/p/w500${poster_path}`;
+		// const imageUrl = `http://image.tmdb.org/t/p/w500${poster_path}`;
 
 		return (
 			<div className="mainCard" key={movie.id}>
-				<img alt={title && ' movie poster'} src={imageUrl} />
+				<img alt={title && ' movie poster'} src={poster_path} />
 				<div className="details-hover">
 					<h3>{title}</h3>
 					<p>{overview}</p>

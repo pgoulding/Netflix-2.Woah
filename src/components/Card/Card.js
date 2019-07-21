@@ -6,7 +6,7 @@ import DetailedMovieCard from '../../containers/DetailedMovieCard/DetailedMovieC
 const Card = ({ movieInfo, user }) => {
   const { title, poster_path } = movieInfo
   const { user_id } = user
-  const imageUrl = `http://image.tmdb.org/t/p/w300/${poster_path}`
+  const imageUrl = `http://image.tmdb.org/t/p/w300${poster_path}`
 
   const showDetails = (movie) => {
     return <DetailedMovieCard movie={movie} />
