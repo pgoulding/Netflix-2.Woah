@@ -6,10 +6,24 @@ export const updateMovies = (movies, genre) => ({
 	}
 });
 
+export const collectAllGenres = (genres) => ({
+	type: 'COLLECT_ALL_GENRES',
+	payload: {
+		genres
+	}
+});
+
 export const chooseGenre = genre => ({
 	type: 'CHOOSE_GENRE',
 	payload: {
 		genre
+	}
+});
+
+export const searchTerm = term => ({
+	type: 'SEARCH_TERM',
+	payload: {
+		term
 	}
 });
 
