@@ -12,10 +12,10 @@ export class UserSignup extends Component {
       password: '',
       email: '',
       error: '',
-      toSignIn: false
+      toSignIn: false,
     };
-    // console.log('history', this.props.history);
   }
+
 
   handleChange = e => {
     this.setState({
