@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
-import { getMovies } from '../../thunks/getMoviesThunk'
+import React, { Component } from 'react';
+import { getMovies } from '../../thunks/getMoviesThunk';
+// import {searchForMovie} from'../../utils/API/ApiFetch'
+// import SearchOutput from './SearchOutput'
 import apiKey from '../../apikey'
-
+import { Link } from 'react-router-dom'
 export class Search extends Component {
   constructor () {
     super()
     this.state ={
-      searchInput:''
+      searchInput:'',
     }
   }
 
@@ -29,7 +31,12 @@ export class Search extends Component {
           value={this.state.searchInput}
           onChange={this.handleChange}
         />
-        <button onClick={this.searchMovies}>Search</button>
+        <Link to={{
+          pathname: '/search',
+          state: {
+            searchInput: this.state.searchInput
+          }
+        }}>Search</Link>
       </div>
     )
   }

@@ -12,10 +12,8 @@ export class DetailedMovieCard extends Component {
 
   componentDidMount = async () => {
     const { specificMovie } = this.props;
-    // console.log(specificMovie);
-
     const currentMovie = await fetchSingleMovie(specificMovie.id);
-    await console.log(currentMovie); 
+    await console.log(currentMovie);
     this.setState({ currentMovie });
   }
 
@@ -31,7 +29,7 @@ export class DetailedMovieCard extends Component {
       </div>
     );
   };
-  
+
 };
 
 export const mapStateToProps = ({ specificMovie }) => ({
