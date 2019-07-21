@@ -1,6 +1,6 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
-import '../Gallery/Gallery.css';
+import './MainGallery.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
 const MainGallery = ({ movies }) => {
 	const responsive = {
@@ -34,7 +34,7 @@ const MainGallery = ({ movies }) => {
 		<section>
 			<AliceCarousel
 				duration={1000}
-				autoPlay={true}
+				autoPlay={false}
 				startIndex={1}
 				fadeOutAnimation={true}
 				mouseDragEnabled={true}

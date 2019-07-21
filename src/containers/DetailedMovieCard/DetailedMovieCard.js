@@ -2,7 +2,6 @@ import React from 'react'
 
 const DetailedMovieCard = (movie) => {
   const { title, imageUrl, overview, vote_count, vote_average, genre_ids} = movie
-  const 
   return (
     <div>
       <h3>{title}</h3>

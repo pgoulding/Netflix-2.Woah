@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../Card/Card'
-const CategoryContainer = (results) => {
+
+const GenreContainer = (results) => {
   const details  = results.map(movie => {
     return <Card movieInfo={movie} />
   })
@@ -11,5 +12,5 @@ const CategoryContainer = (results) => {
   )
 }
 
-export default CategoryContainer
+export default GenreContainer
 

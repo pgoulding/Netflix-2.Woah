@@ -9,7 +9,7 @@ import Header from '../../containers/Header/Header';
 import MainGallery from '../../components/MainGallery/MainGallery';
 import UserSignup from '../UserMenu/UserSignup';
 import UserLogin from '../UserMenu/UserLogin';
-import GenreContainer from '../'
+import GenreContainer from '../../components/GenreContainer/GenreContainer'
 // import Error from '../../components/Error/error404';
 
 export class App extends Component {
