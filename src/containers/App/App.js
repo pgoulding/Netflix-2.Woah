@@ -37,7 +37,7 @@ export class App extends Component {
 				)}/>
         <Route path='/sign_in' component={UserLogin} />
         <Route path='/create_account' component={UserSignup} />
-				<Route path={`/${this.props.chosenGenre}`} data={this.props.movies[this.props.chosenGenre]} component={Genre} />
+				<Route path={`/${this.props.chosenGenre}`} data={this.props.movies[this.props.chosenGenre]} component={CategoryContainer} />
         {/* <Route component={<Error />} /> */}
       </main>
     );

@@ -6,6 +6,13 @@ export const updateMovies = (movies, genre) => ({
 	}
 });
 
+export const chooseGenre = genre => ({
+	type: 'CHOOSE_GENRE',
+	payload: {
+		genre
+	}
+});
+
 export const toggleFavorite = id => ({
 	type: 'TOGGLE_FAVORITE',
 	payload: {

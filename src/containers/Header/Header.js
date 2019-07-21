@@ -3,6 +3,7 @@ import './Header.css';
 import { UserMenu} from '../UserMenu/UserMenu';
 import {connect} from 'react-redux'
 import { signOut } from '../../actions'
+import Search from '../Search/Search';
 
 export const Header = (user) => {
 
@@ -18,6 +19,7 @@ export const Header = (user) => {
 
   return (
     <header>
+      <Search />
       <h1>BetterFlix</h1>
       {user.user.id ? logout : <UserMenu /> }
     </header>

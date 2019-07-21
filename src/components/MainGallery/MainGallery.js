@@ -16,8 +16,8 @@ const MainGallery = ({ movies }) => {
 	};
 
 	let details = movies.map(movie => {
-		const { title, overview, backdrop_path } = movie;
-		const imageUrl = `http://image.tmdb.org/t/p/original${backdrop_path}`;
+		const { title, overview, poster_path } = movie;
+		const imageUrl = `http://image.tmdb.org/t/p/w500${poster_path}`;
 
 		return (
 			<div className="mainCard" key={movie.id}>

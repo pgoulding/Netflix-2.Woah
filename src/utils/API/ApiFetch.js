@@ -1,7 +1,4 @@
-import {
-	newUserUrl,
-	userSignInURL
-} from './apiUrls';
+import { newUserUrl, userSignInURL } from './apiUrls';
 import apiKey from '../../apikey'
 
 export const findGenres = async () => {
@@ -14,6 +11,18 @@ export const findGenres = async () => {
     throw Error(error.message)
   }
 }
+
+
+// export const findGenres = async () => {
+//   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US` 
+//   try {
+//     const response  =  await fetch (genreUrl)
+//     const parsed = await response.json()
+//     return parsed
+//   } catch (error) {
+//     throw Error(error.message)
+//   }
+// }
 
 const sendUserLogin = async (email, password) => {
 	const user = {
