@@ -7,3 +7,11 @@ header {
 h1 {
   margin: 0;
 }
+
+.menu-hidden {
+  visibility: hidden;
+}
+
+.menu-expanded{
+  visibility:  visible;
+}

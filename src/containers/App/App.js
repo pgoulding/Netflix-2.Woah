@@ -9,7 +9,7 @@ import Header from '../../containers/Header/Header';
 import MainGallery from '../../components/MainGallery/MainGallery';
 import UserSignup from '../UserMenu/UserSignup';
 import UserLogin from '../UserMenu/UserLogin';
-import CategoryContainer from '../'
+import GenreContainer from '../../components/GenreContainer/GenreContainer'
 // import Error from '../../components/Error/error404';
 
 export class App extends Component {
@@ -37,7 +37,7 @@ export class App extends Component {
 				)}/>
         <Route path='/sign_in' component={UserLogin} />
         <Route path='/create_account' component={UserSignup} />
-				<Route path={`/${this.props.chosenGenre}`} data={this.props.movies[this.props.chosenGenre]} component={CategoryContainer} />
+				{/* <Route path={`/${this.props.chosenGenre}`} data={this.props.movies[this.props.chosenGenre]} component={GenreContainer} /> */}
         {/* <Route component={<Error />} /> */}
       </main>
     );
