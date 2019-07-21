@@ -13,16 +13,16 @@ export const findGenres = async () => {
 }
 
 
-// export const findGenres = async () => {
-//   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US` 
-//   try {
-//     const response  =  await fetch (genreUrl)
-//     const parsed = await response.json()
-//     return parsed
-//   } catch (error) {
-//     throw Error(error.message)
-//   }
-// }
+export const fetchSingleGenre = async (genreID) => {
+  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}`
+  try {
+    const response  =  await fetch (genreUrl)
+    const parsed = await response.json()
+    return parsed.results
+  } catch (error) {
+    throw Error(error.message)
+  }
+}
 
 const sendUserLogin = async (email, password) => {
 	const user = {
