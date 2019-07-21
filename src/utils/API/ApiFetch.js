@@ -1,5 +1,6 @@
 import { newUserUrl, userSignInURL } from './apiUrls';
 import apiKey from '../../apikey'
+import { cleanMovies } from '../cleanerFunction';
 
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
@@ -7,6 +8,18 @@ export const findGenres = async () => {
     const response = await fetch(genreUrl)
     const parsed = await response.json()
     return parsed
+  } catch (error) {
+    throw Error(error.message)
+  }
+}
+
+export const searchForMovie = async (searchTerm) => {
+  const genreUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`
+  try {
+    const response = await fetch(genreUrl)
+    const parsed = await response.json()
+    const cleaned = cleanMovies(searchTerm , parsed.results)
+    return cleaned
   } catch (error) {
     throw Error(error.message)
   }
