@@ -3,8 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { sendFavorite } from '../../utils/API/ApiFetch'
 import AliceCarousel from 'react-alice-carousel';
+// import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.css'
-import 'react-alice-carousel/lib/alice-carousel.css';
 const Gallery = ( {data, genre, user} ) => {
   // const onSlideChange = (e)  => {
   //   console.log('Item`s position during a change: ', e.item);
@@ -37,7 +37,7 @@ const Gallery = ( {data, genre, user} ) => {
       <div className="card" key={movie.id}>
         {/* <h3>{title}</h3> */}
 
-        <img alt={title && ' movie poster'} src={imageUrl} />
+        <img alt={title && ' movie poster'} className='movie-poster-carousel' src={imageUrl} />
         {user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
           <div className="details-hover">
               <h3>{title}</h3>
@@ -57,11 +57,11 @@ const Gallery = ( {data, genre, user} ) => {
         startIndex={1}
         fadeOutAnimation={true}
         mouseDragEnabled={true}
-        // playButtonEnabled={true}
         responsive={responsive}
         autoPlayInterval={2000}
         autoPlayDirection="rtl"
         autoPlayActionDisabled={true}
+        buttonsDisabled={true}
         // onSlideChange={onSlideChange}
         // onSlideChanged={onSlideChanged}
         >

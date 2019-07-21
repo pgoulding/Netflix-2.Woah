@@ -12,10 +12,10 @@ export class UserSignup extends Component {
       password: '',
       email: '',
       error: '',
-      toSignIn: false
+      toSignIn: false,
     };
-    // console.log('history', this.props.history);
   }
+
 
   handleChange = e => {
     this.setState({
@@ -26,7 +26,6 @@ export class UserSignup extends Component {
   createNewAccount = async e => {
     e.preventDefault();
     const response = await sendNewAccount(this.state);
-    // await console.log('resp', response.ok);
     if (await response.ok) {
       this.setState({
         toSignIn: true
