@@ -26,7 +26,6 @@ export class Header extends Component {
 
   toggleMenu = (e) => {
     e.preventDefault()
-    console.log('hit')
     this.setState({ expanded: !this.state.expanded })
   }
 

@@ -39,7 +39,6 @@ export class UserMenu extends Component {
   //   }
   // };
   render = () => {
-    console.log('props', this.props);
     // if (this.props.id) {
     //   return (
     //     // <form>

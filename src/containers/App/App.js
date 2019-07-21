@@ -9,32 +9,36 @@ import Header from '../../containers/Header/Header';
 import MainGallery from '../../components/MainGallery/MainGallery';
 import UserSignup from '../UserMenu/UserSignup';
 import UserLogin from '../UserMenu/UserLogin';
-import GenreContainer from '../../components/GenreContainer/GenreContainer'
+import GenreContainer from '../../components/GenreContainer/GenreContainer';
 // import Error from '../../components/Error/error404';
-import { findGenres, fetchSingleGenre } from '../../utils/API/ApiFetch'
-import Genre from '../../components/Genre/Genre'
+import { findGenres } from '../../utils/API/ApiFetch';
+import Genre from '../../components/Genre/Genre';
+import DetailedMovieCard from '../DetailedMovieCard/DetailedMovieCard';
 
 export class App extends Component {
   constructor() {
-    super()
-    this.state={
-      genres:[]
-    }
+    super();
+    this.state = {
+      genres: []
+    };
   }
   async componentDidMount() {
     this.getLoadingMovies();
-    const genres = await findGenres() 
-    this.setState({...genres})
-  }
-  
-  populateRoutes= ()=>  {
-    console.log('populateRoutes')
-    const routes = this.state.genres.map(genre => {
-      return <Route path={`/genre/${genre.name}`} render={(props) => <Genre {...props} genre={genre} />} />
-    })
-    return routes
+    const genres = await findGenres();
+    this.setState({ ...genres });
   }
 
+  populateRoutes = () => {
+    const routes = this.state.genres.map(genre => {
+      return (
+        <Route
+          path={`/genre/${genre.name}`}
+          render={props => <Genre {...props} genre={genre} />}
+        />
+      );
+    });
+    return routes;
+  };
 
   getLoadingMovies = () => {
     const startingFetch = ['popular', 'now_playing', 'top_rated'];
@@ -57,16 +61,17 @@ export class App extends Component {
         <Route path='/sign_in' component={UserLogin} />
         <Route path='/create_account' component={UserSignup} />
         <Route exact path='/genre' component={GenreContainer} />
-          {this.populateRoutes()}
-				{/* <Route path={`/${this.props.chosenGenre}`} data={this.props.movies[this.props.chosenGenre]} component={GenreContainer} /> */}
+        {this.populateRoutes()}
+				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
         {/* <Route component={<Error />} /> */}
       </main>
     );
   }
 }
 
-const mapStateToProps = ({ movies }) => ({
-  movies
+const mapStateToProps = ({ movies, specificMovie }) => ({
+  movies,
+  specificMovie
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -74,7 +79,4 @@ const mapDispatchToProps = dispatch => ({
   updateMovieState: (results, genre) => dispatch(updateMovies(results, genre))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

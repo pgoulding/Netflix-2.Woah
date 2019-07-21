@@ -17,7 +17,6 @@ export class Search extends Component {
   searchMovies = async () => {
     const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${this.state.searchInput}&page=1&include_adult=false`
     const result = await getMovies(this.state.searchInput, searchUrl)
-    console.log(result)
   }
 
   render() {
