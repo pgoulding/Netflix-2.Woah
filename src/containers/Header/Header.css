@@ -6,6 +6,12 @@ header {
 
 h1 {
   margin: 0;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color:inherit;
 }
 
 .menu-hidden {
@@ -14,4 +20,15 @@ h1 {
 
 .menu-expanded{
   visibility:  visible;
+}
+
+.header_nav-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.genre-link{
+  text-decoration: none;
+  color:#EAE1E1;
 }

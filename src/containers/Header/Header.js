@@ -4,6 +4,7 @@ import { UserMenu} from '../UserMenu/UserMenu';
 import {connect} from 'react-redux'
 import { signOut } from '../../actions'
 import Search from '../Search/Search';
+import {Link} from 'react-router-dom'
 
 export class Header extends Component {
   constructor(props) {
@@ -32,12 +33,15 @@ export class Header extends Component {
   render () {
     return (
      <header>
-       <button onClick = {(e) => this.toggleMenu(e)}>Hamburger Menu</button>
-       <h1>BetterFlix</h1>
-       {this.props.user.id ? this.logout : <UserMenu /> }
-       <div className={this.state.expanded ? 'menu-hidden' : 'menu-expanded'}>
+       {/* <button onClick = {(e) => this.toggleMenu(e)}>Hamburger Menu</button> */}
+        <Link to='/' ><h1>BetterFlix</h1></Link>
+       <nav className='header_nav-links'>
        <Search />
-       </div>
+      <Link to='/genre' className='genre-link'>Genres</Link>
+       {this.props.user.id ? this.logout : <UserMenu /> }
+       </nav>
+       {/* <div className={this.state.expanded ? 'menu-hidden' : 'menu-expanded'}>
+       </div> */}
      </header>
    );
   }
