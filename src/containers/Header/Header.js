@@ -26,22 +26,30 @@ export class Header extends Component {
 
   toggleMenu = (e) => {
     e.preventDefault()
-    console.log('hit')
     this.setState({ expanded: !this.state.expanded })
   }
 
   render () {
     return (
      <header>
-       {/* <button onClick = {(e) => this.toggleMenu(e)}>Hamburger Menu</button> */}
         <Link to='/' ><h1>BetterFlix</h1></Link>
        <nav className='header_nav-links'>
        <Search />
-      <Link to='/genre' className='genre-link'>Genres</Link>
-       {this.props.user.id ? this.logout : <UserMenu /> }
+      <Link to='/genre' className='header-link'>Genres</Link>
+          <Link to='/favorites' className='header-link'>Favorites</Link>
+          <button 
+            className='user-toggle-button' 
+            onClick={(e) => this.toggleMenu(e)}>
+              <span role='img' aria-label="user-menu">👤</span> 
+          </button>
+       <div 
+       className=
+       {this.state.expanded 
+          ? 'menu-expanded' 
+          : 'menu-hidden'}>
+        {this.props.user.id ? this.logout : <UserMenu /> }
+       </div>
        </nav>
-       {/* <div className={this.state.expanded ? 'menu-hidden' : 'menu-expanded'}>
-       </div> */}
      </header>
    );
   }

@@ -13,33 +13,10 @@ export class UserMenu extends Component {
       password: '',
       email: ''
     }
-    await this.props.signOut(user);
-    // console.log(this.props.signOut({ ...this.props.user }));
-    // console.log(...this.props.user);
+    // await this.props.signOut(user);
   };
 
-  // const loginMenu = () => {
-  //   if (!this.props.user.id) {
-  //     return (
-  //       <form>
-  //         <Link to='/create_account'>
-  //           <button>Create Account</button>
-  //         </Link>
-  //         <Link to='/sign_in'>
-  //           <button>Log In</button>
-  //         </Link>
-  //       </form>
-  //     );
-  //   } else {
-  //     return (
-  //       <form>
-  //         {/* <button onClick={e => this.signOutUser(e)}>Log Out</button> */}
-  //       </form>
-  //     );
-  //   }
-  // };
   render = () => {
-    console.log('props', this.props);
     // if (this.props.id) {
     //   return (
     //     // <form>
@@ -48,7 +25,7 @@ export class UserMenu extends Component {
     //   );
     // } else {
       return (
-        <form>
+        <form className="user-select-menu">
           <Link to='/create_account'>
             <button>Create Account</button>
           </Link>
@@ -58,7 +35,6 @@ export class UserMenu extends Component {
         </form>
       );
     }
-  // };
 }
 
 export const mapStateToProps = state => ({

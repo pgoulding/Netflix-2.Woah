@@ -1,37 +1,41 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import './Card.css'
-import { sendFavorite } from '../../utils/API/ApiFetch'
-import DetailedMovieCard from '../../containers/DetailedMovieCard/DetailedMovieCard'
-const Card = ({ movieInfo, user }) => {
-  const { title, poster_path } = movieInfo
-  const { user_id } = user
-  const imageUrl = `http://image.tmdb.org/t/p/w300/${poster_path}`
+import React from 'react';
+import { connect } from 'react-redux';
+import './Card.css';
+import { sendFavorite } from '../../utils/API/ApiFetch';
+import { chooseMovie } from '../../actions';
+import { Link } from 'react-router-dom';
 
-  const showDetails = (movie) => {
-    return <DetailedMovieCard movie={movie} />
-  } 
+const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie }) => {
+  const { title, poster_path, movie_id } = movieInfo;
+  const { user_id } = user;
 
+  const seeSpecificMovie = () => {
+    chooseSpecificMovie(title, movie_id);
+  };
 
   return (
-    <article className="movie-card">
-      <h3>{ title }</h3>
-      <img alt={ title && ' movie poster' } src={ imageUrl }/>
-      <button onClick={() => showDetails({...movieInfo, imageUrl})}>View Details</button>
-      {user.id && <button onClick={() => sendFavorite({ ...movieInfo, user_id})}>Favorite Movie</button>}
-    </article>
-  )
-}
+      <article className='movie-card'>
+        <h3>{title}</h3>
+        <img alt={title && ' movie poster'} src={poster_path} />
+        <Link to={`/movies/${title}`}>
+          <button onClick={(e) => seeSpecificMovie(e)}>View Details</button>
+        </Link>
+        {user.id && (
+          <button onClick={() => sendFavorite({ ...movieInfo, user_id })}>
+            Favorite Movie
+          </button>
+        )}
+      </article>
+  );
+};
 
-    const mapStateToProps = ({
-      user
-    }) => ({
-      user
-    })
+const mapStateToProps = ({ user, specificMovie }) => ({
+  user,
+  specificMovie
+});
 
-    const mapDispatchToProps = (dispatch) => ({
-      // signIn: (userInfo) => dispatch(signIn(userInfo))
-    })
+const mapDispatchToProps = dispatch => ({
+  chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id))
+});
 
-
-    export default connect(mapStateToProps, mapDispatchToProps)(Card)
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

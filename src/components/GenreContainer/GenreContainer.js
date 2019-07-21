@@ -19,19 +19,16 @@ export class GenreContainer extends Component  {
 
   populateGenres() {
     return this.state.genres.map(genre => {
-      return <Link className='category-links' to={`/genre/${genre.name}`}>{genre.name}</Link>
+      return (
+        <Link 
+        className='category-links' 
+        to={`/genre/${genre.name}`}>
+        {genre.name}
+        </Link>
+      ) 
     })
   }
 
-  // async handleSubmit (e) {
-  //   e.preventDefault()
-  //   await fetchSingleGenre(e.target.id)
-  //   return 
-  // }
-  // const details  = results.map(movie => {
-
-  //   // return <Card movieInfo={movie} />
-  // })
   render() {
     return (
       <div className='category-link-container'>
