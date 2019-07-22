@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import { sendFavorite } from '../../utils/API/ApiFetch';
-import { chooseMovie } from '../../actions';
-=======
-import './Card.css';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { chooseMovie, setFavorites } from '../../actions';
->>>>>>> 31cf8cd55dcb24eec4c460c3b050199be2f179e1
 import { Link } from 'react-router-dom';
 import filledHeart from '../../images/like-filled.png'
 import emptyHeart from '../../images/like-empty.png'
