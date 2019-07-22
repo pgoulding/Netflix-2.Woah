@@ -76,7 +76,7 @@ export const fetchUserFavorites = async id => {
   try {
     const response = await fetch(`${userSignInURL}${id}/favorites`);
     const parsed = await response.json();
-    // await console.log('favorites', parsed);
+    await console.log('favorites', parsed);
     return parsed;
   } catch (error) {
     throw Error('Cannot retrieve favorites at this time.', error);
@@ -117,6 +117,22 @@ const sendFavorite = async favoriteMovie => {
     return parsed;
   } catch (error) {
     throw Error('Failed to favorite', error);
+  }
+};
+
+export const deleteFavorite = async (user_id, movie_id) => {
+  try {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const response = await fetch(`${userSignInURL}${user_id}/favorites/${movie_id}`, options);
+    const parsed = await response.json();
+    return parsed;
+  } catch (error) {
+    throw Error('Failed to delete favorite', error);
   }
 };
 

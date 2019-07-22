@@ -34,10 +34,9 @@ export class UserLogin extends Component {
       const results = await userLogin.data;
       this.props.signIn(results);
       if (results) {
-        // fetch faves
         const favorites = await fetchUserFavorites(this.props.user.id);
+        // await console.log('fav', favorites);
         this.props.setFavorites(favorites.data);
-        this.props.history.push('/');
       }
       await this.setState({
         name: '',
@@ -55,6 +54,18 @@ export class UserLogin extends Component {
     this.setState({
       password: '',
       email: ''
+    });
+  };
+
+  reflectFavorites = () => {
+    this.props.movies.forEach(genre => {
+      genre.forEach(movie => {
+        this.props.userFavorites.forEach(fav => {
+          if (fav.movie_id === movie.id) {
+            movie.isFavorited = true;
+          }
+        });
+      });
     });
   };
 
@@ -98,8 +109,10 @@ export class UserLogin extends Component {
   };
 }
 
-export const mapStateToProps = state => ({
-  user: state.user
+export const mapStateToProps = ({ user, movies, userFavorites }) => ({
+  user,
+  movies,
+  userFavorites
 });
 
 export const mapDispatchToProps = dispatch => ({
