@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { sendUserLogin } from '../../utils//API/ApiFetch';
+import { sendUserLogin } from '../../utils/API/ApiFetch';
 import { signIn } from '../../actions';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { setFavorites } from '../../actions';
+import { fetchUserFavorites } from '../../utils/API/ApiFetch';
 
 export class UserLogin extends Component {
   constructor() {
@@ -15,7 +17,6 @@ export class UserLogin extends Component {
     };
   }
 
-
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -25,12 +26,17 @@ export class UserLogin extends Component {
   loginUser = async e => {
     e.preventDefault();
     try {
-      const userLogin = await sendUserLogin(this.state.email, this.state.password);
+      const userLogin = await sendUserLogin(
+        this.state.email,
+        this.state.password
+      );
       const results = await userLogin.data;
       this.props.signIn(results);
-      if(results) {
-        // this.componentWillUnmount()
-        this.props.history.push('/')
+      if (results) {
+        // fetch faves
+        const favorites = await fetchUserFavorites(this.props.user.id);
+        this.props.setFavorites(favorites);
+        this.props.history.push('/');
       }
       await this.setState({
         name: '',
@@ -49,12 +55,12 @@ export class UserLogin extends Component {
       password: '',
       email: ''
     });
-  }
+  };
 
   render = () => {
-    if(this.props.user.id) {
-      return <Redirect to="/" />
-    } 
+    if (this.props.user.id) {
+      return <Redirect to='/' />;
+    }
     return (
       <form>
         <h2> Log In</h2>
@@ -93,7 +99,11 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  signIn: results => dispatch(signIn(results))
+  signIn: results => dispatch(signIn(results)),
+  setFavorites: favorites => dispatch(setFavorites(favorites))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserLogin);
