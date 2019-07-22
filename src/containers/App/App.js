@@ -26,28 +26,16 @@ export class App extends Component {
   }
   async componentDidMount() {
     this.getLoadingMovies();
-    const genres = await findGenres() 
-    this.setState({...genres})
+    const genres = await findGenres()
+    this.setState({ ...genres })
   }
-  
-  populateRoutes= ()=>  {
+
+  populateRoutes = () => {
     const routes = this.state.genres.map(genre => {
       return <Route path={`/genre/${genre.name}`} render={(props) => <Genre {...props} genre={genre} />} />
     })
     return routes
   }
-
-  // populateRoutes = () => {
-  //   const routes = this.state.genres.map(genre => {
-  //     return (
-  //       <Route
-  //         path={`/genre/${genre.name}`}
-  //         render={props => <Genre {...props} genre={genre} />}
-  //       />
-  //     );
-  //   });
-  //   return routes;
-  // };
 
   getLoadingMovies = () => {
     const startingFetch = ['popular', 'now_playing', 'top_rated'];
@@ -62,18 +50,18 @@ export class App extends Component {
       <main>
         <Header />
         <Route exact path='/' render={() => (
-					<section>
-						{this.props.movies.now_playing && <MainGallery movies={this.props.movies.now_playing} />}
-						{this.props.movies.popular && <Gallery genre={'popular'} data={this.props.movies.popular} />}
-						{this.props.movies.top_rated && <Gallery genre={'top_rated'} data={this.props.movies.top_rated} />}
-					</section>
-				)}/>
+          <section>
+            {this.props.movies.now_playing && <MainGallery movies={this.props.movies.now_playing} />}
+            {this.props.movies.popular && <Gallery genre={'popular'} data={this.props.movies.popular} />}
+            {this.props.movies.top_rated && <Gallery genre={'top_rated'} data={this.props.movies.top_rated} />}
+          </section>
+        )} />
         <Route path='/sign_in' component={UserLogin} />
         <Route path='/create_account' component={UserSignup} />
         <Route exact path='/genre' component={GenreContainer} />
         {this.populateRoutes()}
         <Route path='/search' component={SearchOutput} />
-				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
+        <Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
         {/* <Route component={<Error />} /> */}
       </main>
     );

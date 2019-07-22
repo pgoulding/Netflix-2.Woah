@@ -77,3 +77,5 @@ describe('App', () => {
             })
           })
         })
+
+      //test populate routes, getLoadingMovies, mstp, mdtp, extension: test routes based on each potential path
