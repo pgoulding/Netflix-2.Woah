@@ -1,7 +1,15 @@
-import { getMoviesReducer } from '../reducers/getMoviesReducer';
-import { isLoadingReducer } from '../reducers/isLoadingReducer';
-import { throwErrorReducer } from '../reducers/throwErrorReducer';
-import { userReducer } from '../reducers/userReducer';
+import {
+	getMoviesReducer
+} from './getMoviesReducer';
+import {
+	isLoadingReducer
+} from './isLoadingReducer';
+import {
+	throwErrorReducer
+} from './throwErrorReducer';
+import {
+	userReducer
+} from './userReducer';
 import * as actions from '../actions';
 
 describe('reducers', () => {

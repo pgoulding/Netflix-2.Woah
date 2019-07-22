@@ -1,6 +1,11 @@
-import { newUserUrl, userSignInURL } from './apiUrls';
+import {
+  newUserUrl,
+  userSignInURL
+} from './apiUrls';
 import apiKey from '../../apikey'
-import { cleanMovies } from '../cleanerFunction';
+import {
+  cleanMovies
+} from '../cleanMovies';
 
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
@@ -29,7 +34,7 @@ export const searchForMovie = async (searchTerm) => {
   try {
     const response = await fetch(genreUrl)
     const parsed = await response.json()
-    const cleaned = cleanMovies(searchTerm , parsed.results)
+    const cleaned = cleanMovies(searchTerm, parsed.results)
     return cleaned
   } catch (error) {
     throw Error(error.message)
@@ -40,9 +45,9 @@ export const searchForMovie = async (searchTerm) => {
 export const fetchSingleMovie = async movie_id => {
   const singleMovieUrl = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${apiKey}&language=en-US`;
   try {
-		const response = await fetch(singleMovieUrl);
-		const parsed = await response.json();
-		// await console.log('works', parsed);
+    const response = await fetch(singleMovieUrl);
+    const parsed = await response.json();
+    // await console.log('works', parsed);
     return parsed;
   } catch (error) {
     throw Error(error.message);
@@ -110,4 +115,8 @@ const sendFavorite = async favoriteMovie => {
   }
 };
 
-export { sendNewAccount, sendUserLogin, sendFavorite };
+export {
+  sendNewAccount,
+  sendUserLogin,
+  sendFavorite
+};

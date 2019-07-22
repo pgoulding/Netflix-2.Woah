@@ -28,28 +28,31 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = ({ email, password, id, name }) => ({
+export const signIn = (user) => ({
   type: 'SIGN_IN',
   payload: {
-    email,
-    password,
-    id,
-    name
+    user
   }
 });
 
 export const signOut = () => ({
-  type: 'SIGN_OUT'
+  type: 'SIGN_OUT',
+
 });
 
-export const createAccount = ({ name, password, email }) => ({
-  type: 'CREATE_ACCOUNT',
-  payload: {
-    name,
-    password,
-    email
-  }
-});
+// export const createAccount = ({
+//   name,
+//   password,
+//   email
+// }) => ({
+//   type: 'CREATE_ACCOUNT',
+//   payload: {
+//     name,
+//     password,
+//     email
+//   }
+// });
+//not used in reducers...
 
 export const throwError = error => ({
   type: 'THROW_ERROR',
