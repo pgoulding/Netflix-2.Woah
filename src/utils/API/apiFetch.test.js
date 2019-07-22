@@ -1,6 +1,7 @@
 import * as ApiFetch from './ApiFetch';
 import apiKey from '../../apikey';
 import * as mockData from '../mockData/mockData';
+import cleanMovies from '../cleanMovies';
 
 describe('ApiFetch', () => {
   const mockPromiseError = 'response.json is not a function';
@@ -45,18 +46,20 @@ describe('ApiFetch', () => {
     //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     //   //need to mock out props
     // });
-    it('should invoke cleanMovies with genreId and results', () => {
-
-    });
-    it('should return a parsed version of the result', () => {
-
+    // it('should return a parsed version of the result', async () => {
+    //   const expected = await ApiFetch.fetchSingleGenre();
+    //   expect(expected).toEqual(mockData.mockGenre);
+    // });
+    it('should invoke cleanMovies with genreId and results', async () => {
+      //invoke window.fetch with dirty data and expect whole function to return clean data
+      // await cleanMovies()
+      // expect(window.fetch).toHaveBeenCalledWith()
     });
     it('should throw an error if fetch fails', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         ok: false
       }))
       await expect(ApiFetch.fetchSingleGenre()).rejects.toEqual(Error(mockPromiseError));
-
     });
   });
   describe('searchForMovie', () => {
@@ -75,11 +78,15 @@ describe('ApiFetch', () => {
     //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     //   //need to mock out props
     // });
+    // it('should return a parsed version of the result', async () => {
+    //   const expected = await ApiFetch.searchForMovie();
+    //   expect(expected).toEqual(mockData.mockMovie);
+
+    // });
     it('should invoke cleanMovies with results and searchTerm', () => {
-
-    });
-    it('should return a parsed version of the result', () => {
-
+      //invoke window.fetch with dirty data and expect whole function to return clean data
+      // await cleanMovies()
+      // expect(window.fetch).toHaveBeenCalledWith()
     });
     it('should throw an error if fetch fails', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -105,7 +112,10 @@ describe('ApiFetch', () => {
     //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     // });
     it('should return a parsed version of the result', () => {
-
+      async () => {
+        const expected = await ApiFetch.fetchSingleMovie();
+        expect(expected).toEqual(mockData.mockMovie);
+      }
     });
     it('should throw an error if fetch fails', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -152,9 +162,12 @@ describe('ApiFetch', () => {
         })
       );
     });
-    it('should call the fetch with the correct arguements', () => {});
+    // it('should call the fetch with the correct arguements', () => {});
     it('should return a parsed version of the result', () => {
-
+      async () => {
+        const expected = await ApiFetch.sendNewAccount();
+        expect(expected).toEqual(mockData.mockUser);
+      }
     });
     // it('should throw an error if fetch fails', async () => {
     //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
@@ -174,9 +187,9 @@ describe('ApiFetch', () => {
       );
     });
     //need to make sure mock movies has isFavorited
-    it('should call the fetch with the correct arguements', () => {
+    // it('should call the fetch with the correct arguements', () => {
 
-    });
+    // });
     it('should return a parsed version of the result', async () => {
       const expected = await ApiFetch.sendFavorite();
       expect(expected).toEqual(mockData.mockMovie);
