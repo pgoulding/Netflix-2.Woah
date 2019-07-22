@@ -112,7 +112,7 @@ const sendFavorite = async favoriteMovie => {
       },
       body: JSON.stringify(favoriteMovie)
     };
-    const response = await fetch(`${userSignInURL}/favorites/new`, options);
+    const response = await fetch(`${userSignInURL}favorites/new`, options);
     const parsed = await response.json();
     return parsed;
   } catch (error) {
