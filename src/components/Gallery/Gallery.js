@@ -31,13 +31,12 @@ const Gallery = ( {data, genre, user} ) => {
   let details = data.map(movie => {
     const { title, overview, backdrop_path } = movie
     const { user_id } = user
-    const imageUrl = `http://image.tmdb.org/t/p/original${backdrop_path}`
 
     return (
       <div className="card" key={movie.id}>
         {/* <h3>{title}</h3> */}
 
-        <img alt={title && ' movie poster'} className='movie-poster-carousel' src={imageUrl} />
+        <img alt={title && ' movie poster'} className='movie-poster-carousel' src={backdrop_path} />
         {user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
           <div className="details-hover">
               <h3>{title}</h3>

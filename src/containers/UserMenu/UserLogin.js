@@ -27,7 +27,6 @@ export class UserLogin extends Component {
     try {
       const userLogin = await sendUserLogin(this.state.email, this.state.password);
       const results = await userLogin.data;
-      console.log('response ', results)
       this.props.signIn(results);
       if(results) {
         // this.componentWillUnmount()
