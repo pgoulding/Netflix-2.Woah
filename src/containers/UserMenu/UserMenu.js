@@ -27,10 +27,10 @@ export class UserMenu extends Component {
       return (
         <form className="user-select-menu">
           <Link to='/create_account'>
-            <button>Create Account</button>
+            <button className="user-select-buttons">Create Account</button>
           </Link>
           <Link to='/sign_in'>
-            <button>Log In</button>
+            <button className="user-select-buttons">Log In</button>
           </Link>
         </form>
       );

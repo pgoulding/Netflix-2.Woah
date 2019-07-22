@@ -7,10 +7,10 @@ const MainGallery = ({ movies }) => {
 		0: {
 			items: 1
 		},
-		600: {
+		800: {
 			items: 2
 		},
-		1024: {
+		1600: {
 			items: 3
 		}
 	};
@@ -33,14 +33,17 @@ const MainGallery = ({ movies }) => {
 		<section>
 			<AliceCarousel
 				duration={1000}
-				autoPlay={false}
+				autoPlay={true}
 				startIndex={1}
 				fadeOutAnimation={true}
 				mouseDragEnabled={true}
 				responsive={responsive}
 				autoPlayInterval={5000}
+				buttonsDisabled={true}
+				dotsDisabled={true}
 				autoPlayDirection="rtl"
-				autoPlayActionDisabled={true}>
+				autoPlayActionDisabled={false}
+				>
 				{details}
 			</AliceCarousel>
 		</section>

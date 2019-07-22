@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { signOut } from '../../actions'
 import Search from '../Search/Search';
 import {Link} from 'react-router-dom'
-
+import profileImage from '../../images/user.png'
 export class Header extends Component {
   constructor(props) {
     super(props)
@@ -19,8 +19,8 @@ export class Header extends Component {
   }
   
   logout = (
-    <form>
-      <button onClick={(e) => this.headerSignOut(e)}>Log Out</button>
+    <form >
+      <button className="user-select-buttons" onClick={(e) => this.headerSignOut(e)}>Log Out</button>
     </form>
   )
 
@@ -37,11 +37,11 @@ export class Header extends Component {
        <Search />
       <Link to='/genre' className='header-link'>Genres</Link>
           <Link to='/favorites' className='header-link'>Favorites</Link>
-          <button 
+          <img
+            alt="user menu button"
             className='user-toggle-button' 
-            onClick={(e) => this.toggleMenu(e)}>
-              <span role='img' aria-label="user-menu">👤</span> 
-          </button>
+            img src={profileImage}
+            onClick={(e) => this.toggleMenu(e)}/>
        <div 
        className=
        {this.state.expanded 

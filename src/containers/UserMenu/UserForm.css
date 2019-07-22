@@ -1,0 +1,36 @@
+.form-container {
+  padding:50px 10px;
+}
+
+.user-form{
+  margin:auto;
+  width:320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: auto;
+  padding:10px;
+  background-color: #5a5a5a;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.user-form > h2 {
+  text-align: center;
+  margin-top:0;
+  color: #EAE1E1;
+}
+
+.user-form > label {
+  font-size: 1.2em;
+  color: #EAE1E1;
+}
+
+.user-form > button {
+  width: 170px;
+  background-color: white;
+  border: 2px solid #7c7c7c;
+  border-radius: 20px;
+  margin: 20px auto 0;
+  line-height: 30px;
+  font-size: 1.2rem;
+}

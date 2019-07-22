@@ -1,0 +1,28 @@
+.movie__specific-details{
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  background-color: #5a5a5a;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  max-width: 800px;
+}
+
+.movie__specific-details > img {
+  width: 200px;
+  margin:10px;
+  object-fit: contain;
+}
+
+.movie-detail-info{
+ max-width: 600px;
+ margin: 0 auto;
+}
+
+.movie-detail-info > h3 {
+  text-align: center;
+  color: #EAE1E1;
+}
+
+.specific-container{
+  padding:5px;
+}
