@@ -40,20 +40,6 @@ export const signOut = () => ({
 
 });
 
-// export const createAccount = ({
-//   name,
-//   password,
-//   email
-// }) => ({
-//   type: 'CREATE_ACCOUNT',
-//   payload: {
-//     name,
-//     password,
-//     email
-//   }
-// });
-//not used in reducers...
-
 export const throwError = error => ({
   type: 'THROW_ERROR',
   payload: {
