@@ -11,8 +11,39 @@ import {
 	userReducer
 } from './userReducer';
 import * as actions from '../actions';
+import {
+	chooseGenreReducer
+} from './chooseGenreReducer';
+import * as mockData from '../utils/mockData/mockData';
+import {
+	chooseSpecificMovieReducer
+} from './chooseSpecificMovieReducer';
 
 describe('reducers', () => {
+	describe('chooseGenreReducer', () => {
+		it('should return the initial state', () => {
+			const expected = '';
+			const result = chooseGenreReducer(undefined, {});
+			expect(result).toEqual(expected);
+		});
+		it('should return a genre', () => {
+			const expected = mockData.mockGenre;
+			const result = chooseGenreReducer(mockData.mockGenre);
+			expect(result).toEqual(expected);
+		})
+	});
+	describe('chooseSpecificMovieReducer', () => {
+		it('should return the initial state', () => {
+			const expected = '';
+			const result = chooseGenreReducer(undefined, {});
+			expect(result).toEqual(expected);
+		});
+		it('should return a  movie', () => {
+			const expected = mockData.mockMovie;
+			const result = chooseSpecificMovieReducer(mockData.mockMovie, {});
+			expect(result).toEqual(expected);
+		});
+	});
 	describe('getMoviesReducer', () => {
 		it('should return the initial state', () => {
 			const expected = {};

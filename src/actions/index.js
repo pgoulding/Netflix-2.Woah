@@ -28,7 +28,7 @@ export const toggleFavorite = id => ({
   }
 });
 
-export const signIn = (user) => ({
+export const signIn = user => ({
   type: 'SIGN_IN',
   payload: {
     user

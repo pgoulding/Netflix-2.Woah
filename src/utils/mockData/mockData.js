@@ -43,10 +43,7 @@ export const mockPost = {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    email: mockUser.email,
-    password: mockUser.password,
-    id: mockUser.id,
-    name: mockUser.name
+    user: mockUser
   })
 }
 

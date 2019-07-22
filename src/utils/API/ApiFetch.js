@@ -47,7 +47,6 @@ export const fetchSingleMovie = async movie_id => {
   try {
     const response = await fetch(singleMovieUrl);
     const parsed = await response.json();
-    // await console.log('works', parsed);
     return parsed;
   } catch (error) {
     throw Error(error.message);
@@ -88,7 +87,6 @@ const sendNewAccount = async newAccount => {
       body: JSON.stringify(newAccount)
     };
     const response = await fetch(newUserUrl, options);
-    // console.log('new acc', response);
     return response;
   } catch (error) {
     throw Error(

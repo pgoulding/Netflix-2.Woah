@@ -1,5 +1,5 @@
 import * as actions from './index';
-import * as mockData from '../utils/mockData';
+import * as mockData from '../utils/mockData/mockData';
 
 describe('Actions', () => {
   it('should have a type of UPDATE_MOVIES and a payload of an object of movies', () => {
