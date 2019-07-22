@@ -64,3 +64,10 @@ export const isLoading = isLoading => ({
     isLoading
   }
 });
+
+export const searchQuery = searchTerm => ({
+  type:'SEARCH_QUERY',
+  payload:{
+    searchTerm
+  }
+})
