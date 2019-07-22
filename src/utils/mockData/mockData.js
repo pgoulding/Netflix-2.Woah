@@ -49,6 +49,8 @@ export const mockPost = {
 
 export const mockLoading = false;
 
+// export const mockFavorited = true;
+
 export const mockError = 'Something went wrong'
 
 export const mockState = {

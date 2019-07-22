@@ -1,6 +1,6 @@
 import * as user from '../utils/API/ApiFetch';
 
-const userReducer = (state = {}, action) => {
+export const userReducer = (state = {}, action) => {
   const {
     type,
     payload
@@ -16,5 +16,3 @@ const userReducer = (state = {}, action) => {
       return state;
   }
 };
-
-export default userReducer;

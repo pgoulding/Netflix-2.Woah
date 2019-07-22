@@ -10,14 +10,23 @@ import {
 import {
 	userReducer
 } from './userReducer';
-import * as actions from '../actions';
+import * as action from '../actions';
 import {
 	chooseGenreReducer
 } from './chooseGenreReducer';
-import * as mockData from '../utils/mockData/mockData';
+import {
+	mockMovies,
+	mockMovie,
+	mockGenre,
+	mockUser
+} from '../utils/mockData/mockData';
 import {
 	chooseSpecificMovieReducer
 } from './chooseSpecificMovieReducer';
+import {
+	toggleFavoritesReducer
+} from './toggleFavoritesReducer';
+
 
 describe('reducers', () => {
 	describe('chooseGenreReducer', () => {
@@ -26,9 +35,14 @@ describe('reducers', () => {
 			const result = chooseGenreReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		it('should return a genre', () => {
-			const expected = mockData.mockGenre;
-			const result = chooseGenreReducer(mockData.mockGenre);
+		it('should handle CHOOSE_GENRE', () => {
+			const expected = mockGenre;
+			const result = chooseGenreReducer({
+				type: 'CHOOSE_GENRE',
+				payload: {
+					genre: 'popluar'
+				}
+			});
 			expect(result).toEqual(expected);
 		})
 	});
@@ -38,56 +52,84 @@ describe('reducers', () => {
 			const result = chooseGenreReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		it('should return a  movie', () => {
-			const expected = mockData.mockMovie;
-			const result = chooseSpecificMovieReducer(mockData.mockMovie, {});
+		it('should handle CHOOSE_MOVIE', () => {
+			const expected = mockMovie;
+			const result = chooseSpecificMovieReducer(mockMovie, {});
 			expect(result).toEqual(expected);
 		});
 	});
 	describe('getMoviesReducer', () => {
 		it('should return the initial state', () => {
 			const expected = {};
-			const results = getMoviesReducer(undefined, {});
-			expect(results).toEqual(expected);
+			const result = getMoviesReducer(undefined, {});
+			expect(result).toEqual(expected);
 		});
-		it('should return state with a new movie', () => {});
-		it('should toggle the favorite status of a movie', () => {});
+		// it('should handle UPDATE_MOVIE', () => {
+		// 	const expected = {
+		// 		type: "UPDATE_MOVIE",
+		// 		payload: {
+		// 			mockMovies,
+		// 			mockGenre
+		// 		}
+		// 	}
+		// 	const result = getMoviesReducer(mockMovies, mockMovie);
+		// 	expect(result).toEqual(expected);
+		// });
 	});
+	describe('toggleFavoritesReducer', () => {
+		it('should return an initial state', () => {
+			const expected = false;
+			const result = toggleFavoritesReducer(undefined, {});
+			expect(result).toEqual(expected);
+		})
+		it('should handle TOGGLE_FAVORITE', () => {
+			const expected = false;
+			const result = toggleFavoritesReducer(false, action.toggleFavorite(true))
+			expect(result).toEqual(expected);
+		});
+	})
 	describe('isLoadingReducer', () => {
 		it('should return the initial state', () => {
 			const expected = false;
-			const results = isLoadingReducer(undefined, {});
-			expect(results).toEqual(expected);
+			const result = isLoadingReducer(undefined, {});
+			expect(result).toEqual(expected);
 		});
-		it('should toggle the loading status', () => {
+		it('should handle IS_LOADING', () => {
 			const expected = false;
-			const results = throwErrorReducer(true, action.isLoading(false));
-			expect(results).toEqual(expected);
+			const result = isLoadingReducer(false, action.isLoading(true));
+			expect(result).toEqual(expected);
 		});
 	});
 	describe('throwErrorReducer', () => {
 		it('should return the initial state', () => {
 			const expected = '';
-			const results = throwErrorReducer(undefined, {});
-			expect(results).toEqual(expected);
+			const result = throwErrorReducer(undefined, {});
+			expect(result).toEqual(expected);
 		});
-		it('should throw an error', () => {
+		it('should handle THROw_ERROR', () => {
 			const expected = 'I am an error';
-			const results = throwErrorReducer(undefined, action.throwError('I am an error'));
-			expect(results).toEqual(expected);
+			const result = throwErrorReducer(undefined, action.throwError('I am an error'));
+			expect(result).toEqual(expected);
 		});
 	});
 	describe('userReducer', () => {
 		it('should return the initial state', () => {
 			const expected = {};
-			const results = userReducer(undefined, {});
-			expect(results).toEqual(expected);
+			const result = userReducer(undefined, {});
+			expect(result).toEqual(expected);
 		});
-		it('should', () => {
-			//sign in
-		});
-		it('should', () => {
-			//sign out
-		});
+		// it('should handle SIGN_IN', () => {
+		// 	const expected = mockUser
+		// 	const result = userReducer(mockUser, {
+		// 		type: 'SIGN_IN',
+		// 		payload: {
+		// 			user: mockUser
+		// 		}
+		// 	});
+		// 	expect(result).toEqual(expected);
+		// });
+		// it('should handle SIGN_OUT', () => {
+		// 	//sign out
+		// });
 	});
 });
