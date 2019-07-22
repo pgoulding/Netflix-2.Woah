@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { fetchSingleGenre } from '../../utils/API/ApiFetch'
 import Card from '../Card/Card'
+import './Genre.css'
 class Genre  extends  Component {
   constructor() {
     super()
@@ -22,7 +23,7 @@ class Genre  extends  Component {
 
   render () {
     return (
-      <div>
+      <div className="movies-container">
         {this.populateMovies()}
       </div>
     )
