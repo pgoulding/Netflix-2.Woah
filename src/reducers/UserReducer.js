@@ -7,7 +7,7 @@ const userReducer = (state = {}, action) => {
       return { ...payload, user_id: payload.id };
     case 'SIGN_OUT':
       return {};
-    case 'GET_FAVORITES':
+    case 'SET_FAVORITES':
       return { userFavorites: [...payload.favorites] };
     default:
       return state;

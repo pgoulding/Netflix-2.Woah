@@ -74,9 +74,9 @@ const sendUserLogin = async (email, password) => {
 
 export const fetchUserFavorites = async id => {
   try {
-    const response = await fetch(`${userSignInURL}:${id}/favorites`);
+    const response = await fetch(`${userSignInURL}${id}/favorites`);
     const parsed = await response.json();
-    await console.log('favorites', parsed);
+    // await console.log('favorites', parsed);
     return parsed;
   } catch (error) {
     throw Error('Cannot retrieve favorites at this time.', error);
