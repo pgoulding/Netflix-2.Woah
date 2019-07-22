@@ -35,16 +35,16 @@ describe('reducers', () => {
 			const result = chooseGenreReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		it('should handle CHOOSE_GENRE', () => {
-			const expected = mockGenre;
-			const result = chooseGenreReducer({
-				type: 'CHOOSE_GENRE',
-				payload: {
-					genre: 'popluar'
-				}
-			});
-			expect(result).toEqual(expected);
-		})
+		// it('should handle CHOOSE_GENRE', () => {
+		// 	const expected = mockGenre;
+		// 	const result = chooseGenreReducer({
+		// 		type: 'CHOOSE_GENRE',
+		// 		payload: {
+		// 			genre: 'popluar'
+		// 		}
+		// 	});
+		// 	expect(result).toEqual(expected);
+		// })//?not being dispatched/used?
 	});
 	describe('chooseSpecificMovieReducer', () => {
 		it('should return the initial state', () => {
@@ -65,16 +65,10 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 		// it('should handle UPDATE_MOVIE', () => {
-		// 	const expected = {
-		// 		type: "UPDATE_MOVIE",
-		// 		payload: {
-		// 			mockMovies,
-		// 			mockGenre
-		// 		}
-		// 	}
-		// 	const result = getMoviesReducer(mockMovies, mockMovie);
+		// 	const expected = mockMovies;
+		// 	const result = getMoviesReducer(mockMovie);
 		// 	expect(result).toEqual(expected);
-		// });
+		// });unsure how to write this out
 	});
 	describe('toggleFavoritesReducer', () => {
 		it('should return an initial state', () => {
@@ -118,18 +112,17 @@ describe('reducers', () => {
 			const result = userReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		// it('should handle SIGN_IN', () => {
-		// 	const expected = mockUser
-		// 	const result = userReducer(mockUser, {
-		// 		type: 'SIGN_IN',
-		// 		payload: {
-		// 			user: mockUser
-		// 		}
-		// 	});
-		// 	expect(result).toEqual(expected);
-		// });
-		// it('should handle SIGN_OUT', () => {
-		// 	//sign out
-		// });
+		it('should handle SIGN_IN', () => {
+			const expected = mockUser
+			const result = userReducer(mockUser, mockUser.id);
+			expect(result).toEqual(expected);
+		});
+		it('should handle SIGN_OUT', () => {
+			const expected = {}
+			const result = userReducer(mockUser, {
+				type: "SIGN_OUT"
+			});
+			expect(result).toEqual(expected);
+		});
 	});
 });

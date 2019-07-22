@@ -18,7 +18,7 @@ export const getMoviesReducer = (state = {}, action) => {
       //     });
       //     return genre;
       //   });
-      // return updatedState;
+      // return updatedState; - moved to toggleFavoritesReducer
     default:
       return state;
   }
