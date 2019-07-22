@@ -13,23 +13,15 @@ export class UserMenu extends Component {
       password: '',
       email: ''
     }
-    // await this.props.signOut(user);
   };
 
   render = () => {
-    // if (this.props.id) {
-    //   return (
-    //     // <form>
-    //     //   <button onClick={e => this.signOutUser(e)}>Log Out</button>
-    //     // </form>
-    //   );
-    // } else {
       return (
         <form className="user-select-menu">
           <Link to='/create_account'>
             <button className="user-select-buttons">Create Account</button>
           </Link>
-          <Link to='/sign_in'>
+          <Link to="/log_in">
             <button className="user-select-buttons">Log In</button>
           </Link>
         </form>

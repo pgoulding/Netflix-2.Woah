@@ -6,6 +6,7 @@ import { isLoadingReducer } from './isLoadingReducer';
 import { chooseGenreReducer } from './chooseGenreReducer';
 import { chooseSpecificMovieReducer } from './chooseSpecificMovieReducer';
 import { searchQueryReducer } from './searchQueryReducer'
+import { userFavReducer } from './userFavReducer'
 
 const rootReducer = combineReducers({
   movies: getMoviesReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   throwError: throwErrorReducer,
   chosenGenre: chooseGenreReducer,
   specificMovie: chooseSpecificMovieReducer,
-  searchQuery: searchQueryReducer
+  searchQuery: searchQueryReducer,
+  userFavorites: userFavReducer
 });
 
 export default rootReducer;

@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './Card.css';
 import { sendFavorite } from '../../utils/API/ApiFetch';
 import { chooseMovie } from '../../actions';
 import { Link } from 'react-router-dom';
+import filledHeart from '../../images/like-filled.png'
+import emptyHeart from '../../images/like-empty.png'
+import moreDetails from '../../images/clapperboard.png'
+import './Card.scss'
 
 const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie }) => {
-  const { title, poster_path, movie_id } = movieInfo;
+  const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
   const { user_id } = user;
 
   const seeSpecificMovie = () => {
@@ -14,17 +17,22 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie }) => {
   };
 
   return (
-      <article className='movie-card'>
-        <h3>{title}</h3>
-        <img alt={title && ' movie poster'} src={poster_path} />
-        <Link to={`/movies/${title}`}>
-          <button onClick={(e) => seeSpecificMovie(e)}>View Details</button>
-        </Link>
-        {user.id && (
-          <button onClick={() => sendFavorite({ ...movieInfo, user_id })}>
-            Favorite Movie
-          </button>
-        )}
+    <article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
+        <img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />
+      <div className="movie-info">
+        <h3 className='movie-title'>{title}</h3>
+        <div className="movie-overview">
+        <p>{overview}</p>
+        </div>
+          <div className='movie-buttons'>
+          <Link to={`/movies/${title}`}>
+            <button onClick={(e) => seeSpecificMovie(e)}><img alt="more details" src={moreDetails}/></button>
+          </Link>
+            <button onClick={() => sendFavorite({ ...movieInfo, user_id })}>
+            <img className="favorite__img-button" alt="favorite this movie" src={isFavorited ? filledHeart : emptyHeart} />
+            </button>
+          </div>
+      </div>
       </article>
   );
 };

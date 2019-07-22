@@ -1,5 +1,3 @@
-import * as user from '../utils/API/ApiFetch';
-
 const userReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -13,5 +11,3 @@ const userReducer = (state = {}, action) => {
 };
 
 export default userReducer;
-
-//toggle log in - bool vs obj

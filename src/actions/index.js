@@ -28,6 +28,13 @@ export const toggleFavorite = id => ({
   }
 });
 
+export const setFavorites = favorites => ({
+  type: 'SET_FAVORITES',
+  payload: {
+    favorites
+  }
+});
+
 export const signIn = ({ email, password, id, name }) => ({
   type: 'SIGN_IN',
   payload: {
