@@ -19,7 +19,7 @@ export class Header extends Component {
 	};
 
 	userMenu = (
-		<form className="user-select-menu">
+		<form className="user-select-menu" onClick={e => this.toggleMenu(e)}>
 			<Link to="/create_account">
 				<button className="user-select-buttons"> Create Account </button>
 			</Link>
@@ -46,12 +46,14 @@ export class Header extends Component {
 
 	render () {
 		return (
-			<header onClick={e => this.toggleMenu(e)}>
+			<header>
 				<Link to="/">
 					<h1> BetterFlix </h1>
 				</Link>
 				<nav className="header_nav-links">
-					<Search />
+					<Link to="/search" className="header-link">
+						Search 
+						</Link>
 					<Link to="/genre" className="header-link">
 						Genres
 					</Link>

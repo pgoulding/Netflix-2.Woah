@@ -2,16 +2,20 @@ import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import './MainGallery.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import FavButton from '../FavButton/FavButton';
 const MainGallery = ({ movies }) => {
 	const responsive = {
 		0: {
 			items: 1
 		},
-		800: {
+		600: {
 			items: 2
 		},
-		1600: {
+		1024: {
 			items: 3
+		},
+		1200:{
+			items:4
 		}
 	};
 
@@ -20,10 +24,11 @@ const MainGallery = ({ movies }) => {
 
 		return (
 			<div className="mainCard" key={movie.id}>
-				<img alt={title && ' movie poster'} src={poster_path} />
-				<div className="details-hover">
-					<h3>{title}</h3>
+				<img className='main-card-image' alt={title && ' movie poster'} src={poster_path} />
+				<div className="movie-info">
+					<h3 className='movie-title'>{title}</h3>
 					<p>{overview}</p>
+					<FavButton movieInfo={movie} />
 				</div>
 			</div>
 		);

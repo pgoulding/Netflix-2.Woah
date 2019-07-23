@@ -16,10 +16,10 @@ export const userReducer = (state = {}, action) => {
       return {
         ...state, favorites: payload.favorites
       };
-    case 'ADD_FAVORITE':
-      return {
-        ...state, favorites: [...state.favorites, payload.movie]
-      }
+    // case 'ADD_FAVORITE':
+    //   return {
+    //     ...state, favorites: [...state.favorites, payload.movie]
+    //   }
       //move to another reducer
       default:
         return state;

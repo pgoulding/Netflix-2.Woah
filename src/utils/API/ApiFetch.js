@@ -84,7 +84,7 @@ export const fetchUserFavorites = async id => {
     console.log(await response)
     const parsed = await response.json();
     await console.log('favorites', parsed);
-    return parsed;
+    return parsed.data;
   } catch (error) {
     throw Error('Cannot retrieve favorites at this time.', error);
   }
@@ -110,6 +110,7 @@ const sendNewAccount = async newAccount => {
 };
 
 const sendFavorite = async favoriteMovie => {
+  console.log(favoriteMovie)
   try {
     const options = {
       method: 'POST',
