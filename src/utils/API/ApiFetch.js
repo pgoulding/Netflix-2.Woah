@@ -81,6 +81,7 @@ const sendUserLogin = async (email, password) => {
 export const fetchUserFavorites = async id => {
   try {
     const response = await fetch(`${userSignInURL}${id}/favorites`);
+    console.log(await response)
     const parsed = await response.json();
     await console.log('favorites', parsed);
     return parsed;

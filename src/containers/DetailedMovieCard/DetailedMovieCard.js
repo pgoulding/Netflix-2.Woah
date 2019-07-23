@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSingleMovie } from '../../utils/API/ApiFetch';
-import './DetailedMovieCard.css';
+import './DetailedMovieCard.scss';
 import { Link } from 'react-router-dom';
 
 export class DetailedMovieCard extends Component {
