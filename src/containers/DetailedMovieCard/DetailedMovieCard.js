@@ -17,13 +17,16 @@ export class DetailedMovieCard extends Component {
     const currentMovie = await fetchSingleMovie(specificMovie.id);
     this.setState({ currentMovie });
     await console.log('curr', currentMovie);
+    console.log(this.props);
   }
 
   render = () => {
     const { title, overview, poster_path, vote_average, vote_count, revenue, runtime, homepage, release_date, genres } = this.state.currentMovie;
     let movieGenres;
     if (genres) {
-      movieGenres = genres.map(genre => ` (${genre.name})`);
+      movieGenres = genres.map(genre => {
+        return <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
+      });
     }
     return (
       <article className='specific-container'>
