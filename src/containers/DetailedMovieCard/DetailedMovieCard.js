@@ -23,7 +23,7 @@ export class DetailedMovieCard extends Component {
     const { title, overview, poster_path, vote_average, vote_count, revenue, runtime, homepage, release_date, genres } = this.state.currentMovie;
     let movieGenres;
     if (genres) {
-      movieGenres = genres.map(genre => ` ${genre.name},`);
+      movieGenres = genres.map(genre => ` (${genre.name})`);
     }
     return (
       <article className='specific-container'>
