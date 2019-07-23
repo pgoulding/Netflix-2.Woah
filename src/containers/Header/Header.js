@@ -18,6 +18,17 @@ export class Header extends Component {
 		this.props.signOut();
 	};
 
+	userMenu = (
+		<form className="user-select-menu">
+			<Link to="/create_account">
+				<button className="user-select-buttons"> Create Account </button>
+			</Link>
+			<Link to="/log_in">
+				<button className="user-select-buttons"> Log In </button>
+			</Link>
+		</form>
+	);
+
 	logout = (
 		<form>
 			<button className="user-select-buttons" onClick={e => this.headerSignOut(e)}>
@@ -28,14 +39,16 @@ export class Header extends Component {
 
 	toggleMenu = e => {
 		e.preventDefault();
-		this.setState({ expanded: !this.state.expanded });
+		this.setState({
+			expanded: !this.state.expanded
+		});
 	};
 
 	render () {
 		return (
-			<header>
+			<header onClick={e => this.toggleMenu(e)}>
 				<Link to="/">
-					<h1>BetterFlix</h1>
+					<h1> BetterFlix </h1>
 				</Link>
 				<nav className="header_nav-links">
 					<Search />
@@ -45,26 +58,36 @@ export class Header extends Component {
 					<Link to="/favorites" className="header-link">
 						Favorites
 					</Link>
-					<img
-						alt="user menu button"
-						className="user-toggle-button"
-						img
-						src={profileImage}
-						onClick={e => this.toggleMenu(e)}
-					/>
-					<div className={this.state.expanded ? 'menu-expanded' : 'menu-hidden'}>
-						{this.props.user.id ? this.logout : <UserMenu />}
-					</div>
+					{!this.state.expanded &&
+					!this.props.user.id && (
+						<img
+							alt="user menu button"
+							className="user-toggle-button"
+							img
+							src={profileImage}
+							onClick={e => this.toggleMenu(e)}
+						/>
+					)}
+					{this.state.expanded && this.userMenu}
+					{/* {this.state.expanded && <button class="user-toggle-button" onClick={(e) => this.toggleMenu(e)}>Back</button>} */}
+					{this.props.user.id && this.logout}
+					{/* <div 
+                 className=
+                 {this.state.expanded 
+                    ? 'menu-expanded' 
+                    : 'menu-hidden'}>
+                  
+                 </div> */}
 				</nav>
 			</header>
 		);
 	}
 }
-export const mapStateToProps = state => ({
-	user: state.user
-});
 export const mapDispatchToProps = dispatch => ({
 	signOut: () => dispatch(signOut())
+});
+export const mapStateToProps = state => ({
+	user: state.user
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

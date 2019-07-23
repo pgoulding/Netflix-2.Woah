@@ -29,6 +29,14 @@ export const toggleFavorite = (id, favorited) => ({
   }
 });
 
+export const setFavorites = favorites => ({
+  type: 'SET_FAVORITES',
+  payload: {
+    favorites
+  }
+});
+
+// export const signIn = ({ email, password, id, name }) => ({
 export const signIn = user => ({
   type: 'SIGN_IN',
   payload: {
@@ -54,3 +62,17 @@ export const isLoading = isLoading => ({
     isLoading
   }
 });
+
+export const searchQuery = searchTerm => ({
+  type:'SEARCH_QUERY',
+  payload:{
+    searchTerm
+  }
+})
+
+export const addMovie = movie => ({
+  type:'ADD_FAVORITE',
+  payload:{
+    movie
+  }
+})

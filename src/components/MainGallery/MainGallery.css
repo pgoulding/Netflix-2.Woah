@@ -1,46 +1,9 @@
-/* .gallery {  
-  display:flex;
-  flex-wrap: wrap;
-} */
-
-.card {
-  position: relative;
-}
-
 section>h2 {
   color: #FFFFFF;
-}
-
-.card:hover {
-  position: absolute;
-  z-index: -2;
-}
-
-.details-hover {
-  position: absolute;
-}
-
-li.alice-carousel__stage-item:hover {
-  z-index: -2;
-}
-
-.details-hover:hover {
-  position: relative;
-  z-index: 100;
 }
 
 .card>img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-}
-
-.mainCard>img {
-  width: 100%;
-  height: 800px;
-  object-fit: cover;
-}
-
-.card>img:hover {
-  z-index: -2;
 }
