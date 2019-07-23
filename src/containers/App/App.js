@@ -15,7 +15,7 @@ import Genre from '../../components/Genre/Genre';
 import SearchOutput from '../Search/SearchOutput';
 import DetailedMovieCard from '../DetailedMovieCard/DetailedMovieCard';
 import apiKey from '../../apikey';
-import Favorites from '../Favorites/Favorites';
+import Favorites from '../../components/Favorites/Favorites';
 
 export class App extends Component {
 	constructor () {
@@ -60,12 +60,12 @@ export class App extends Component {
 						</section>
 					)}
 				/>
-				<Route path="/favorites" component={Favorites} />
-				<Route path="/log_in" component={UserLogin} />
-				<Route path="/create_account" component={UserSignup} />
-				<Route exact path="/genre" component={GenreContainer} />
+				<Route path='/favorites' component={Favorites} />
+				<Route path='/log_in' component={UserLogin} />
+				<Route path='/create_account' component={UserSignup} />
+				<Route exact path='/genre' component={GenreContainer} />
 				{this.populateRoutes()}
-				<Route path="/search" component={SearchOutput} />
+				<Route path='/search' component={SearchOutput} />
 				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
 				{/* <Route component={<Error />} /> */}
 			</main>
