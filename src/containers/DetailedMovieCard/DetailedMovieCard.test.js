@@ -1,19 +1,19 @@
 import {
-  Card,
+  DetailedMovieCard,
   mapStateToProps,
   mapDispatchToProps
-} from './Card';
+} from './DetailedMovieCard';
 import {
   shallow
 } from 'enzyme';
 import React from 'react';
 
-describe('Card', () => {
+describe('DetailedMovieCard', () => {
   describe('component', () => {
     let wrapper, instance;
 
     beforeEach(() => {
-      wrapper = shallow( < Card / > );
+      wrapper = shallow( < DetailedMovieCard / > );
       instance = wrapper.instance()
     });
     it('should match snapshot', () => {

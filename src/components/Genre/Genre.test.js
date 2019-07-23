@@ -1,8 +1,8 @@
 import {
-  GalleryContainer,
+  Genre,
   mapStateToProps,
   mapDispatchToProps
-} from './GenreContainer';
+} from './Genre';
 import {
   shallow
 } from 'enzyme';
@@ -11,7 +11,7 @@ import React from 'react';
 describe('GalleryContainer', () => {
   let wrapper, instance;
   beforeEach(() => {
-    wrapper = shallow( < GalleryContainer / > );
+    wrapper = shallow( < Genre / > );
     instance = wrapper.instance()
   });
 
