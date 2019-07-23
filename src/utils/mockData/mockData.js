@@ -67,13 +67,4 @@ export const mockLoading = false;
 
 // export const mockFavorited = true;
 
-export const mockError = 'Something went wrong'
-
-export const mockState = {
-  movies: mockMovies,
-  user: mockUser,
-  isLoading: mockLoading,
-  throwError: mockError,
-  chosenGenre: mockGenre,
-  specificMovie: mockMovie
-}
+export const mockError = 'Something went wrong';

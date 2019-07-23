@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-// import Card from '../Card/Card'
 import { connect } from 'react-redux';
 import { sendFavorite } from '../../utils/API/ApiFetch';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
-const Gallery = ({ data, genre, user }) => {
+export const Gallery = ({ data, genre, user }) => {
 	const reformatGenre = () => {};
 	const [ hovered, setHovered ] = useState(false);
 	const toggleHover = () => setHovered(!hovered);
@@ -29,12 +28,19 @@ const Gallery = ({ data, genre, user }) => {
 		return (
 			<div onMouseLeave={toggleHover} onMouseEnter={toggleHover} key={movie.id} className="card">
 				<img alt={title && ' movie poster '} className="movie-poster-carousel" src={backdrop_path} />
-
-				{user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
-
+				{user_id && (
+					<button
+						className="send-favorite-btn"
+						onClick={() =>
+							sendFavorite({
+								...movie,
+								user_id
+							})}>
+						Favorite Movie
+					</button>
+				)}
 				<div className="details">
-					<h3>{title}</h3>
-					<p>{overview}</p>
+					<h3> {title} </h3> <p> {overview} </p>
 				</div>
 			</div>
 		);
@@ -42,7 +48,7 @@ const Gallery = ({ data, genre, user }) => {
 
 	return (
 		<section>
-			<h2>{genre}</h2>
+			<h2> {genre} </h2>
 			<AliceCarousel
 				duration={1000}
 				autoPlay={false}
@@ -60,7 +66,7 @@ const Gallery = ({ data, genre, user }) => {
 	);
 };
 
-const mapStateToProps = ({ movies, user }) => ({
+export const mapStateToProps = ({ movies, user }) => ({
 	movies,
 	user
 });
