@@ -5,7 +5,7 @@ export const isLoadingReducer = (state = false, action) => {
   } = action;
   switch (type) {
     case 'IS_LOADING':
-      return payload.isLoading;
+      return payload.isLoading = !payload.isLoading;
     default:
       return state;
   }

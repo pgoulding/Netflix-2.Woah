@@ -1,68 +1,52 @@
 import {
-  fetchDefaultData
-} from './fetchDefaultData';
+  getMoviesThunk
+} from './getMoviesThunk';
+import {
+  mockGenre
+} from '../utils/mockData/mockData';
 import {
   isLoading,
   throwError,
-  getAllMovies
-} from '../../actions'
+  updateMovies
+} from '../actions';
+import ApiFetch from '../utils/API/ApiFetch';
 
-describe('fetchDefualtData', () => {
-  let mockUrl
-  let mockMovies
-  let mockDispatch
+describe('getMovieThunk', () => {
+  let mockUrl, mockDispatch, thunk;
 
   beforeEach(() => {
-    mockUrl = 'www.someurl.com'
-    mockMovie = [{
-        title: 'Avatar',
-        poster: 'www.someimage.com'
-      },
-      {
-        title: 'Star Wars',
-        poster: 'www.someimage.com'
-      }
-    ]
-    mockDispatch = jest.fn()
+    mockUrl = 'www.someurl.com';
+    thunk = getMoviesThunk(mockUrl, mockGenre)
+    mockDispatch = jest.fn();
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       ok: true,
       json: () => Promise.resolve({
-        movie: mockMovie
+        movie: mockData.mockMovie
       })
     }))
-  })
+  });
 
-  it('calls dispatch with isLoading(true)', () => {
-    const thunk = fetchDefaultData(mockUrl)
-    thunk(mockDispatch)
-    expect(mockDispatch).toHaveBeenCalledWith(isLoading(true))
-  })
+  // it('calls dispatch when Loading', () => {
+  //   thunk(mockDispatch)
+  //   expect(mockDispatch).toHaveBeenCalledWith(isLoading(true))
+  // })
 
-  it('calls fetch with the correct param', () => {
-    const thunk = fetchDefaultData(mockUrl)
+  // it('calls fetch with the correct param', () => {
+  //   thunk(mockDispatch)
+  //   expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+  // })
+  // it('should dispatch throwError with a message if the response is not ok', async () => {
+  //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+  //     ok: false,
+  //     statusText: 'There is an error'
+  //   }))
+  //   await thunk(mockDispatch)
+  //   expect(mockDispatch).toHaveBeenCalledWith(throwError('There is an error'))
+  // })
 
-    thunk(mockDispatch)
-
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
-  })
-  it('should dispatch throwError with a message if the response is not ok', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      ok: false,
-      statusText: 'There is an error'
-    }))
-
-    const thunk = fetchDefaultData(mockUrl)
-
-    await thunk(mockDispatch)
-
-    expect(mockDispatch).toHaveBeenCalledWith(throwError('There is an error'))
-  })
-  it('should dispatch isLoading(false) if the response is ok', async () => {
-    const thunk = fetchDefaultData(mockUrl)
-
-    await thunk(mockDispatch)
-
-    expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
-  })
-
-})
+  // //need to make test for parsed response, cleaned data, and that movies was update - updateMovies
+  // it('should dispatch and not load if the response is ok', async () => {
+  //   await thunk(mockDispatch)
+  //   expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
+  // })
+});

@@ -1,20 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import Card from '../Card/Card'
 import { connect } from 'react-redux'
 import { sendFavorite } from '../../utils/API/ApiFetch'
 import AliceCarousel from 'react-alice-carousel';
-// import 'react-alice-carousel/lib/alice-carousel.css';
-import './Gallery.css'
+import 'react-alice-carousel/lib/alice-carousel.css';
+import './Gallery.scss'
 const Gallery = ( {data, genre, user} ) => {
-  // const onSlideChange = (e)  => {
-  //   console.log('Item`s position during a change: ', e.item);
-  //   console.log('Slide`s position during a change: ', e.slide);
-  // }
 
-  // const onSlideChanged = (e) => {
-  //   console.log('Item`s position after changes: ', e.item);
-  //   console.log('Slide`s position after changes: ', e.slide);
-  // }
+  const reformatGenre = () => {
+
+  }
+  const [hovered, setHovered] = useState(false);
+  const toggleHover = () => setHovered(!hovered);
 
     const responsive = {
       0: {
@@ -33,18 +30,26 @@ const Gallery = ( {data, genre, user} ) => {
     const { user_id } = user
 
     return (
-      <div className="card" key={movie.id}>
-        {/* <h3>{title}</h3> */}
+      <div
+        onMouseLeave={toggleHover}
+        onMouseEnter={toggleHover}
+        key={movie.id}
+        className='card'
+      >
 
-        <img alt={title && ' movie poster'} className='movie-poster-carousel' src={backdrop_path} />
-        {user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
-          <div className="details-hover">
-              <h3>{title}</h3>
-              <p>{overview}</p>
+            <img alt={title && ' movie poster '} 
+            className='movie-poster-carousel' 
+            src={backdrop_path} />
+
+            {user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
+
+          <div className='details'>
+            <h3>{title}</h3>
+            <p>{overview}</p>
           </div>
-        </div>
+
+      </div>
     ) 
-      // return <Card key={data.id} movieInfo={movie} />
     })
 
   return (
@@ -52,7 +57,7 @@ const Gallery = ( {data, genre, user} ) => {
       <h2>{ genre }</h2>
       <AliceCarousel
         duration={1000}
-        autoPlay={true}
+        autoPlay={false}
         startIndex={1}
         fadeOutAnimation={true}
         mouseDragEnabled={true}
@@ -61,14 +66,9 @@ const Gallery = ( {data, genre, user} ) => {
         autoPlayDirection="rtl"
         autoPlayActionDisabled={true}
         buttonsDisabled={true}
-        // onSlideChange={onSlideChange}
-        // onSlideChanged={onSlideChanged}
         >
       { details }
       </AliceCarousel>
-      {/* <div className="gallery"> */}
-      {/* { details } */}
-      {/* </div> */}
     </section>
   )
 }

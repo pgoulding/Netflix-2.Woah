@@ -17,6 +17,17 @@ export class Header extends Component {
     e.preventDefault()
     this.props.signOut()
   }
+
+  userMenu = (
+      < form className = "user-select-menu" >
+        <Link to='/create_account'>
+          <button className="user-select-buttons">Create Account</button>
+        </Link>
+        <Link to="/log_in">
+          <button className="user-select-buttons">Log In</button>
+        </Link>
+      </form>
+  )
   
   logout = (
     <form >
@@ -31,24 +42,28 @@ export class Header extends Component {
 
   render () {
     return (
-     <header>
+     <header onClick={(e)=> this.toggleMenu(e)}>
         <Link to='/' ><h1>BetterFlix</h1></Link>
        <nav className='header_nav-links'>
-       <Search />
-      <Link to='/genre' className='header-link'>Genres</Link>
+          <Search />
+          <Link to='/genre' className='header-link'>Genres</Link>
           <Link to='/favorites' className='header-link'>Favorites</Link>
-          <img
+          {!this.state.expanded && !this.props.user.id &&
+            <img
             alt="user menu button"
-            className='user-toggle-button' 
+            className='user-toggle-button'
             img src={profileImage}
-            onClick={(e) => this.toggleMenu(e)}/>
-       <div 
+            onClick={(e) => this.toggleMenu(e)} /> }
+          {this.state.expanded && this.userMenu}
+          {/* {this.state.expanded && <button class="user-toggle-button" onClick={(e) => this.toggleMenu(e)}>Back</button>} */}
+          {this.props.user.id && this.logout}
+       {/* <div 
        className=
        {this.state.expanded 
           ? 'menu-expanded' 
           : 'menu-hidden'}>
-        {this.props.user.id ? this.logout : <UserMenu /> }
-       </div>
+        
+       </div> */}
        </nav>
      </header>
    );

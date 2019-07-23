@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { sendUserLogin } from '../../utils//API/ApiFetch';
+import { sendUserLogin } from '../../utils/API/ApiFetch';
 import { signIn } from '../../actions';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import './UserForm.css'
+import { Redirect } from 'react-router-dom';
+import { setFavorites } from '../../actions';
+import { fetchUserFavorites } from '../../utils/API/ApiFetch';
+
 export class UserLogin extends Component {
   constructor() {
     super();
@@ -15,7 +18,6 @@ export class UserLogin extends Component {
     };
   }
 
-
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -25,12 +27,16 @@ export class UserLogin extends Component {
   loginUser = async e => {
     e.preventDefault();
     try {
-      const userLogin = await sendUserLogin(this.state.email, this.state.password);
+      const userLogin = await sendUserLogin(
+        this.state.email,
+        this.state.password
+      );
       const results = await userLogin.data;
       this.props.signIn(results);
-      if(results) {
-        // this.componentWillUnmount()
-        this.props.history.push('/')
+      if (results) {
+        const favorites = await fetchUserFavorites(this.props.user.id);
+        // await console.log('fav', favorites);
+        this.props.setFavorites(favorites.data);
       }
       await this.setState({
         name: '',
@@ -49,12 +55,24 @@ export class UserLogin extends Component {
       password: '',
       email: ''
     });
-  }
+  };
+
+  reflectFavorites = () => {
+    this.props.movies.forEach(genre => {
+      genre.forEach(movie => {
+        this.props.userFavorites.forEach(fav => {
+          if (fav.movie_id === movie.id) {
+            movie.isFavorited = true;
+          }
+        });
+      });
+    });
+  };
 
   render = () => {
-    if(this.props.user.id) {
-      return <Redirect to="/" />
-    } 
+    if (this.props.user.id) {
+      return <Redirect to='/' />;
+    }
     return (
       <div className="form-container">
         <form className="user-form">
@@ -91,12 +109,18 @@ export class UserLogin extends Component {
   };
 }
 
-export const mapStateToProps = state => ({
-  user: state.user
+export const mapStateToProps = ({ user, movies, userFavorites }) => ({
+  user,
+  movies,
+  userFavorites
 });
 
 export const mapDispatchToProps = dispatch => ({
-  signIn: results => dispatch(signIn(results))
+  signIn: results => dispatch(signIn(results)),
+  setFavorites: favorites => dispatch(setFavorites(favorites))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserLogin);
