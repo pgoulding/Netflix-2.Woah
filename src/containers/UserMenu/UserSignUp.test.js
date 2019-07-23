@@ -1,8 +1,9 @@
-import {
+mport {
   DetailedMovieCard,
   mapStateToProps,
   mapDispatchToProps
-} from './DetailedMovieCard';
+}
+from './DetailedMovieCard';
 import {
   shallow
 } from 'enzyme';
@@ -54,3 +55,6 @@ describe('DetailedMovieCard', () => {
           });
         });
       });
+
+      {
+        /* test initial state, handlechange, createnewaccount, clearinputfields */ }
