@@ -10,37 +10,45 @@ export class Favorites extends Component {
       favoriteMovs: []
     };
   }
-  // console.log('movies', movies);
 
-  // findFaves = () => {
-  //   if (!this.props.user.id) {
-  //     return <Redirect to="/log_in" />
-  //   } else {
-  //     const faves = this.props.user.favorites.map(fave => fave.movie_id);
-  //     let faveMovs = Object.keys(this.props.movies).reduce((shownMovies, genre) => {
-  //       this.props.movies[genre].forEach(movie => {
-  //         if (faves.includes(movie.movie_id)) {
-  //           console.log('movie', movie);
-  //           shownMovies.push(movie);
-  //         }
-  //       });
-  //       console.log('shownMovies', shownMovies);
-  //       return shownMovies;
-  //     }, []);
-  //     this.setState({favoriteMovs: [...faveMovs]}, () => console.log('state', this.state));
-  //   }
-  // };
+  componentDidMount() {
+    if(this.props.user.id) {
+      // const faves = this.props.user.favorites.map(fave => fave.movie_id);
+      // // console.log('faves', faves);
+      // let faveMovs = Object.keys(this.props.movies).reduce((shownMovies, genre) => {
+      //   this.props.movies[genre].forEach(movie => {
+      //     if (faves.includes(movie.movie_id)) {
+      //       shownMovies.push(movie);
+      //     }
+      //   });
+      //   return shownMovies;
+      // }, []);
+      // console.log('fm', faveMovs);
+     this.updateMovies()
+    }
+  }
 
-  // const populateFaves = () => {
-  //   const movs = findFaves();
-  //   console.log('movs', movs);
-  //   return movs.map(movie => {
-	// 		return <Card movieInfo={movie} />;
-	// 	});
-  // }
-  // render = () => {
-  //   return <div className='movies-container'>{this.findFaves()}</div>;
-  // }
+  updateMovies() {
+    this.setState({ favoriteMovs: this.props.user.favorites });
+  }
+
+  findFaves = () => {
+    if (!this.props.user.id) {
+      return <Redirect to="/log_in" />
+    } else {
+      return this.state.favoriteMovs.map(movie => {
+        return <Card movieInfo={movie} />;
+      });
+    }
+  };
+
+  render = () => {
+    return (
+      <div className='movies-container' onClick={() => this.updateMovies()}>
+        {this.findFaves()}
+      </div>
+    ) 
+  }
 };
 
 export const mapStateToProps = ({user, movies}) => ({

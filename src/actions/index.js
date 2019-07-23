@@ -21,13 +21,13 @@ export const chooseMovie = (title, id) => ({
   }
 });
 
-export const toggleFavorite = (id, favorited) => ({
-  type: 'TOGGLE_FAVORITE',
-  payload: {
-    id,
-    favorited
-  }
-});
+// export const toggleFavorite = (id, favorited) => ({
+//   type: 'TOGGLE_FAVORITE',
+//   payload: {
+//     id,
+//     favorited
+//   }
+// });
 
 export const setFavorites = favorites => ({
   type: 'SET_FAVORITES',
@@ -70,9 +70,9 @@ export const searchQuery = searchTerm => ({
   }
 })
 
-export const addMovie = movie => ({
-  type:'ADD_FAVORITE',
-  payload:{
-    ...movie
-  }
-})
+// export const addMovie = movie => ({
+//   type:'ADD_FAVORITE',
+//   payload:{
+//     ...movie
+//   }
+// })

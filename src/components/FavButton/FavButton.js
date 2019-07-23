@@ -30,7 +30,6 @@ const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
       }
     } else {
       alert('Please log in to favorite a movie')
-    // return <Redirect to="/log_in" />
     }
   };
 

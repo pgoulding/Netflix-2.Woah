@@ -1,31 +1,12 @@
-import {
-	getMoviesReducer
-} from './getMoviesReducer';
-import {
-	isLoadingReducer
-} from './isLoadingReducer';
-import {
-	throwErrorReducer
-} from './throwErrorReducer';
-import {
-	userReducer
-} from './userReducer';
+import { getMoviesReducer } from './getMoviesReducer';
+import { isLoadingReducer } from './isLoadingReducer';
+import { throwErrorReducer } from './throwErrorReducer';
+import { userReducer } from './userReducer';
 import * as action from '../actions';
-import {
-	chooseGenreReducer
-} from './chooseGenreReducer';
-import {
-	mockMovies,
-	mockMovie,
-	mockGenre,
-	mockUser
-} from '../utils/mockData/mockData';
-import {
-	chooseSpecificMovieReducer
-} from './chooseSpecificMovieReducer';
-import {
-	toggleFavoritesReducer
-} from './toggleFavoritesReducer';
+import { chooseGenreReducer } from './chooseGenreReducer';
+import { mockMovies, mockMovie,mockGenre, mockUser} from '../utils/mockData/mockData';
+import { chooseSpecificMovieReducer } from './chooseSpecificMovieReducer';
+import { toggleFavoritesReducer } from './toggleFavoritesReducer';
 
 
 describe('reducers', () => {

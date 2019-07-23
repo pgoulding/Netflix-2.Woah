@@ -11,7 +11,7 @@ import FavButton from '../FavButton/FavButton';
 
 export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
-	const { user_id } = user;
+	// const { user_id } = user;
 
 	return (
 		<article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
