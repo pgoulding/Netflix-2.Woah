@@ -1,40 +1,131 @@
 .card {
   position: relative;
-  &:hover{
-    z-index: -10;
+  z-index:1;
+  color:white;
+  &.main-card {
+    width:100%;
   }
-}
-
-.details {
-  position: absolute;
-  top:0;
-  left:0;
-  z-index:-2;
-  &:hover {
-    z-index:100;
-    background-color: rgba(0,0,0,.5);
-    height: 100%;
-    padding: 20px;
-    color:white;
-  }
-}
-
-// .alice-carousel__stage-item.__active:hover{
-//   z-index:-100;
-// }
-// .details-hover{
-//   position: absolute;
-//   top:0;
-//   left:0;
-//   z-index:5;
-//   background-color: rgba(0,0,0,.5);
-//   height: 100%;
-//   padding: 20px;
-//   color:white;
-// }
-
-.mainCard>img {
-  width: 100%;
-  height: 800px;
+  &img {
   object-fit: cover;
+}
+  &.favorited{
+    box-shadow: 0px 0px 5px 10px rgba(255,255,255,1);
+  }
+  h3.movie-title{
+    text-align:center;
+    margin:0;
+    font-size: 1.2em;
+    line-break: none;
+  }
+  .movie-poster {
+    z-index:4;
+    width: 100%;
+    object-fit: cover;
+    &:hover ~ .movie-info {
+      z-index:5
+    }
+  }
+  .movie-info {
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(0,0,0,0.6);
+    &:hover {
+      z-index: 5;
+    }
+  }
+  p{
+    height: 100px;
+    padding: 0 10px;
+    overflow: scroll;
+  }
+  .movie-buttons{
+    z-index:2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:5px;
+  }
+  button{
+    width:40px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding:0;
+    img{
+      width: 40px;
+    }
+  }
+}
+
+.mainCard {
+    position: relative;
+    color:white;
+    z-index:1;
+    object-fit:cover;
+    height: 600px;
+   img.main-card-image {
+    width: 100%;
+    height: 600px;
+    z-index:4;
+    object-fit: cover;
+    &:hover ~ .movie-info {
+      z-index:5
+    }
+  }
+    &.favorited{
+    box-shadow: 0px 0px 5px 10px rgba(255,255,255,1);
+  }
+  h3.movie-title{
+    text-align:center;
+    margin:0;
+    padding-top:20px;
+    font-size: 2em;
+    line-break: none;
+  }
+
+  .movie-info {
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(0,0,0,0.6);
+    &:hover {
+      z-index: 5;
+    }
+  }
+  p{
+    height: 300px;
+    padding: 0 20px;
+    overflow: scroll;
+  }
+  .movie-buttons{
+    z-index:2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:5px;
+  }
+  button{
+    width:40px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding:0;
+    img{
+      width: 40px;
+    }
+  }
+
 }
