@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   chosenGenre: chooseGenreReducer,
   specificMovie: chooseSpecificMovieReducer,
   searchQuery: searchQueryReducer,
-  userFavorites: userFavReducer
+  // userFavorites: userFavReducer
 });
 
 export default rootReducer;
