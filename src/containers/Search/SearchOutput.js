@@ -1,32 +1,24 @@
-import React, {Component} from 'react'
-import Card from '../../components/Card/Card'
-import {searchForMovie} from '../../utils/API/ApiFetch'
+import React from 'react'
+import { Card } from '../../components/Card/Card';
+import './Search.scss'
+const SearchOutput = (query) => {
+  console.log('search oputput: ', query)
 
-class SearchOutput  extends Component {
-  constructor() {
-    super()
-    this.state={
-     results:[]
-    }
-  }
-  async componentDidMount() {
-    const results = await searchForMovie(this.props.searchTerm)
-    this.setState({results})
-  }
+   const searchResults = query.query.map(movie => {
+      return (
+        <div className="search-results">
+          <h3>{movie.title}</h3>
+          <p>{movie.overview}</p>
+        </div>
+      )
+    }) 
 
-  searchedMovies = () => {
-    this.state.results.map(movie => {
-      return <Card movieInfo={movie} />
-    })
-  } 
-  
-  render () {
-    return (
-      <div>
-        {this.searchedMovies}
-      </div>
-    )
-  }
+  return (
+    <div className="search-output-container">
+      {searchResults}
+    </div>
+  )
 }
 
 export default SearchOutput
+
