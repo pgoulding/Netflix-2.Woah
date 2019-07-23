@@ -1,18 +1,16 @@
+import Error from './Error';
 import {
-  Error
-} from './Error';
-import {
-  shallow
+	shallow
 } from 'enzyme';
 import React from 'react';
 
 describe('Error', () => {
-  let wrapper;
+	let wrapper;
 
-  beforeEach(() => {
-    wrapper = shallow( < Error / > );
-  });
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
+	beforeEach(() => {
+		wrapper = shallow( < Error / > );
+	});
+	it('should match snapshot', () => {
+		expect(wrapper).toMatchSnapshot();
+	});
 });

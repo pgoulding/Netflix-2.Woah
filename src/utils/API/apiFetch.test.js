@@ -36,24 +36,26 @@ describe('ApiFetch', () => {
       window.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
           ok: true,
-          json: () => Promise.resolve(mockData.mockGenre)
+          json: () => Promise.resolve({
+            results: mockData.mockGenre //don't know value
+          })
         })
       );
     });
-    // it('should call the fetch with the correct arguements', async () => {
-    //   const mockUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${mockData.mockGenre}`
-    //   await ApiFetch.fetchSingleGenre(mockUrl);
-    //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-    //   //need to mock out props
-    // });
-    // it('should return a parsed version of the result', async () => {
-    //   const expected = await ApiFetch.fetchSingleGenre();
-    //   expect(expected).toEqual(mockData.mockGenre);
-    // });
+    it('should call the fetch with the correct arguements', async () => {
+      const mockUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${mockData.mockGenre}`
+      await ApiFetch.fetchSingleGenre(mockUrl);
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
+      //need to mock out props
+    });
+    it('should return a parsed version of the result', async () => {
+      const expected = await ApiFetch.fetchSingleGenre();
+      expect(expected).toEqual(mockData.mockGenre);
+    });
     it('should invoke cleanMovies with genreId and results', async () => {
-      //invoke window.fetch with dirty data and expect whole function to return clean data
-      // await cleanMovies()
-      // expect(window.fetch).toHaveBeenCalledWith()
+      const expected = [] //make clean version
+      const result = cleanMovies(mockData.mockMovies)
+      expect(result).toEqual(expected)
     });
     it('should throw an error if fetch fails', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
