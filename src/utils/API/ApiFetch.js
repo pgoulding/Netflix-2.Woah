@@ -1,7 +1,7 @@
 import { newUserUrl, userSignInURL } from './apiUrls';
 import apiKey from '../../apikey';
-import { cleanMovies } from '../cleanerFunction';
-// import { cleanMovies } from '../cleanMovies';
+// import { cleanMovies } from '../cleanerFunction';
+import { cleanMovies } from '../cleanMovies';
 
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;

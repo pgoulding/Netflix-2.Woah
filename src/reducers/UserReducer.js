@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-const userReducer = (state = {}, action) => {
-  const { type, payload } = action;
-=======
 import * as user from '../utils/API/ApiFetch';
 
-export const userReducer = (state = {}, action) => {
-  const {
-    type,
-    payload
-  } = action;
->>>>>>> 85dcc45e79fdff0feb7b1817f4c3e192066b666a
+const userReducer = (state = {}, action) => {
+  const { type, payload } = action;
   switch (type) {
     case 'SIGN_IN':
       return {
@@ -24,10 +16,6 @@ export const userReducer = (state = {}, action) => {
     default:
       return state;
   }
-<<<<<<< HEAD
 };
 
 export default userReducer;
-=======
-};
->>>>>>> 85dcc45e79fdff0feb7b1817f4c3e192066b666a

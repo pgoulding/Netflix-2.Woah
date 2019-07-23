@@ -62,7 +62,6 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorit
       </article>
     );
   }
-};
 
 const mapStateToProps = ({ user, specificMovie}) => ({
   user,
