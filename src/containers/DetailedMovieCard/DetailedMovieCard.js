@@ -25,7 +25,7 @@ export class DetailedMovieCard extends Component {
     let movieGenres;
     if (genres) {
       movieGenres = genres.map(genre => {
-        return <Link to={`/genre/${genre.name}`}>{genre.name}</Link>
+        return <Link to={`/genre/${genre.name}`}> {genre.name}</Link>
       });
     }
     return (
