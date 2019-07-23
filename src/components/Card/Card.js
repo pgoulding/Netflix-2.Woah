@@ -19,25 +19,27 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, user
 	};
 
 	const toggleFav = async movie => {
-		console.log('user id', user.id);
+		// console.log('user id', user.id);
 
 		if (user.id) {
 			const favorites = await fetchUserFavorites(user_id);
 			setFavorites(favorites.data);
 		}
 
-		console.log(user.favorites);
+		// console.log(user.favorites);
 		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
-		console.log(foundMovie);
+		// console.log(foundMovie);
 
 		if (foundMovie) {
-			deleteFavorite(user_id, movie_id);
+      await deleteFavorite(user_id, movie_id);
+      const favorites = await fetchUserFavorites(user_id);
+			setFavorites(favorites.data);
 		} else if (!foundMovie) {
-			sendFavorite({
+			await sendFavorite({
 				...movieInfo,
 				user_id
 			});
-			const favorites = await fetchUserFavorites(user_id);
+      const favorites = await fetchUserFavorites(user_id);
 			setFavorites(favorites.data);
 		} else {
 			console.log('found movie', foundMovie);
