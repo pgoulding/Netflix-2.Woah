@@ -20,17 +20,19 @@ const Gallery = ({ data, genre, user }) => {
 		1024: {
 			items: 3
 		}
-	};
+  };
+  
+  // onMouseLeave = { toggleHover } onMouseEnter = { toggleHover }
 
 	let details = data.map(movie => {
 		const { title, overview, backdrop_path } = movie;
 		const { user_id } = user;
 
 		return (
-			<div onMouseLeave={toggleHover} onMouseEnter={toggleHover} key={movie.id} className="card">
+			<div key={movie.id} className="card">
 				<img alt={title && ' movie poster '} className="movie-poster-carousel" src={backdrop_path} />
 
-				{user_id && <button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>}
+				<button onClick={() => sendFavorite({ ...movie, user_id })}>Favorite Movie</button>
 
 				<div className="details">
 					<h3>{title}</h3>

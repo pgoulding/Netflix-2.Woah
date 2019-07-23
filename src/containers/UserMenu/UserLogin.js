@@ -32,12 +32,13 @@ export class UserLogin extends Component {
         this.state.password
       );
       const results = await userLogin.data;
-      this.props.signIn(results);
+      this.props.signIn(results)
+      console.log(results);
       if (results) {
-        console.log(this.props)
+        console.log('user props: ', this.props)
         const favorites = await fetchUserFavorites(this.props.user.id);
         await console.log('fav', favorites);
-        this.props.setFavorites(favorites.data);
+        this.props.setFavorites(favorites);
       }
       await this.setState({
         name: '',

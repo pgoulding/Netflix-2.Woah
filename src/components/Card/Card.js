@@ -7,67 +7,23 @@ import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import './Card.scss';
+import FavButton from '../FavButton/FavButton';
 
 export const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorites, setFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
 	const { user_id } = user;
 
-	// console.log('top', movie_id);
-
-	const seeSpecificMovie = () => {
-		chooseSpecificMovie(title, movie_id);
-	};
-
-	const toggleFav = async movie => {
-		console.log('user id', user.id);
-
-		if (user.id) {
-			const favorites = await fetchUserFavorites(user_id);
-			setFavorites(favorites.data);
-		}
-
-		console.log(user.favorites);
-		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
-		console.log(foundMovie);
-
-		if (foundMovie) {
-			deleteFavorite(user_id, movie_id);
-		} else if (!foundMovie) {
-			sendFavorite({
-				...movieInfo,
-				user_id
-			});
-			const favorites = await fetchUserFavorites(user_id);
-			setFavorites(favorites.data);
-		} else {
-			console.log('found movie', foundMovie);
-		}
-	};
 
 	return (
 		<article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
-			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />{' '}
+			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />
 			<div className="movie-info">
-				<h3 className="movie-title"> {title} </h3>{' '}
+				<h3 className="movie-title"> {title} </h3>
 				<div className="movie-overview">
-					<p> {overview} </p>{' '}
-				</div>{' '}
-				<div className="movie-buttons">
-					<Link to={`/movies/${title}`}>
-						<button onClick={() => seeSpecificMovie()}>
-							{' '}
-							<img alt="more details" src={moreDetails} />
-						</button>
-					</Link>{' '}
-					<button onClick={() => toggleFav(movie_id)}>
-						<img
-							className="favorite__img-button"
-							alt="favorite this movie"
-							src={isFavorited ? filledHeart : emptyHeart}
-						/>{' '}
-					</button>{' '}
-				</div>{' '}
-			</div>{' '}
+					<p> {overview} </p>
+				</div>
+        <FavButton movieInfo={movieInfo} />
+			</div>
 		</article>
 	);
 };
