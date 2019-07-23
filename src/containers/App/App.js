@@ -27,11 +27,11 @@ export class App extends Component {
   }
   async componentDidMount() {
     this.getLoadingMovies();
-    const genres = await findGenres() 
-    this.setState({...genres})
+    const genres = await findGenres()
+    this.setState({ ...genres })
   }
-  
-  populateRoutes= ()=>  {
+
+  populateRoutes = () => {
     const routes = this.state.genres.map(genre => {
       return <Route path={`/genre/${genre.name}`} render={(props) => <Genre {...props} genre={genre} />} />
     })
@@ -62,7 +62,7 @@ export class App extends Component {
         <Route path='/create_account' component={UserSignup} />
         <Route exact path='/genre' component={GenreContainer} />
         {this.populateRoutes()}
-        {/* <Route path='/search' component={SearchOutput} /> */}
+        <Route path='/search' component={SearchOutput} />
 				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
         {/* <Route component={<Error />} /> */}
       </main>

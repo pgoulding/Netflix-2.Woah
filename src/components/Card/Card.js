@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { chooseMovie, setFavorites, addMovie } from '../../actions';
@@ -60,7 +60,8 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorit
           </div>
       </div>
       </article>
-  );
+    );
+  }
 };
 
 const mapStateToProps = ({ user, specificMovie}) => ({

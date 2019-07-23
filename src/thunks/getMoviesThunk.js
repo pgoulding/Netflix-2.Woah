@@ -1,10 +1,14 @@
-import { isLoading, updateMovies, throwError } from '../actions';
-import { cleanMovies } from '../utils/cleanerFunction';
-import apiKey from '../apikey';
+import {
+  isLoading,
+  updateMovies,
+  throwError
+} from '../actions';
+import {
+  cleanMovies
+} from '../utils/cleanMovies';
 
 export const getMovies = (fetchUrl, genre) => {
   return async dispatch => {
-    // let fetchUrl = `https://api.themoviedb.org/3/movie/${genre}?api_key=${apiKey}`;
     try {
       dispatch(isLoading(true));
       const response = await fetch(fetchUrl);

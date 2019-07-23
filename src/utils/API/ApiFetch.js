@@ -1,6 +1,7 @@
 import { newUserUrl, userSignInURL } from './apiUrls';
 import apiKey from '../../apikey';
 import { cleanMovies } from '../cleanerFunction';
+// import { cleanMovies } from '../cleanMovies';
 
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
@@ -41,7 +42,6 @@ export const fetchSingleMovie = async movie_id => {
   try {
     const response = await fetch(singleMovieUrl);
     const parsed = await response.json();
-    // await console.log('works', parsed);
     return parsed;
   } catch (error) {
     throw Error(error.message);
@@ -93,7 +93,6 @@ const sendNewAccount = async newAccount => {
       body: JSON.stringify(newAccount)
     };
     const response = await fetch(newUserUrl, options);
-    // console.log('new acc', response);
     return response;
   } catch (error) {
     throw Error(
