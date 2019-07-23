@@ -8,28 +8,19 @@ import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import './Card.scss';
 
-export const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorites, setFavorites }) => {
+export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
 	const { user_id } = user;
-
-	// console.log('top', movie_id);
-
 	const seeSpecificMovie = () => {
 		chooseSpecificMovie(title, movie_id);
 	};
 
 	const toggleFav = async movie => {
-		// console.log('user id', user.id);
-
 		if (user.id) {
 			const favorites = await fetchUserFavorites(user_id);
 			setFavorites(favorites.data);
 		}
-
-		// console.log(user.favorites);
 		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
-		// console.log(foundMovie);
-
 		if (foundMovie) {
       await deleteFavorite(user_id, movie_id);
       const favorites = await fetchUserFavorites(user_id);
@@ -74,9 +65,8 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, user
 	);
 };
 
-const mapStateToProps = ({ user, specificMovie }) => ({
-	user,
-	specificMovie
+const mapStateToProps = ({ user }) => ({
+	user
 });
 
 const mapDispatchToProps = dispatch => ({

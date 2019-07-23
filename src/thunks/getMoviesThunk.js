@@ -13,9 +13,11 @@ export const getMovies = (fetchUrl, genre) => {
       dispatch(isLoading(true));
       const response = await fetch(fetchUrl);
       if (!response.ok) {
+        console.log('error');
         throw Error(response.statusText);
       }
       const data = await response.json();
+      console.log('success');
       const movieData = data.results;
       const movies = await cleanMovies(genre, movieData);
       dispatch(updateMovies(movies, genre));
