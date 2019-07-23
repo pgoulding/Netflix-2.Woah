@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Card.css';
 import { sendFavorite } from '../../utils/API/ApiFetch';
 import { chooseMovie } from '../../actions';
 import { Link } from 'react-router-dom';
 
-const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie }) => {
-  const { title, poster_path, movie_id } = movieInfo;
-  const { user_id } = user;
+export class Card extends Component {
+  render() {
+    const { title, poster_path, movie_id } = movieInfo;
+    const { user_id } = user;
 
-  const seeSpecificMovie = () => {
-    chooseSpecificMovie(title, movie_id);
-  };
+    const seeSpecificMovie = () => {
+      chooseSpecificMovie(title, movie_id);
+    };
 
-  return (
+    return (
       <article className='movie-card'>
         <h3>{title}</h3>
         <img alt={title && ' movie poster'} src={poster_path} />
         <Link to={`/movies/${title}`}>
-          <button onClick={(e) => seeSpecificMovie(e)}>View Details</button>
+          <button className='view-details-btn' onClick={(e) => seeSpecificMovie(e)}>View Details</button>
         </Link>
         {user.id && (
           <button onClick={() => sendFavorite({ ...movieInfo, user_id })}>
@@ -26,7 +27,8 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie }) => {
           </button>
         )}
       </article>
-  );
+    );
+  }
 };
 
 const mapStateToProps = ({ user, specificMovie }) => ({
