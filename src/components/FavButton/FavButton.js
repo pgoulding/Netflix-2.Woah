@@ -7,35 +7,30 @@ import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import { connect } from 'react-redux'
-const FavButton = (props) => {
-  // const { title, movie_id, isFavorited } = movieInfo;
-  const { chooseSpecificMovie, user, movieInfo, setFavorites, title, movie_id, isFavorited} = props
-  // const seeSpecificMovie = () => {
-  //   chooseSpecificMovie(title, movie_id);
-  // };
+const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
+  const { title, movie_id, isFavorited } = movieInfo;
+  const { user_id } = user;
 
   const toggleFav = async movie => {
-    console.log('user id', user.id);
     if (user.id) {
       const favorites = await fetchUserFavorites(user.id);
       setFavorites(favorites);
       console.log(user.favorites);
-    }
-    const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
-    console.log(foundMovie);
-    if (foundMovie) {
-      deleteFavorite(user.id, movie_id);
-    } else if (!foundMovie && user.id) {
-      const favMovie = {
-        ...movieInfo,
-        ...user.id
+      const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+        if (foundMovie) {
+          deleteFavorite(user.id, movie_id);
+        } else if (!foundMovie && user.id) {
+          const favMovie = {
+            ...movieInfo,
+            user_id
+          }
+          sendFavorite(favMovie);
+          const favorites = await fetchUserFavorites(user.id);
+          setFavorites(favorites.data);
       }
-      console.log(favMovie)
-      sendFavorite(favMovie);
-      const favorites = await fetchUserFavorites(user.id);
-      setFavorites(favorites.data);
     } else {
-      return <Redirect to="login" />
+      alert('Please log in to favorite a movie')
+    // return <Redirect to="/log_in" />
     }
   };
 
@@ -66,9 +61,6 @@ export const mapDispatchToProps=(dispatch) => ({
   chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id)),
   setFavorites: favorites => dispatch(setFavorites(favorites))
 })
-
-
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavButton)
