@@ -78,3 +78,10 @@ export const searchQuery = searchTerm => ({
     searchTerm
   }
 })
+
+export const addMovie = movie => ({
+  type:'ADD_FAVORITE',
+  payload:{
+    movie
+  }
+})
