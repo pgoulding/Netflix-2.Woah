@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
-import { chooseMovie, setFavorites } from '../../actions';
-import { Link } from 'react-router-dom';
+import { chooseMovie, setFavorites, addMovie } from '../../actions';
+import { Link, Redirect } from 'react-router-dom';
 import filledHeart from '../../images/like-filled.png'
 import emptyHeart from '../../images/like-empty.png'
 import moreDetails from '../../images/clapperboard.png'
@@ -18,21 +18,29 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorit
     chooseSpecificMovie(title, movie_id);
   };
 
-  const toggleFav = async () => {
-    if (!userFavorites.length) {
-      sendFavorite({ ...movieInfo, user_id });
-    }
-    userFavorites.forEach(fav => {
-      if (fav.movie_id === movie_id) {
-        deleteFavorite(user_id, movie_id);
-      } else {
-        sendFavorite({ ...movieInfo, user_id });
-      }
-    });
-    const favorites = await fetchUserFavorites(user_id);
-    setFavorites(favorites.data);
-  };
+  const toggleFav = async (movie) => {
+    console.log('user id', user.id)
 
+    if(user.id) {
+      const favorites = await fetchUserFavorites(user_id);
+      setFavorites(favorites.data);
+    }
+    
+    console.log(user.favorites)
+      const foundMovie = user.favorites
+        .find(favorite => favorite.movie_id === movie_id)
+      console.log(foundMovie)
+
+      if(foundMovie) {
+        deleteFavorite(user_id, movie_id)
+      } else if(!foundMovie) {
+        sendFavorite({...movieInfo, user_id})
+        const favorites = await fetchUserFavorites(user_id);
+        setFavorites(favorites.data);
+      } else {
+        console.log('found movie', foundMovie)
+      }
+    }
 
   return (
     <article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
@@ -46,7 +54,7 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorit
           <Link to={`/movies/${title}`}>
             <button onClick={() => seeSpecificMovie()}><img alt="more details" src={moreDetails}/></button>
           </Link>
-            <button onClick={() => toggleFav()}>
+            <button onClick={() => toggleFav(movie_id)}>
             <img className="favorite__img-button" alt="favorite this movie" src={isFavorited ? filledHeart : emptyHeart} />
             </button>
           </div>
@@ -55,10 +63,9 @@ const Card = ({ movieInfo, user, chooseSpecificMovie, specificMovie, userFavorit
   );
 };
 
-const mapStateToProps = ({ user, specificMovie, userFavorites }) => ({
+const mapStateToProps = ({ user, specificMovie}) => ({
   user,
   specificMovie,
-  userFavorites
 });
 
 const mapDispatchToProps = dispatch => ({
