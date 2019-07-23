@@ -48,19 +48,18 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 				<div className="movie-buttons">
 					<Link to={`/movies/${title}`}>
 						<button onClick={() => seeSpecificMovie()}>
-							{' '}
 							<img alt="more details" src={moreDetails} />
 						</button>
-					</Link>{' '}
+					</Link>
 					<button onClick={() => toggleFav(movie_id)}>
 						<img
 							className="favorite__img-button"
 							alt="favorite this movie"
 							src={isFavorited ? filledHeart : emptyHeart}
-						/>{' '}
-					</button>{' '}
-				</div>{' '}
-			</div>{' '}
+						/>
+					</button>
+				</div>
+			</div>
 		</article>
 	);
 };
