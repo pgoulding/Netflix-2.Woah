@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { UserMenu } from '../UserMenu/UserMenu';
 import { connect } from 'react-redux';
 import { signOut } from '../../actions';
 import Search from '../../components/Search/Search';

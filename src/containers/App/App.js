@@ -72,12 +72,12 @@ export class App extends Component {
 					<Route path="/search" component={Search} />
 					<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
 					<Route component={Error} />
-					}
 				</Switch>
 			</main>
 		);
 	}
 }
+
 export const mapStateToProps = ({ movies, specificMovie }) => ({
 	movies,
 	specificMovie

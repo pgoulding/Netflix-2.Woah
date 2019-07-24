@@ -21,6 +21,10 @@ export const Gallery = ({ data, genre, user }) => {
     }
   };
 
+  const reformatGenreName = (genreName) => {
+    return genreName.toUpperCase().split('_').join(' ')
+  }
+
   let details = data.map(movie => {
     const { title, overview, backdrop_path } = movie;
     const { user_id } = user;
@@ -46,7 +50,7 @@ export const Gallery = ({ data, genre, user }) => {
 
   return (
     <section>
-      <h2> {genre} </h2>
+      <h2 className="genre-name"> {reformatGenreName(genre)} </h2>
       <AliceCarousel
         duration={1000}
         autoPlay={true}
