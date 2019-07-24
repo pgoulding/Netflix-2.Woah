@@ -37,17 +37,17 @@ describe('Actions', () => {
     expect(result).toEqual(expectedAction);
   });
 
-  it('should have a type of TOGGLE_FAVORITE and a payload of id and favorited', () => {
-    const expectedAction = {
-      type: 'TOGGLE_FAVORITE',
-      payload: {
-        id: mockData.mockMovie.id,
-        favorited: mockData.mockFavorited
-      }
-    };
-    const result = actions.toggleFavorite(mockData.mockMovie.id, mockData.mockFavorited);
-    expect(result).toEqual(expectedAction);
-  });
+  // it('should have a type of TOGGLE_FAVORITE and a payload of id and favorited', () => {
+  //   const expectedAction = {
+  //     type: 'TOGGLE_FAVORITE',
+  //     payload: {
+  //       id: mockData.mockMovie.id,
+  //       favorited: mockData.mockFavorited
+  //     }
+  //   };
+  //   const result = actions.toggleFavorite(mockData.mockMovie.id, mockData.mockFavorited);
+  //   expect(result).toEqual(expectedAction);
+  // });
 
   it('should have a type of SET_FAVORITES and a payload of favorites', () => {
     const expectedAction = {
