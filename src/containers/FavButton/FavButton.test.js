@@ -11,8 +11,9 @@ describe('FavButton', () => {
 		wrapper = shallow(
 			<FavButton 
 				movieInfo={mockMovie} 
-				user={mockUser.id} 
-				currentUserFavorites={mockCurrentUserFavorites} />
+				user={mockUser} 
+				chooseSpecificMovie={mockMovie}
+				setFavorites={mockMovies} />
 		);
 		instance = wrapper.instance()
 	});
