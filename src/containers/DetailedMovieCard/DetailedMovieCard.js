@@ -5,7 +5,7 @@ import './DetailedMovieCard.scss';
 import { Link } from 'react-router-dom';
 
 export class DetailedMovieCard extends Component {
-	constructor () {
+	constructor() {
 		super();
 		this.state = {
 			currentMovie: {}
@@ -13,6 +13,7 @@ export class DetailedMovieCard extends Component {
 	}
 
 	componentDidMount = async () => {
+		console.log('rednering movie details')
 		const { specificMovie } = this.props;
 		const currentMovie = await fetchSingleMovie(specificMovie.id);
 		this.setState({ currentMovie });

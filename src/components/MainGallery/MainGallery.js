@@ -1,9 +1,12 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import './MainGallery.css';
+import '../../containers/Gallery/Gallery.scss'
 import 'react-alice-carousel/lib/alice-carousel.css';
-import FavButton from '../FavButton/FavButton';
-const MainGallery = ({ movies }) => {
+import FavButton from '../../containers/FavButton/FavButton';
+import PropTypes from 'prop-types';
+
+export const MainGallery = ({ movies }) => {
 	const responsive = {
 		0: {
 			items: 1
@@ -14,8 +17,8 @@ const MainGallery = ({ movies }) => {
 		1024: {
 			items: 3
 		},
-		1200:{
-			items:4
+		1200: {
+			items: 4
 		}
 	};
 
@@ -24,10 +27,10 @@ const MainGallery = ({ movies }) => {
 
 		return (
 			<div className="mainCard" key={movie.id}>
-				<img className='main-card-image' alt={title && ' movie poster'} src={poster_path} />
+				<img className="main-card-image" alt={title && ' movie poster'} src={poster_path} />
 				<div className="movie-info">
-					<h3 className='movie-title'>{title}</h3>
-					<p>{overview}</p>
+					<h3 className="movie-title"> {title} </h3> 
+					<p> {overview} </p> 
 					<FavButton movieInfo={movie} />
 				</div>
 			</div>
@@ -47,8 +50,7 @@ const MainGallery = ({ movies }) => {
 				buttonsDisabled={true}
 				dotsDisabled={true}
 				autoPlayDirection="rtl"
-				autoPlayActionDisabled={false}
-				>
+				autoPlayActionDisabled={false}>
 				{details}
 			</AliceCarousel>
 		</section>
@@ -56,3 +58,7 @@ const MainGallery = ({ movies }) => {
 };
 
 export default MainGallery;
+
+MainGallery.propTypes = {
+	movies: PropTypes.object
+};

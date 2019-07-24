@@ -7,7 +7,7 @@ import {
 } from '../utils/mockData/mockData';
 
 describe('cleanMovies', () => {
-  it.skip('should return a cleaned movie', () => {
+  it('should return a cleaned movie', () => {
     const expected = [{
       movie_id: 420818,
       isFavorited: false,

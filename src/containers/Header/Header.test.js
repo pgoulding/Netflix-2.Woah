@@ -1,67 +1,46 @@
-import {
-  Header,
-  mapStateToProps,
-  mapDispatchToProps
-} from './Header';
-import {
-  shallow
-} from 'enzyme';
+import { Header, mapStateToProps, mapDispatchToProps } from './Header';
+import { shallow } from 'enzyme';
 import React from 'react';
-import {
-  fetchSingleMovie
-} from '../../utils/API/ApiFetch';
+import { mockUser } from '../../utils/mockData/mockData';
+import { signOut } from '../../actions';
 
 describe('Header', () => {
-  describe('component', () => {
-    let wrapper, instance;
+	describe('component', () => {
+		let wrapper, instance;
 
-    beforeEach(() => {
-      wrapper = shallow( < Header / > );
-      instance = wrapper.instance()
-    });
-    it('should match snapshot', () => {
-      expect(wrapper).toMatchSnapshot();
-    }); {
-      /* it('should have a default state', () => {
-          wrapper = shallow(< App getMovies={
-            mockGetMovies
-          }
-            specificMovie={
-              {
-                title: 'title'
-              }
-            }
-          />, { disableLifecycleMethods: true });
-          expect(wrapper.state()).toEqual({
-            genres: []
-          }); */
-    }
-  });
-  describe('mapStateToProps', () => {
-    it('should return an object with the user and specificMovie', () => {
-      const mockState = {
-        user:
-      }
-      const expected = {
-        user:
-      }
-      const mappedProps = mapStateToProps(mockState);
-      expect(mappedProps).toEqual(expected);
-    });
-  });
-  describe('mapDispatchToProps', () => {
-    it('should call dispatch with a chooseMovie action when fetchSingleMovie is called', () => {
-      const mockDispatch = jest.fn();
-      const actionToDispatch = signOut();
-      const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.signOut();
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-    });
-  });
+		beforeEach(() => {
+			wrapper = shallow(<Header />);
+			instance = wrapper.instance();
+		});
+		it('should match snapshot', () => {
+			expect(wrapper).toMatchSnapshot();
+		});
+	});
+
+	describe('mapStateToProps', () => {
+		it('should return an object with the user and specificMovie', () => {
+			const mockState = {
+				user: mockUser
+			};
+
+			const mappedProps = mapStateToProps(mockState);
+			expect(mappedProps).toEqual(mockState);
+		});
+	});
+
+	describe('mapDispatchToProps', () => {
+		it('should call dispatch with a signOut action when signOut is called', () => {
+			const mockDispatch = jest.fn();
+			const actionToDispatch = signOut();
+			const mappedProps = mapDispatchToProps(mockDispatch);
+			mappedProps.signOut();
+			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+		});
+	});
 });
 
 {
-  /* test toggle menu, logout, and handleSignOut
+	/* test toggle menu, logout, and handleSignOut
   describe('getLoadingMovies', () => {
       it('should invoke getMovies', () => {
         instance.getLoadingMovies();

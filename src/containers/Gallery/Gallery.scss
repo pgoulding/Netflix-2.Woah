@@ -5,18 +5,22 @@
   &.main-card {
     width: 100%;
   }
+
   & img {
     object-fit: cover;
   }
+
   &.favorited {
     box-shadow: 0px 0px 5px 10px rgba(255, 255, 255, 1);
   }
+
   h3.movie-title {
     text-align: center;
     margin: 0;
     font-size: 1.2em;
     line-break: none;
   }
+
   .movie-poster {
     z-index: 4;
     width: 100%;
@@ -25,6 +29,7 @@
       z-index: 5;
     }
   }
+
   .movie-info {
     width: 100%;
     height: 100%;
@@ -71,6 +76,7 @@
   z-index: 1;
   object-fit: cover;
   height: 600px;
+  
   img.main-card-image {
     width: 100%;
     height: 600px;

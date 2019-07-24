@@ -3,7 +3,6 @@ import {
   userSignInURL
 } from './apiUrls';
 import apiKey from '../../apikey';
-// import { cleanMovies } from '../cleanerFunction';
 import {
   cleanMovies
 } from '../cleanMovies';
@@ -19,7 +18,7 @@ export const findGenres = async () => {
   }
 };
 
-export const fetchSingleGenre = async (genreID, genreName )=> {
+export const fetchSingleGenre = async (genreID, genreName) => {
   const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}`;
   try {
     const response = await fetch(genreUrl);
@@ -31,6 +30,7 @@ export const fetchSingleGenre = async (genreID, genreName )=> {
     throw Error(error.message);
   }
 };
+
 export const searchForMovie = async searchTerm => {
   const genreUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchTerm}&page=1&include_adult=false`;
   try {
@@ -54,7 +54,7 @@ export const fetchSingleMovie = async movie_id => {
   }
 };
 
-const sendUserLogin = async (email, password) => {
+export const sendUserLogin = async (email, password) => {
   const user = {
     email,
     password
@@ -90,7 +90,7 @@ export const fetchUserFavorites = async id => {
   }
 };
 
-const sendNewAccount = async newAccount => {
+export const sendNewAccount = async newAccount => {
   try {
     const options = {
       method: 'POST',
@@ -109,7 +109,7 @@ const sendNewAccount = async newAccount => {
   }
 };
 
-const sendFavorite = async favoriteMovie => {
+export const sendFavorite = async favoriteMovie => {
   try {
     const options = {
       method: 'POST',
@@ -140,10 +140,4 @@ export const deleteFavorite = async (user_id, movie_id) => {
   } catch (error) {
     throw Error('Failed to delete favorite', error);
   }
-};
-
-export {
-  sendNewAccount,
-  sendUserLogin,
-  sendFavorite
 };
