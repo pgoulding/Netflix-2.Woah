@@ -20,11 +20,10 @@ export const chooseMovie = (id) => ({
   }
 });
 
-export const toggleFavorite = (id, favorited) => ({
-  type: 'TOGGLE_FAVORITE',
+export const toggleFavorites = (favorites) => ({
+  type: 'TOGGLE_FAVORITES',
   payload: {
-    id,
-    favorited
+    ...favorites
   }
 });
 
@@ -73,3 +72,4 @@ export const addMovie = movie => ({
     movie
   }
 });
+

@@ -8,17 +8,15 @@ export const getMoviesReducer = (state = {}, action) => {
       return {
         ...state, [payload.genre]: payload.movies
       };
-      // case 'TOGGLE_FAVORITE':
-      //   const updatedState = state.map(genre => {
-      //     genre.map(movie => {
-      //       if (movie.id === payload.id) {
-      //         movie.isFavorited = !movie.isFavorited;
-      //       }
-      //       return movie;
-      //     });
-      //     return genre;
-      //   });
-      // return updatedState; - moved to toggleFavoritesReducer
+    case 'TOGGLE_FAVORITES':
+      console.log('pl', payload);
+      console.log('state: ', state)
+      const newState = [payload.genre].map(movie => {
+        return { ...movie, isFavorited: payload.favoriteIds.includes(movie.id)}
+      })
+      console.log('new state:', newState)
+      return {...state, [payload.genre]:newState}
+      
     default:
       return state;
   }
