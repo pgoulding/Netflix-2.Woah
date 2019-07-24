@@ -79,27 +79,39 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 
 ### Home Page
 
-![Home Page]()
+![Home Page](./src/images/HomePage.png)
 
 ### Search
 
-![Search]()
+![Search](./src/images/SearchPage.png)
 
 ### Genres
 
-![Genres]()
+![Genres](./src/images/GenrePage.png)
+
+### Genre Page
+
+![Genres](./src/images/GenreSpecificPage.png)
+
+### Movie Card
+
+![Movie Card](./src/images/MovieCardPage.png)
 
 ### Favorites
 
-![Favorites]()
+![Favorites](./src/images/FavoritesPages.png)
+
+### Favorites Error
+
+![Favorites Error](./src/images/FavoriteError.png)
 
 ### Sign In
 
-![Sign In]()
+![Sign In]./src/images/SignUpPage.png)
 
 ### Create Account
 
-![Create Account]()
+![Create Account](./src/images/CreateAccount.png)
 
 ### 404 Page
 
