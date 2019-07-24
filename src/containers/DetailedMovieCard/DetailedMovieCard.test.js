@@ -10,12 +10,13 @@ import React from 'react';
 import {
 	fetchSingleMovie
 } from '../../utils/API/ApiFetch';
+import {mockMovie} from '../../utils/mockData/mockData';
 
 describe('DetailedMovieCard', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow( < DetailedMovieCard /> );
+			wrapper = shallow( < DetailedMovieCard specificMovie={mockMovie}/> );
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {
@@ -26,7 +27,7 @@ describe('DetailedMovieCard', () => {
 	describe('CDM', () => {
 		it('should invoke fetchSingleMovie', () => {
 			instance.componentDidMount();
-			expect(fetchSingleMovie).toHaveBeenCalled();
+			expect(fetchSingleMovie).toHaveBeenCalledWith();
 		});
 
 		it('should set state to currentMovie', async () => {
