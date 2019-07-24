@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-// import Card from '../Card/Card'
 import { connect } from 'react-redux';
 import { sendFavorite } from '../../utils/API/ApiFetch';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
 import FavButton from '../FavButton/FavButton';
-const Gallery = ({ data, genre, user }) => {
 
+const Gallery = ({ data, genre, user }) => {
 	const responsive = {
 		0: {
 			items: 1

@@ -6,7 +6,8 @@ import { Link, Redirect } from 'react-router-dom';
 import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
 const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
   const { title, movie_id, isFavorited } = movieInfo;
   const { user_id } = user;
@@ -14,7 +15,7 @@ const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
   const toggleFav = async movie => {
     if (user.id) {
       const favorites = await fetchUserFavorites(user.id);
-      setFavorites(favorites);
+      setFavorites(favorites.data);
       console.log(user.favorites);
       const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
         if (foundMovie) {
