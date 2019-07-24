@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { chooseMovie, setFavorites, toggleFavorites } from '../../actions';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 				;
 				// console.log('ids', favoriteIds);
         setFavorites(favorites.data);
-        console.log('genre:', genre)
+        // console.log('genre:', genre)
         // toggleFavorites({genre, favoriteIds});
 			const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
 			if (foundMovie) {
@@ -95,6 +95,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 		</article>
 	);
 };
+
 export const mapStateToProps = ({ user, specificMovie }) => ({
 	user,
 	specificMovie

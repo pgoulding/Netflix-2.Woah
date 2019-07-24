@@ -34,16 +34,16 @@ const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
     }
   };
 
-export const FavButton = ({ movieData, user_id, currentUserFavorites }) => {
-	const toggle = currentUserFavorites.find(fav => fav.movie_id === movieData.movie_id);
-	return (
-		<button movieData={movieData} user_id={user_id}>
-			{toggle === -1 ? 'Favorite' : 'Unfavorite'}
-		</button>
-	);
-};
+// export const FavButton = ({ movieData, user_id, currentUserFavorites }) => {
+// 	const toggle = currentUserFavorites.find(fav => fav.movie_id === movieData.movie_id);
+// 	return (
+// 		<button movieData={movieData} user_id={user_id}>
+// 			{toggle === -1 ? 'Favorite' : 'Unfavorite'}
+// 		</button>
+// 	);
+// };
 
-export default FavButton;
+// export default FavButton;
   
   return (
     <div className="movie-buttons">
@@ -72,6 +72,5 @@ export const mapDispatchToProps=(dispatch) => ({
   chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id)),
   setFavorites: favorites => dispatch(setFavorites(favorites))
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavButton)
