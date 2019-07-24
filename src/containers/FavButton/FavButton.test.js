@@ -16,6 +16,7 @@ describe('FavButton', () => {
 		);
 		instance = wrapper.instance()
 	});
+
 	it('should match snapshot', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
@@ -23,8 +24,8 @@ describe('FavButton', () => {
 	describe('mapStateToProps', () => {
 		it('should return an object with the user and specificMovie', () => {
 			const mockState = {
-				movies: mockMovies,
-				user: mockUser
+				user: mockUser,
+				specificMovie: mockMovie
 			};
 			const mappedProps = mapStateToProps(mockState);
 			expect(mappedProps).toEqual(mockState);
@@ -36,7 +37,7 @@ describe('FavButton', () => {
 			const mockDispatch = jest.fn();
 			const actionToDispatch = chooseMovie(mockMovie.title, mockMovie.id);
 			const mappedProps = mapDispatchToProps(mockDispatch);
-			mappedProps.chooseMovie(mockMovie.title, mockMovie.id);
+			mappedProps.chooseSpecificMovie(mockMovie.title, mockMovie.id);
 			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
 		});
 		it('should call dispatch with a setFavorites action when setFavorites is called', () => {
