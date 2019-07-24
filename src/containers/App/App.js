@@ -65,8 +65,8 @@ export class App extends Component {
 							</section>
 						)}
 					/>
-					<Route path="/favorites" component={Favorites} /> <Route path="/log_in
-					" component={UserLogin} />
+					<Route path="/favorites" component={Favorites} />
+          <Route path="/log_in" component={UserLogin} />
 					<Route path="/create_account" component={UserSignup} />
 					<Route exact path="/genre" component={GenreContainer} /> {this.populateRoutes()}
 					<Route path="/search" component={Search} />
