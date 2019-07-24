@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { chooseMovie, setFavorites, addMovie } from '../../actions';
@@ -11,6 +11,7 @@ import './Card.scss';
 export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
 	const { user_id } = user;
+
 	const seeSpecificMovie = () => {
 		chooseSpecificMovie(title, movie_id);
 	};
@@ -21,6 +22,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 			setFavorites(favorites.data);
 		}
 		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+
 		if (foundMovie) {
       await deleteFavorite(user_id, movie_id);
       const favorites = await fetchUserFavorites(user_id);
@@ -30,28 +32,31 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 				...movieInfo,
 				user_id
 			});
-      const favorites = await fetchUserFavorites(user_id);
+
+			const favorites = await fetchUserFavorites(user_id);
+
 			setFavorites(favorites.data);
 		} else {
 			console.log('found movie', foundMovie);
 		}
+		//this should not be a console log
 	};
 
 	return (
 		<article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
-			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />{' '}
+			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />
 			<div className="movie-info">
-				<h3 className="movie-title"> {title} </h3>{' '}
+				<h3 className="movie-title"> {title} </h3>
 				<div className="movie-overview">
-					<p> {overview} </p>{' '}
-				</div>{' '}
+					<p> {overview} </p>
+				</div>
 				<div className="movie-buttons">
 					<Link to={`/movies/${title}`}>
-						<button onClick={() => seeSpecificMovie()}>
+						<button className="specific-movie-btn" onClick={() => seeSpecificMovie()}>
 							<img alt="more details" src={moreDetails} />
 						</button>
 					</Link>
-					<button onClick={() => toggleFav(movie_id)}>
+					<button className="toggle-fav-btn" onClick={() => toggleFav(movie_id)}>
 						<img
 							className="favorite__img-button"
 							alt="favorite this movie"
@@ -63,12 +68,12 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 		</article>
 	);
 };
-
-const mapStateToProps = ({ user }) => ({
-	user
+export const mapStateToProps = ({ user, specificMovie }) => ({
+	user,
+	specificMovie
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
 	chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id)),
 	setFavorites: favorites => dispatch(setFavorites(favorites))
 });

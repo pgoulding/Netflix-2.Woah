@@ -1,14 +1,22 @@
-import { DetailedMovieCard, mapStateToProps, mapDispatchToProps } from './DetailedMovieCard';
-import { shallow } from 'enzyme';
+import {
+	DetailedMovieCard,
+	mapStateToProps,
+	mapDispatchToProps
+} from './DetailedMovieCard';
+import {
+	shallow
+} from 'enzyme';
 import React from 'react';
-import { fetchSingleMovie } from '../../utils/API/ApiFetch';
+import {
+	fetchSingleMovie
+} from '../../utils/API/ApiFetch';
 
 describe('DetailedMovieCard', () => {
 	describe('component', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow(<DetailedMovieCard />);
+			wrapper = shallow( < DetailedMovieCard / > );
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {
@@ -37,7 +45,7 @@ describe('DetailedMovieCard', () => {
 			});
 		});
 		describe('mapDispatchToProps', () => {
-			it('should call dispatch with a chooseMovie action when fetchSingleMovie is called', () => {
+			it('should call dispatch with a fetchSingleMovie action when fetchSingleMovie is called', () => {
 				const mockDispatch = jest.fn();
 				const actionToDispatch = fetchSingleMovie(1);
 				const mappedProps = mapDispatchToProps(mockDispatch);

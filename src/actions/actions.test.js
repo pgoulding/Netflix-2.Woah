@@ -2,6 +2,7 @@ import * as actions from './index';
 import * as mockData from '../utils/mockData/mockData';
 
 describe('Actions', () => {
+
   it('should have a type of UPDATE_MOVIES and a payload of an object of movies', () => {
     const expectedAction = {
       type: 'UPDATE_MOVIES',
@@ -29,23 +30,33 @@ describe('Actions', () => {
     const expectedAction = {
       type: 'CHOOSE_MOVIE',
       payload: {
-        title: mockData.mockMovie.title,
         id: mockData.mockMovie.id
       }
     }
-    const result = actions.chooseMovie(mockData.mockMovie.title, mockData.mockMovie.id);
+    const result = actions.chooseMovie(mockData.mockMovie.id);
     expect(result).toEqual(expectedAction);
   });
 
-  it('should have a type of TOGGLE_FAVORITE and a payload of id', () => {
-    const id = 1;
+  it('should have a type of TOGGLE_FAVORITE and a payload of id and favorited', () => {
     const expectedAction = {
       type: 'TOGGLE_FAVORITE',
       payload: {
-        id: mockData.mockMovie.id
+        id: mockData.mockMovie.id,
+        favorited: mockData.mockFavorited
       }
     };
-    const result = actions.toggleFavorite(mockData.mockMovie.id);
+    const result = actions.toggleFavorite(mockData.mockMovie.id, mockData.mockFavorited);
+    expect(result).toEqual(expectedAction);
+  });
+
+  it('should have a type of SET_FAVORITES and a payload of favorites', () => {
+    const expectedAction = {
+      type: 'SET_FAVORITES',
+      payload: {
+        favorites: mockData.mockFavorites
+      }
+    };
+    const result = actions.setFavorites(mockData.mockFavorites);
     expect(result).toEqual(expectedAction);
   });
 
@@ -89,5 +100,28 @@ describe('Actions', () => {
     }
     const result = actions.isLoading(mockData.mockLoading);
     expect(result).toEqual(expectedAction);
-  })
+  });
+
+  it('should have a type of SEARCH_QUERY', () => {
+    const expectedAction = {
+      type: 'SEARCH_QUERY',
+      payload: {
+        searchTerm: 'Toy Story'
+      }
+    }
+    const result = actions.searchQuery('Toy Story');
+    expect(result).toEqual(expectedAction);
+  });
+
+  it('should have a type of ADD_FAVORITE', () => {
+    const expectedAction = {
+      type: 'ADD_FAVORITE',
+      payload: {
+        movie: mockData.mockMovie
+      }
+    }
+    const result = actions.addMovie(mockData.mockMovie);
+    expect(result).toEqual(expectedAction);
+  });
+
 });

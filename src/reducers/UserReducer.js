@@ -20,7 +20,6 @@ export const userReducer = (state = {}, action) => {
       return {
         ...state, favorites: [...state.favorites, payload.movie]
       }
-      //move to another reducer
       default:
         return state;
   }
