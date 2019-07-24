@@ -29,7 +29,9 @@ export const MainGallery = ({ movies }) => {
 			<div className="mainCard" key={movie.id}>
 				<img className="main-card-image" alt={title && ' movie poster'} src={poster_path} />
 				<div className="movie-info">
-					<h3 className="movie-title"> {title} </h3> <p> {overview} </p> <FavButton movieInfo={movie} />
+					<h3 className="movie-title"> {title} </h3> 
+					<p> {overview} </p> 
+					<FavButton movieInfo={movie} />
 				</div>
 			</div>
 		);

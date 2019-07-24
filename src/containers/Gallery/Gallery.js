@@ -35,22 +35,10 @@ export const Gallery = ({ data, genre, user }) => {
           className='movie-poster'
           src={backdrop_path}
         />
-        {user_id && (
-          <button
-            className='send-favorite-btn'
-            onClick={() =>
-              sendFavorite({
-                ...movie,
-                user_id
-              })
-            }
-          >
-            Favorite Movie
-          </button>
-        )}
-        <div className='details'>
-          <h3> {title} </h3> 
+        <div className='movie-info'>
+          <h3 className="movie-title"> {title} </h3> 
           <p> {overview} </p>
+          <FavButton movieInfo={movie} />
         </div>
       </div>
     );
