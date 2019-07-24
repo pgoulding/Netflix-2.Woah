@@ -22,6 +22,32 @@ export const mockMovies = {
   }
 };
 
+
+export const mockCleanedMovie =  {
+  "adult": false,
+  "backdrop_path": "http://image.tmdb.org/t/p/original/1TUg5pO1VZ4B0Q1amk3OlXvlpXV.jpg",
+  "genre": "Toy Story",
+  "genre_ids":[
+    12,
+    16,
+    10751,
+    18,
+    28,
+    ],
+    "id": 420818,
+    "isFavorited": false,
+    "movie_id": 420818,
+     "original_language": "en",
+      "original_title": "The Lion King",
+      "overview": "Simba idolises his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.",
+      "popularity": 636.278,
+      "poster_path": "http://image.tmdb.org/t/p/w300/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
+      "release_date": "2019-07-12",
+      "title": "The Lion King",
+      "video": false,
+      "vote_average": 7.1,
+  }
+
 export const mockMovie = {
   "id": 420818,
   "video": false,
@@ -52,6 +78,20 @@ export const mockUser = {
 }
 
 export const mockGenre = 'popular';
+
+export const mockNewUserPost = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    email: 'happy@sad.com',
+    password: 'ilikeburritos',
+    name: 'coolGui420'
+  }),
+  ok: true,
+  json: () => {}
+}
 
 export const mockPost = {
   method: 'POST',
