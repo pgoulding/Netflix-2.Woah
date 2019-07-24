@@ -1,14 +1,16 @@
 import Genre from './Genre';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { findGenres } from '../../utils/API/ApiFetch';
+import { fetchSingleGenre } from '../../utils/API/ApiFetch';
+
 
 jest.mock('../../utils/API/ApiFetch');
 
 describe('Genre', () => {
-	let wrapper, instance;
+	let wrapper, instance, mockGenre, mockState;
 	beforeEach(() => {
-		wrapper = shallow(<Genre />);
+		mockGenre = {id: 4, name: 'popular'}
+		wrapper = shallow(<Genre genre={mockGenre}/>);
 		instance = wrapper.instance();
 	});
 
@@ -19,14 +21,14 @@ describe('Genre', () => {
 	});
 
 	describe('CDM', () => {
-		it('should invoke findGenres', async () => {
+		it('should invoke fetchSingleGenre', async () => {
 			await instance.componentDidMount();
-			expect(findGenres).toHaveBeenCalled();
+			expect(fetchSingleGenre).toHaveBeenCalled();
 		});
 
 		it('should set state to genres', async () => {
 			await instance.componentDidMount();
-			expect(wrapper.state('genres')).toEqual([ 'romance' ]);
+			expect(wrapper.state('genreMovies')).toEqual();
 		});
 	});
 });
