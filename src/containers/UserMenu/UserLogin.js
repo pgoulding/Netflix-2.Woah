@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { sendUserLogin } from '../../utils/API/ApiFetch';
-import { signIn } from '../../actions';
 import { connect } from 'react-redux';
 import './UserForm.css'
 import { Redirect } from 'react-router-dom';
-import { setFavorites } from '../../actions';
+import { setFavorites, toggleFavorites, signIn } from '../../actions';
 import { fetchUserFavorites } from '../../utils/API/ApiFetch';
 
 export class UserLogin extends Component {
@@ -36,8 +35,9 @@ export class UserLogin extends Component {
       if (results) {
         console.log(this.props)
         const favorites = await fetchUserFavorites(this.props.user.id);
-        await console.log('fav', favorites);
+				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
         this.props.setFavorites(favorites.data);
+        toggleFavorites(favoriteIds);
       }
       await this.setState({
         name: '',
@@ -118,7 +118,8 @@ export const mapStateToProps = ({ user, movies, userFavorites }) => ({
 
 export const mapDispatchToProps = dispatch => ({
   signIn: results => dispatch(signIn(results)),
-  setFavorites: favorites => dispatch(setFavorites(favorites))
+  setFavorites: favorites => dispatch(setFavorites(favorites)),
+  toggleFavorites: favoriteIds => dispatch(toggleFavorites(favoriteIds))
 });
 
 export default connect(

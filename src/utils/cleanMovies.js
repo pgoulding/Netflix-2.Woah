@@ -1,6 +1,5 @@
 export const cleanMovies = (genre, results) => {
   const newResults = results.map(movieData => {
-    // console.log('movie data', movieData)
     return {
       ...movieData,
       movie_id: movieData.id,

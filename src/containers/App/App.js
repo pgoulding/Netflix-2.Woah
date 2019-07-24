@@ -12,7 +12,7 @@ import UserLogin from '../UserMenu/UserLogin';
 import GenreContainer from '../../components/GenreContainer/GenreContainer';
 import { findGenres, fetchSingleGenre } from '../../utils/API/ApiFetch';
 import Genre from '../../components/Genre/Genre';
-import SearchOutput from '../Search/SearchOutput';
+import Search from '../Search/Search';
 import DetailedMovieCard from '../DetailedMovieCard/DetailedMovieCard';
 import apiKey from '../../apikey';
 import Favorites from '../Favorites/Favorites';
@@ -65,7 +65,7 @@ export class App extends Component {
 				<Route path="/create_account" component={UserSignup} />
 				<Route exact path="/genre" component={GenreContainer} />
 				{this.populateRoutes()}
-				<Route path="/search" component={SearchOutput} />
+				<Route path="/search" component={Search} />
 				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
 				{/* <Route component={<Error />} /> */}
 			</main>

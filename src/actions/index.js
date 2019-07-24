@@ -21,11 +21,10 @@ export const chooseMovie = (title, id) => ({
   }
 });
 
-export const toggleFavorite = (id, favorited) => ({
-  type: 'TOGGLE_FAVORITE',
+export const toggleFavorites = favorite_ids => ({
+  type: 'TOGGLE_FAVORITES',
   payload: {
-    id,
-    favorited
+    favorite_ids
   }
 });
 
@@ -36,7 +35,6 @@ export const setFavorites = favorites => ({
   }
 });
 
-// export const signIn = ({ email, password, id, name }) => ({
 export const signIn = user => ({
   type: 'SIGN_IN',
   payload: {
@@ -45,8 +43,7 @@ export const signIn = user => ({
 });
 
 export const signOut = () => ({
-  type: 'SIGN_OUT',
-
+  type: 'SIGN_OUT'
 });
 
 export const throwError = error => ({
@@ -64,15 +61,15 @@ export const isLoading = isLoading => ({
 });
 
 export const searchQuery = searchTerm => ({
-  type:'SEARCH_QUERY',
-  payload:{
+  type: 'SEARCH_QUERY',
+  payload: {
     searchTerm
   }
-})
+});
 
 export const addMovie = movie => ({
-  type:'ADD_FAVORITE',
-  payload:{
+  type: 'ADD_FAVORITE',
+  payload: {
     movie
   }
-})
+});
