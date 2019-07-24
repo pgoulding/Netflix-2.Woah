@@ -1,16 +1,22 @@
-.category-links{
+.category-links {
   text-decoration: none;
   background-color: azure;
-  color:black;
+  color: black;
   text-align: center;
   line-height: 200px;
   border-radius: 8px;
 }
 
-.category-link-container{
-    display: grid;  
-    grid-gap: 20px;  
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
-    margin:20px;
+.category-links:hover {
+  color: white;
+  font-size: 2em;
+  background-image: url('../../images/genre_background.jpg');
+}
+
+.category-link-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  margin: 20px;
 }

@@ -17,56 +17,55 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 	};
 
 	const toggleFav = async movie => {
-    if (!user.id) {
-			alert('Please log in to favorite a movie!')
+		if (!user.id) {
+			alert('Please log in to favorite a movie!');
 
-		if (user.id) {
-			const favorites = await fetchUserFavorites(user_id);
-			setFavorites(favorites.data);
-		}
-		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
-
-		if (foundMovie) {
-      await deleteFavorite(user_id, movie_id);
-      const favorites = await fetchUserFavorites(user_id);
-			setFavorites(favorites.data);
-		} else if (!foundMovie) {
-			await sendFavorite({
-				...movieInfo,
-				user_id
-			});
-
-			const favorites = await fetchUserFavorites(user_id);
-
-			setFavorites(favorites.data);
-      
-		} else {
+			if (user.id) {
 				const favorites = await fetchUserFavorites(user_id);
-				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id)
-				;
-				// console.log('ids', favoriteIds);
-        setFavorites(favorites.data);
-        console.log('genre:', genre)
-        // toggleFavorites({genre, favoriteIds});
+				setFavorites(favorites.data);
+			}
 			const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+
 			if (foundMovie) {
 				await deleteFavorite(user_id, movie_id);
 				const favorites = await fetchUserFavorites(user_id);
-				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
 				setFavorites(favorites.data);
-				// toggleFavorites({genre, favoriteIds});
 			} else if (!foundMovie) {
 				await sendFavorite({
 					...movieInfo,
 					user_id
 				});
+
 				const favorites = await fetchUserFavorites(user_id);
-				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
+
 				setFavorites(favorites.data);
-        // toggleFavorites({genre, favoriteIds});
+			} else {
+				const favorites = await fetchUserFavorites(user_id);
+				const favoriteIds = await [ ...favorites.data ].map(fave => fave.movie_id);
+				// console.log('ids', favoriteIds);
+				setFavorites(favorites.data);
+				console.log('genre:', genre);
+				// toggleFavorites({genre, favoriteIds});
+				const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+				if (foundMovie) {
+					await deleteFavorite(user_id, movie_id);
+					const favorites = await fetchUserFavorites(user_id);
+					const favoriteIds = await [ ...favorites.data ].map(fave => fave.movie_id);
+					setFavorites(favorites.data);
+					// toggleFavorites({genre, favoriteIds});
+				} else if (!foundMovie) {
+					await sendFavorite({
+						...movieInfo,
+						user_id
+					});
+					const favorites = await fetchUserFavorites(user_id);
+					const favoriteIds = await [ ...favorites.data ].map(fave => fave.movie_id);
+					setFavorites(favorites.data);
+					// toggleFavorites({genre, favoriteIds});
+				}
 			}
+			//this should not be a console log
 		}
-		//this should not be a console log
 	};
 
 	return (
@@ -95,6 +94,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 		</article>
 	);
 };
+
 export const mapStateToProps = ({ user, specificMovie }) => ({
 	user,
 	specificMovie
