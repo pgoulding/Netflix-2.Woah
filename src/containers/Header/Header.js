@@ -15,11 +15,12 @@ export class Header extends Component {
   }
   headerSignOut = e => {
     e.preventDefault();
-    this.props.signOut();
+		this.props.signOut();
+		// this.toggleMenu(e)
   };
 
   userMenu = (
-    <form className='user-select-menu'>
+		<form className='user-select-menu' onClick={e => this.toggleMenu(e)}>
       <Link to='/create_account'>
         <button className='user-select-buttons'> Create Account </button>
       </Link>
@@ -49,7 +50,7 @@ export class Header extends Component {
 
   render() {
     return (
-      <header onClick={e => this.toggleMenu(e)}>
+      <header>
         <Link to='/'>
           <h1> BetterFlix </h1>
         </Link>

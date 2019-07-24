@@ -19,12 +19,12 @@ export const findGenres = async () => {
   }
 };
 
-export const fetchSingleGenre = async genreID => {
+export const fetchSingleGenre = async (genreID, genreName )=> {
   const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreID}`;
   try {
     const response = await fetch(genreUrl);
     const parsed = await response.json();
-    const cleanedMovies = await cleanMovies(genreID, parsed.results);
+    const cleanedMovies = await cleanMovies(genreName, parsed.results);
     //error here
     return cleanedMovies;
   } catch (error) {

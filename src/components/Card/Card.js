@@ -9,29 +9,32 @@ import moreDetails from '../../images/clapperboard.png';
 import './Card.scss';
 
 export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggleFavorites }) => {
-	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
+	const { title, poster_path, overview, movie_id, isFavorited, genre } = movieInfo;
 	const { user_id } = user;
 	const seeSpecificMovie = () => {
 		chooseSpecificMovie(title, movie_id);
 	};
 
 	const toggleFav = async movie => {
-		if (!user.id) {
+    console.log(genre)
+    console.log('movie info: ', movieInfo)
+    if (!user.id) {
 			alert('Please log in to favorite a movie!')
 		} else {
 				const favorites = await fetchUserFavorites(user_id);
 				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id)
 				;
 				// console.log('ids', favoriteIds);
-				setFavorites(favorites.data);
-				toggleFavorites(favoriteIds);
+        setFavorites(favorites.data);
+        console.log('genre:', genre)
+        // toggleFavorites({genre, favoriteIds});
 			const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
 			if (foundMovie) {
 				await deleteFavorite(user_id, movie_id);
 				const favorites = await fetchUserFavorites(user_id);
 				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
 				setFavorites(favorites.data);
-				toggleFavorites(favoriteIds);
+				// toggleFavorites({genre, favoriteIds});
 			} else if (!foundMovie) {
 				await sendFavorite({
 					...movieInfo,
@@ -40,7 +43,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 				const favorites = await fetchUserFavorites(user_id);
 				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
 				setFavorites(favorites.data);
-				toggleFavorites(favoriteIds);
+        // toggleFavorites({genre, favoriteIds});
 			}
 		}
 	};

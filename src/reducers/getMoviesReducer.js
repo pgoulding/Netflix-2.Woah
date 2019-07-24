@@ -10,12 +10,13 @@ export const getMoviesReducer = (state = {}, action) => {
       };
     case 'TOGGLE_FAVORITES':
       console.log('pl', payload);
-      for (const key in state.movies) {
-        state.movies[key].map(movie => {
-          return {...movie, isFavorited: payload.favorite_ids.includes(movie.movie_id)}
-        });
-      }
-      return state;
+      console.log('state: ', state)
+      const newState = [payload.genre].map(movie => {
+        return { ...movie, isFavorited: payload.favoriteIds.includes(movie.id)}
+      })
+      console.log('new state:', newState)
+      return {...state, [payload.genre]:newState}
+      
     default:
       return state;
   }
