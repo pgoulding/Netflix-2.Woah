@@ -1,60 +1,69 @@
-mport {
-  DetailedMovieCard,
+import {
+  UserLogin,
   mapStateToProps,
   mapDispatchToProps
 }
-from './DetailedMovieCard';
+from './UserLogin';
 import {
   shallow
 } from 'enzyme';
 import React from 'react';
-import {
-  fetchSingleMovie
-} from '../../utils/API/ApiFetch';
+import {mockUser, mockMovies} from '../../utils/mockData/mockData';
 
 describe('DetailedMovieCard', () => {
       describe('component', () => {
-        let wrapper, instance;
+        let wrapper, instance, mockFavorites;
 
         beforeEach(() => {
-          wrapper = shallow( < DetailedMovieCard / > );
+          mockFavorites = mockMovies
+          wrapper = shallow( < UserLogin /> );
           instance = wrapper.instance()
         });
+
         it('should match snapshot', () => {
           expect(wrapper).toMatchSnapshot();
         });
-      });
-      describe('CDM', () => {
-        it('should invoke fetchSingleMovie', () => {
-          instance.componentDidMount();
-          expect(fetchSingleMovie).toHaveBeenCalled()
-        });
-        it('should set state to currentMovie', async () => {
-          await instance.componentDidMount()
-          expect(wrapper.state('currentMovie')).toEqual()
-        });
-        describe('mapStateToProps', () => {
-          it('should return an object with the user and specificMovie', () => {
-            const mockState = {
-              specificMovie:
+
+        it('should have a default state', () => {
+          wrapper = shallow( <UserLogin/> , {
+              disableLifecycleMethods: true
             }
-            const expected = {
-              specificMovie:
+          );
+          expect(wrapper.state()).toEqual({
+            name: '',
+      password: '',
+      email: '',
+      error: ''
+          });
+        });
+
+        describe('mapStateToProps', () => {
+          it('should return an object with the user, movies and userFavorites', () => {
+            const mockState = {
+              user: mockUser,
+              movies: mockMovies,
+              userFavorites: mockFavorites
             }
             const mappedProps = mapStateToProps(mockState);
-            expect(mappedProps).toEqual(expected);
+            expect(mappedProps).toEqual(mockState);
           });
         });
+
         describe('mapDispatchToProps', () => {
-          it('should call dispatch with a chooseMovie action when fetchSingleMovie is called', () => {
+          it('should call dispatch with a signIn action when signIn is called', () => {
             const mockDispatch = jest.fn();
-            const actionToDispatch = fetchSingleMovie(1);
+            const actionToDispatch = signIn(mockResults);
             const mappedProps = mapDispatchToProps(mockDispatch);
-            mappedProps.chooseSpecificMovie(1);
+            mappedProps.signIn(mockResults);
             expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
           });
+
+          it('should call dispatch with a setFavorites action when setFavoritesis called', () => {
+            const mockDispatch = jest.fn();
+            const actionToDispatch = setFavorites(mockFavorites);
+            const mappedProps = mapDispatchToProps(mockDispatch);
+            mappedProps.setFavorites(mockFavorites);
+            expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+          });  
         });
       });
-
-      {
-        /* test handleChange, initial state, loginuser, clearinputfields */ }

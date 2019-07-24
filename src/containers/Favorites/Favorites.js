@@ -1,48 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Card from '../../components/Card/Card';
+import Card from '../../containers/Card/Card';
 import { Redirect } from 'react-router-dom';
 
 export class Favorites extends Component {
-  constructor() {
-    super();
-    this.state = {
-      favoriteMovs: []
-    };
-  }
+	constructor () {
+		super();
+		this.state = {
+			favoriteMovs: []
+		};
+	}
 
-  componentDidMount() {
-    if (this.props.user.id) {
-      this.updateMovies();
-    }
-  }
+	componentDidMount () {
+		if (this.props.user.id) {
+			this.updateMovies();
+		}
+	}
 
-  updateMovies() {
-    setInterval(() => this.setState({ favoriteMovs: this.props.user.favorites }), 300);
-  }
+	updateMovies () {
+		setInterval(
+			() =>
+				this.setState({
+					favoriteMovs: this.props.user.favorites
+				}),
+			300
+		);
+	}
 
-  findFaves = () => {
-    if (!this.props.user.id) {
-      return <Redirect to='/log_in' />;
-    } else {
-      return this.state.favoriteMovs.map(movie => {
-        return <Card movieInfo={movie} />;
-      });
-    }
-  };
+	findFaves = () => {
+		if (!this.props.user.id) {
+			return <Redirect to="/log_in" />;
+		} else {
+			return this.state.favoriteMovs.map(movie => {
+				return <Card movieInfo={movie} />;
+			});
+		}
+	};
 
-  render = () => {
-    return (
-      <div className='movies-container' onClick={() => this.updateMovies()}>
-        {this.findFaves()}
-      </div>
-    );
-  };
+	render = () => {
+		return (
+			<div className="movies-container" onClick={() => this.updateMovies()}>
+				{this.findFaves()}
+			</div>
+		);
+	};
 }
 
 export const mapStateToProps = ({ user, movies }) => ({
-  user,
-  movies
+	user,
+	movies
 });
 
 export default connect(mapStateToProps, null)(Favorites);

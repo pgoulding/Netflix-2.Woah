@@ -29,7 +29,7 @@ export const Gallery = ({ data, genre, user }) => {
 
 		return (
 			<div onMouseLeave={toggleHover} onMouseEnter={toggleHover} key={movie.id} className="card">
-				<img alt={title && ' movie poster '} className="movie-poster-carousel" src={backdrop_path} />{' '}
+				<img alt={title && ' movie poster '} className="movie-poster-carousel" src={backdrop_path} />
 				{user_id && (
 					<button
 						className="send-favorite-btn"
@@ -38,19 +38,20 @@ export const Gallery = ({ data, genre, user }) => {
 								...movie,
 								user_id
 							})}>
-						Favorite Movie{' '}
+						Favorite Movie
 					</button>
-				)}{' '}
+				)}
+
 				<div className="details">
 					<h3> {title} </h3> <p> {overview} </p>
-				</div>{' '}
+				</div>
 			</div>
 		);
 	});
 
 	return (
 		<section>
-			<h2> {genre} </h2>{' '}
+			<h2> {genre} </h2>
 			<AliceCarousel
 				duration={1000}
 				autoPlay={true}
@@ -62,9 +63,8 @@ export const Gallery = ({ data, genre, user }) => {
 				autoPlayDirection="rtl"
 				autoPlayActionDisabled={true}
 				buttonsDisabled={true}>
-				{' '}
-				{details}{' '}
-			</AliceCarousel>{' '}
+				{details}
+			</AliceCarousel>
 		</section>
 	);
 };

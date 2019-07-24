@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchSingleGenre } from '../../utils/API/ApiFetch';
-import Card from '../Card/Card';
+import Card from '../../containers/Card/Card';
 import './Genre.scss';
 class Genre extends Component {
 	constructor () {
@@ -10,7 +10,7 @@ class Genre extends Component {
 		};
 	}
 	async componentDidMount () {
-    const genreMovies = await fetchSingleGenre(this.props.genre.id, this.props.genre.name);
+		const genreMovies = await fetchSingleGenre(this.props.genre.id, this.props.genre.name);
 		this.setState({ genreMovies });
 	}
 

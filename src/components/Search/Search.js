@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from '../../components/Card/Card';
+import Card from '../../containers/Card/Card';
 import { searchForMovie } from '../../utils/API/ApiFetch';
 import SearchOutput from './SearchOutput';
 
@@ -32,7 +32,7 @@ export class Search extends Component {
 			<article>
 				<div
 					className={!this.state.searchResults.length ? 'search-input-container' : ' search-input-container expanded'}>
-					<h2> Search Movies by Name </h2>
+					<h2> Search Movies by Name </h2>{' '}
 					<div>
 						<input
 							name="search"
@@ -40,11 +40,11 @@ export class Search extends Component {
 							type="text"
 							value={this.state.searchInput}
 							onChange={this.handleChange}
-						/>
-						<button onClick={this.searchMovies}> Search </button>
-					</div>
-				</div>
-				{this.state.searchResults.length ? <SearchOutput query={this.state.searchResults} /> : null}
+						/>{' '}
+						<button onClick={this.searchMovies}> Search </button>{' '}
+					</div>{' '}
+				</div>{' '}
+				{this.state.searchResults.length ? <SearchOutput query={this.state.searchResults} /> : null}{' '}
 			</article>
 		);
 	}
