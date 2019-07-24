@@ -1,3 +1,6 @@
+# BetterFlix
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -17,52 +20,83 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Table of Contents
+* [Description](# Description)
+* [Project Successes](Project Successes)
+* [Project Challenges](Project Challenges)
+* [ Project Extensions/Issues](Project Extensions/Issues)
+* [Project Tech Emphasis](Project Tech Emphasis)
+* [Project Management](Project Management)
+* [Project Comps](Project Comps)
+* [Developers](Developers)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Description
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This project is a movie app that allows the user to see now playing, popular, and currently top rated movies. The user can also select a genre to see all of the recommended movies in that genre. Once the user is logged into their account and viewing movies, they can select a movie to see more information about the movie or favorite the movie. All of their favorite movies will be stored and are viewable upon re-login. If the user does not see a movie they are looking for, they can search for a specific movie. This project was completed in a week.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Successes
 
-### `npm run eject`
+This project required 1-2 api calls, however the modular code was build to run up to 20 different fetch calls to the moviedb to grab different sets of movie data. This increases the pleasure felt during the user experience as the user can select from a variety of movie genres. The developers implemented thunks for the first time. Over half of the app has passing test coverage.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Project Challenges
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Writing modular code required careful planning and strategic architecture. Creating a flat redux store also proved to be a challenge......
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Project Extensions/Issues
 
-## Learn More
+* Only at 47% Test Coverage
+* User Favorites need to be saved to store
+* Create Account Page needs to redirect to Home page after creating an account
+* Redesign the store
+* Change all fetchs to thunks
+*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Tech Emphasis
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* HTML
+* SCSS
+* JavaScript
+* React
+* React Router
+* Redux
+* Jest
+* Enzyme
+* PropTypes
+* ES6 Classes
+* API fetches
+* Thunks Middleware
+* NPM
 
-### Code Splitting
+## Project Management
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The team used a project management tool, Trello, and GitHub issues to manage workflow, along with Slakc to manage remote communication.
 
-### Analyzing the Bundle Size
+### Trello Board
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# Project Comps:
 
-### Making a Progressive Web App
+### Home Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Search
 
-### Advanced Configuration
+### Genres
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Favorites
 
-### Deployment
+### Sign In
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Create Account
 
-### `npm run build` fails to minify
+### 404 Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Developers
+
+[Patrick Goulding]()
+[Katherine Lewis]()
+[Jev Forsberg]()
+
+## Licensing
+
+All credit goes to <a href="turing.io">Turing School of Software</a> for providing the project specifications.
