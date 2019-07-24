@@ -17,8 +17,6 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 	};
 
 	const toggleFav = async movie => {
-    console.log(genre)
-    console.log('movie info: ', movieInfo)
     if (!user.id) {
 			alert('Please log in to favorite a movie!')
 
