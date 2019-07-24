@@ -103,7 +103,7 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 
 ### 404 Page
 
-![404 Page]()
+![404 Page](./src/images/404Page.png)
 
 
 ## Developers
