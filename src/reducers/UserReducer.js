@@ -1,5 +1,3 @@
-import * as user from '../utils/API/ApiFetch';
-
 export const userReducer = (state = {}, action) => {
   const {
     type,

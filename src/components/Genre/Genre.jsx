@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchSingleGenre } from '../../utils/API/ApiFetch';
-import Card from '../../containers/Card/Card';
+import Card from '../Card/Card';
 import './Genre.scss';
 class Genre extends Component {
 	constructor () {

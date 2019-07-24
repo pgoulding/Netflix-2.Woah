@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from '../../containers/Card/Card';
 import { searchForMovie } from '../../utils/API/ApiFetch';
 import SearchOutput from './SearchOutput';
 

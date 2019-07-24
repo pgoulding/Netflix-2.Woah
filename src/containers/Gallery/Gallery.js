@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { sendFavorite } from '../../utils/API/ApiFetch';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
@@ -27,8 +26,6 @@ export const Gallery = ({ data, genre, user }) => {
 
   let details = data.map(movie => {
     const { title, overview, backdrop_path } = movie;
-    const { user_id } = user;
-
     return (
       <div
         key={movie.id}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Card from '../../containers/Card/Card';
+import Card from '../../components/Card/Card';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 

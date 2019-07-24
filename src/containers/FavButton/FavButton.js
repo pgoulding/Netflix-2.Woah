@@ -1,7 +1,7 @@
 import React from 'react';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { setFavorites, chooseMovie } from '../../actions';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
