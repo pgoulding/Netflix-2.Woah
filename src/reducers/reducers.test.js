@@ -7,6 +7,7 @@ import { chooseGenreReducer } from './chooseGenreReducer';
 import { mockMovies, mockMovie, mockGenre, mockUser } from '../utils/mockData/mockData';
 import { chooseSpecificMovieReducer } from './chooseSpecificMovieReducer';
 import { toggleFavoritesReducer } from './toggleFavoritesReducer';
+import { searchQueryReducer } from './searchQueryReducer';
 
 describe('reducers', () => {
 	describe('chooseGenreReducer', () => {
@@ -26,10 +27,11 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 	});
+
 	describe('chooseSpecificMovieReducer', () => {
 		it('should return the initial state', () => {
-			const expected = '';
-			const result = chooseGenreReducer(undefined, {});
+			const expected = {};
+			const result = chooseSpecificMovieReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
 		it('should handle CHOOSE_MOVIE', () => {
@@ -38,18 +40,23 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 	});
+
 	describe('getMoviesReducer', () => {
 		it('should return the initial state', () => {
 			const expected = {};
 			const result = getMoviesReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		// it('should handle UPDATE_MOVIE', () => {
-		// 	const expected = mockMovies;
-		// 	const result = getMoviesReducer(mockMovie);
-		// 	expect(result).toEqual(expected);
-		// });unsure how to write this out
+		it('should handle UPDATE_MOVIE', () => {
+			const expected = mockMovies;
+			const result = getMoviesReducer(mockMovie, {
+				type: 'UPDATE_MOVIE',
+				payload: {}
+			});
+			expect(result).toEqual(expected);
+		});
 	});
+
 	describe('toggleFavoritesReducer', () => {
 		it('should return an initial state', () => {
 			const expected = false;
@@ -62,6 +69,23 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 	});
+
+	describe('searchQueryReducer', () => {
+		it('should return an initial state', () => {
+			const expected = '';
+			const result = searchQueryReducer(undefined, {});
+			expect(result).toEqual(expected);
+		});
+		it('should handle SEARCH_QUERY', () => {
+			const expected = 'Toy Story';
+			const result = searchQueryReducer('Toy Story', {
+				type: 'SEARCH_QUERY',
+				payload: 'Toy Story'
+			});
+			expect(result).toEqual(expected);
+		});
+	});
+
 	describe('isLoadingReducer', () => {
 		it('should return the initial state', () => {
 			const expected = false;
@@ -74,18 +98,20 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 	});
+
 	describe('throwErrorReducer', () => {
 		it('should return the initial state', () => {
 			const expected = '';
 			const result = throwErrorReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		it('should handle THROw_ERROR', () => {
+		it('should handle THROW_ERROR', () => {
 			const expected = 'I am an error';
 			const result = throwErrorReducer(undefined, action.throwError('I am an error'));
 			expect(result).toEqual(expected);
 		});
 	});
+
 	describe('userReducer', () => {
 		it('should return the initial state', () => {
 			const expected = {};
