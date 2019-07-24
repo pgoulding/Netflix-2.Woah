@@ -7,7 +7,7 @@ import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import './FavButton.scss'
 export const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, movie_id, isFavorited } = movieInfo;
 	const { user_id } = user;
@@ -43,7 +43,7 @@ export const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }
 			</Link>
 
 			<button onClick={() => toggleFav(movie_id)}>
-				<img className="favorite__img-button" alt="favorite this movie" src={isFavorited ? filledHeart : emptyHeart} />
+				<img className="favorite__img-button" alt="favorite this movie" src={isFavorited ? emptyHeart:  filledHeart} />
 			</button>
 		</div>
 	);

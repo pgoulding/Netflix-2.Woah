@@ -13,9 +13,10 @@ export const chooseGenre = genre => ({
   }
 });
 
-export const chooseMovie = (id) => ({
+export const chooseMovie = (title, id) => ({
   type: 'CHOOSE_MOVIE',
   payload: {
+    title,
     id
   }
 });

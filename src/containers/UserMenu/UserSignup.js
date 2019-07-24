@@ -50,7 +50,7 @@ export class UserSignup extends Component {
 
 	render = () => {
 		if (this.state.toSignIn) {
-			return <Redirect to="/sign_in" />;
+			return <Redirect to="/log_in" />;
 		}
 		return (
 			<div className="form-container">
