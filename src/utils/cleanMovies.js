@@ -11,5 +11,3 @@ export const cleanMovies = (genre, results) => {
   });
   return newResults;
 };
-
-// genre is overriding existing genre in each movieData

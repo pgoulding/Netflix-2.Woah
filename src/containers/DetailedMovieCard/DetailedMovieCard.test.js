@@ -12,14 +12,14 @@ import {
 } from '../../utils/API/ApiFetch';
 
 describe('DetailedMovieCard', () => {
-	describe('component', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow( < DetailedMovieCard / > );
+			wrapper = shallow( < DetailedMovieCard /> );
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {
+	describe('component', () => {
 			expect(wrapper).toMatchSnapshot();
 		});
 	});
@@ -28,6 +28,7 @@ describe('DetailedMovieCard', () => {
 			instance.componentDidMount();
 			expect(fetchSingleMovie).toHaveBeenCalled();
 		});
+
 		it('should set state to currentMovie', async () => {
 			await instance.componentDidMount();
 			expect(wrapper.state('currentMovie')).toEqual();

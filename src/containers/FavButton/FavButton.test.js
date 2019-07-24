@@ -1,4 +1,4 @@
-import FavButton from './FavButton';
+import {FavButton} from './FavButton';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { mockUser, mockMovie } from '../../utils/mockData/mockData';
@@ -19,4 +19,6 @@ describe('FavButton', () => {
 	it('should match snapshot', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
+	//mstp
+	//mdtp
 });

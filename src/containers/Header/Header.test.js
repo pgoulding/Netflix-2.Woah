@@ -9,7 +9,7 @@ describe('Header', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow(<Header />);
+			wrapper = shallow(<Header user={mockUser} />);
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {

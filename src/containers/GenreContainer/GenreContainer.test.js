@@ -1,13 +1,26 @@
-import { GenreContainer, mapDispatchToProps } from './GenreContainer';
-import { shallow } from 'enzyme';
+import {
+	GenreContainer,
+	mapDispatchToProps
+} from './GenreContainer';
+import {
+	shallow
+} from 'enzyme';
 import React from 'react';
-import { mockGenre, mockGenres } from '../../utils/mockData/mockData';
-import { getMovies } from '../../thunks/getMoviesThunk';
+import {
+	mockGenre,
+	mockGenres
+} from '../../utils/mockData/mockData';
+import {
+	getMovies
+} from '../../thunks/getMoviesThunk';
+import { findGenres } from '../../utils/API/ApiFetch';
+
+jest.mock('../../utils/API/ApiFetch')
 
 describe('GenreContainer', () => {
 	let wrapper, instance, mockGenres;
 	beforeEach(() => {
-		wrapper = shallow(<GenreContainer />);
+		wrapper = shallow( < GenreContainer /> );
 		instance = wrapper.instance();
 	});
 
@@ -17,21 +30,14 @@ describe('GenreContainer', () => {
 		});
 	});
 
-	describe('populateGenres', () => {
-		it('should return an array of links', () => {
-			const result = instance.populateGenres();
-			expect(result).toHaveLength(19);
-		});
-	});
-
 	describe('CDM', () => {
-		it('should invoke findGenres', () => {
-			instance.componentDidMount();
+		it('should invoke findGenres', async () => {
+			await instance.componentDidMount();
 			expect(findGenres).toHaveBeenCalled();
 		});
 		it('should set state to genres', async () => {
 			await instance.componentDidMount();
-			expect(wrapper.state('genres')).toEqual(mockGenres);
+			expect(wrapper.state('genres')).toBeInstanceOf(Array);
 		});
 	});
 

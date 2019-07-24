@@ -16,7 +16,6 @@ export class Header extends Component {
 	headerSignOut = e => {
 		e.preventDefault();
 		this.props.signOut();
-		// this.toggleMenu(e)
 	};
 
 	userMenu = (

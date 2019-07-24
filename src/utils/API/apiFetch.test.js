@@ -1,7 +1,7 @@
 import * as ApiFetch from './ApiFetch';
 import apiKey from '../../apikey';
 import * as mockData from '../mockData/mockData';
-import cleanMovies from '../cleanMovies';
+import {cleanMovies} from '../cleanMovies';
 
 describe('ApiFetch', () => {
   const mockPromiseError = 'response.json is not a function';
@@ -39,24 +39,32 @@ describe('ApiFetch', () => {
         Promise.resolve({
           ok: true,
           json: () => Promise.resolve({
-            results: mockData.mockGenre //don't know value
+            results: [{movies: mockData.mockMovies}]
           })
         })
       );
     });
     it('should call the fetch with the correct arguements', async () => {
-      const mockUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${mockData.mockGenre}`
-      await ApiFetch.fetchSingleGenre(mockUrl);
+      const mockUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${4}`
+      await ApiFetch.fetchSingleGenre(4, mockData.mockGenre);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-      //need to mock out props
     });
+
     it('should return a parsed version of the result', async () => {
-      const expected = await ApiFetch.fetchSingleGenre();
-      expect(expected).toEqual(mockData.mockGenre);
+      const expected = await ApiFetch.fetchSingleGenre(4, mockData.mockGenre);
+      expect(expected).toEqual([ mockData.mockMovie]);
     });
+
     it('should invoke cleanMovies with genreId and results', async () => {
-      const expected = [] //make clean version
-      const result = cleanMovies(mockData.mockMovies)
+      const expected = [{
+        ...mockData.mockMovie,
+        genre: mockData.mockGenre,
+        movie_id: mockData.mockMovie.id,
+        isFavorited: false,
+        poster_path: `http://image.tmdb.org/t/p/w300${mockData.mockMovie.poster_path}`,
+        backdrop_path: `http://image.tmdb.org/t/p/original${mockData.mockMovie.backdrop_path}`
+      }] 
+      const result = cleanMovies(mockData.mockGenre, [mockData.mockMovie])
       expect(result).toEqual(expected)
     });
     it('should throw an error if fetch fails', async () => {
@@ -72,20 +80,20 @@ describe('ApiFetch', () => {
       window.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
           ok: true,
-          json: () => Promise.resolve(mockData.mockMovie)
+          json: () => Promise.resolve({results: [mockData.mockMovie]})
         })
       );
     });
     it('should call the fetch with the correct arguements', async () => {
       const mockSearchTerm = 'Toy Story'
       const mockUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${mockSearchTerm}&page=1&include_adult=false`
-      await ApiFetch.searchForMovie(mockUrl);
+      await ApiFetch.searchForMovie(mockSearchTerm);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-      //need to mock out props
     });
     it('should return a parsed version of the result', async () => {
-      const expected = await ApiFetch.searchForMovie();
-      expect(expected).toEqual(mockData.mockMovie);
+      const mockSearchTerm = 'Toy Story'
+      const result = await ApiFetch.searchForMovie(mockSearchTerm);
+      expect(result).toEqual([mockData.mockMovie]);
 
     });
     it('should invoke cleanMovies with results and searchTerm', () => {
@@ -112,9 +120,10 @@ describe('ApiFetch', () => {
       );
     });
     it('should call the fetch with the correct arguements', async () => {
-      const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
+      const mockMovieId = 5;
+      
       const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
-      await ApiFetch.fetchSingleMovie(mockUrl);
+      await ApiFetch.fetchSingleMovie(mockMovieId);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     });
     it('should return a parsed version of the result', () => {
@@ -141,9 +150,9 @@ describe('ApiFetch', () => {
       );
     });
     it('should call the fetch with the correct arguements', async () => {
-      const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
-      const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
-      await ApiFetch.fetchSingleMovie(mockUrl, mockData.mockPost);
+      const mockMovieId = 5;
+      const mockUrl =  "http://localhost:3001/api/users/";
+      await ApiFetch.sendUserLogin('test@email.com', 1234);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl, mockData.mockPost);
     });
     it('should return a parsed version of the result', async () => {
