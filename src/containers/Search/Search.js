@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { getMovies } from '../../thunks/getMoviesThunk';
+import Card from '../../components/Card/Card'
 import { searchForMovie } from '../../utils/API/ApiFetch';
-// import SearchOutput from './SearchOutput'
-import apiKey from '../../apikey';
-import { Link } from 'react-router-dom';
+import SearchOutput from './SearchOutput';
+
 export class Search extends Component {
 	constructor () {
 		super();
 		this.state = {
-			searchInput: ''
+      searchInput: '',
+      searchResults:[]
 		};
 	}
 
@@ -18,32 +18,31 @@ export class Search extends Component {
 
 	searchMovies = async e => {
 		e.preventDefault();
-		const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${this.state
-			.searchInput}&page=1&include_adult=false`;
-		const results = await getMovies(this.state.searchInput, searchUrl);
-		await console.log(await results);
-	};
+    const results = await searchForMovie(this.state.searchInput)
+    this.setState({ searchResults: [...results] })
+    await console.log(await results);
+  };
 
 	render () {
 		return (
-			<div>
-				<input
-					name="name"
-					placeholder="Search Text"
-					type="text"
-					value={this.state.searchInput}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.searchMovies}>Search</button>
-			</div>
+			<article>
+        <div className={!this.state.searchResults.length ? 'search-input-container' : ' search-input-container expanded'}>
+        <h2>Search Movies by name</h2>
+          <div>
+            <input
+              name="search"
+              placeholder="Search Text"
+              type="text"
+              value={this.state.searchInput}
+              onChange={this.handleChange}
+            />
+            <button onClick={this.searchMovies}>Search</button>
+          </div>
+        </div>
+        {this.state.searchResults.length ? <SearchOutput query={this.state.searchResults} /> : null}
+			</article>
 		);
 	}
 }
 
-// export const mapDispatchToProps = (dispatch) => ({
-//   searchQuery: (results) => dispatch(search)
-// })
-
 export default Search;
-
-// export default connect(null, mapDispatchToProps)(Search)
