@@ -16,6 +16,7 @@ import {
 import { findGenres } from '../../utils/API/ApiFetch';
 
 jest.mock('../../utils/API/ApiFetch')
+jest.mock('../../thunks/getMoviesThunk')
 
 describe('GenreContainer', () => {
 	let wrapper, instance, mockGenres;

@@ -8,7 +8,7 @@ describe('MainGallery', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow(<MainGallery movies={mockMovies} />);
+			wrapper = shallow(<MainGallery movies={[mockMovies]} />);
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {

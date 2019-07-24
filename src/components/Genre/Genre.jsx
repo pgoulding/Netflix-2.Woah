@@ -11,6 +11,7 @@ class Genre extends Component {
 	}
 	async componentDidMount () {
 		const genreMovies = await fetchSingleGenre(this.props.genre.id, this.props.genre.name);
+		//undefined
 		this.setState({ genreMovies });
 	}
 
