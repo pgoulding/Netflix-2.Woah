@@ -13,7 +13,10 @@ describe('FavButton', () => {
 			{ title: 'Toy Story3', id: 3 }
 		];
 		wrapper = shallow(
-			<FavButton movieData={mockMovie} user_id={mockUser.id} currentUserFavorites={mockCurrentUserFavorites} />
+			<FavButton 
+				movieInfo={mockMovie} 
+				user={mockUser.id} 
+				currentUserFavorites={mockCurrentUserFavorites} />
 		);
 	});
 	it('should match snapshot', () => {
