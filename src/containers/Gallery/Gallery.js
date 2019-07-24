@@ -5,11 +5,9 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
 import FavButton from '../FavButton/FavButton';
+import PropTypes from 'prop-types';
 
 export const Gallery = ({ data, genre, user }) => {
-  const reformatGenre = () => {};
-  const [hovered, setHovered] = useState(false);
-  const toggleHover = () => setHovered(!hovered);
 
   const responsive = {
     0: {
@@ -86,3 +84,8 @@ export const mapStateToProps = ({ movies, user }) => ({
 });
 
 export default connect(mapStateToProps)(Gallery);
+
+Gallery.propTypes = {
+	movies: PropTypes.array,
+	user: PropTypes.object
+};

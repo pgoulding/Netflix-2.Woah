@@ -28,3 +28,5 @@ export const getMovies = (fetchUrl, genre) => {
     }
   };
 };
+
+export default getMovies;
