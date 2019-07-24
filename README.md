@@ -124,6 +124,8 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 ### GIF
 
 ![GIF](./src/images/betterflix-categories.gif)
+
+
 ![GIF](./src/images/betterflix-home-page.gif)
 
 
