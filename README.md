@@ -1,6 +1,5 @@
 # BetterFlix
 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -93,9 +92,9 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 
 ## Developers
 
-[Patrick Goulding]()
-[Katherine Lewis]()
-[Jev Forsberg]()
+[Patrick Goulding](https://github.com/pgoulding)
+[Katherine Lewis](https://github.com/kalex19)
+[Jev Forsberg](https://github.com/baldm0mma)
 
 ## Licensing
 
