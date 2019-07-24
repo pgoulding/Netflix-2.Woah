@@ -12,6 +12,8 @@ import {
 } from '../../utils/API/ApiFetch';
 import {mockMovie} from '../../utils/mockData/mockData';
 
+jest.mock('../../utils/API/ApiFetch');
+
 describe('DetailedMovieCard', () => {
 		let wrapper, instance;
 
@@ -27,7 +29,7 @@ describe('DetailedMovieCard', () => {
 	describe('CDM', () => {
 		it('should invoke fetchSingleMovie', () => {
 			instance.componentDidMount();
-			expect(fetchSingleMovie).toHaveBeenCalledWith();
+			expect(fetchSingleMovie).toHaveBeenCalledWith(mockMovie.id);
 		});
 
 		it('should set state to currentMovie', async () => {
@@ -51,7 +53,7 @@ describe('DetailedMovieCard', () => {
 				const mockDispatch = jest.fn();
 				const actionToDispatch = fetchSingleMovie(1);
 				const mappedProps = mapDispatchToProps(mockDispatch);
-				mappedProps.chooseSpecificMovie(1);
+				mappedProps.fetchSingleMovie(1);
 				expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
 			});
 		});
