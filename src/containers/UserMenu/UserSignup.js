@@ -25,17 +25,22 @@ export class UserSignup extends Component {
 
   createNewAccount = async e => {
     e.preventDefault();
-    const response = await sendNewAccount(this.state);
-    if (await response.ok) {
-      this.setState({
-        toSignIn: true
-      })
+    if (this.state.email === (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)) {
+      const response = await sendNewAccount(this.state);
+      if (await response.ok) {
+        this.setState({
+          toSignIn: true
+        })
+      } else {
+        this.setState({
+          error: 'Sorry, we failed to create your account. Your email or password may already be in use. Please use a different email or password, or attempt to login, as you may already have an account.'
+        })
+      }
+      this.clearInputFields();
+      this.props.history.push('/')
     } else {
-      this.setState({
-        error: 'Sorry, we failed to create your account. Your email or password may already be in use. Please use a different email or password, or attempt to login, as you may already have an account.'
-      })
+      this.setState({error: 'Please enter a valid email address'})
     }
-    this.clearInputFields();
   };
 
   clearInputFields = () => {
