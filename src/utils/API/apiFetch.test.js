@@ -5,6 +5,7 @@ import cleanMovies from '../cleanMovies';
 
 describe('ApiFetch', () => {
   const mockPromiseError = 'response.json is not a function';
+
   describe('findGenres', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -31,6 +32,7 @@ describe('ApiFetch', () => {
       await expect(ApiFetch.findGenres()).rejects.toEqual(Error(mockPromiseError));
     });
   });
+
   describe('fetchSingleGenre', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -64,6 +66,7 @@ describe('ApiFetch', () => {
       await expect(ApiFetch.fetchSingleGenre()).rejects.toEqual(Error(mockPromiseError));
     });
   });
+
   describe('searchForMovie', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -73,18 +76,18 @@ describe('ApiFetch', () => {
         })
       );
     });
-    // it('should call the fetch with the correct arguements', async () => {
-    //   const mockSearchTerm = 'Toy Story'
-    //   const mockUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${mockSearchTerm}&page=1&include_adult=false`
-    //   await ApiFetch.searchForMovie(mockUrl);
-    //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-    //   //need to mock out props
-    // });
-    // it('should return a parsed version of the result', async () => {
-    //   const expected = await ApiFetch.searchForMovie();
-    //   expect(expected).toEqual(mockData.mockMovie);
+    it('should call the fetch with the correct arguements', async () => {
+      const mockSearchTerm = 'Toy Story'
+      const mockUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${mockSearchTerm}&page=1&include_adult=false`
+      await ApiFetch.searchForMovie(mockUrl);
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
+      //need to mock out props
+    });
+    it('should return a parsed version of the result', async () => {
+      const expected = await ApiFetch.searchForMovie();
+      expect(expected).toEqual(mockData.mockMovie);
 
-    // });
+    });
     it('should invoke cleanMovies with results and searchTerm', () => {
       //invoke window.fetch with dirty data and expect whole function to return clean data
       // await cleanMovies()
@@ -98,6 +101,7 @@ describe('ApiFetch', () => {
 
     });
   });
+
   describe('fetchSingleMovie', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -107,12 +111,12 @@ describe('ApiFetch', () => {
         })
       );
     });
-    // it('should call the fetch with the correct arguements', async () => {
-    //   const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
-    //   const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
-    //   await ApiFetch.fetchSingleMovie(mockUrl);
-    //   expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-    // });
+    it('should call the fetch with the correct arguements', async () => {
+      const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
+      const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
+      await ApiFetch.fetchSingleMovie(mockUrl);
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl);
+    });
     it('should return a parsed version of the result', () => {
       async () => {
         const expected = await ApiFetch.fetchSingleMovie();
@@ -124,9 +128,9 @@ describe('ApiFetch', () => {
         ok: false
       }))
       await expect(ApiFetch.fetchSingleMovie()).rejects.toEqual(Error(mockPromiseError));
-
     });
   });
+
   describe('sendUserLogin', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -136,12 +140,12 @@ describe('ApiFetch', () => {
         })
       );
     });
-    // it('should call the fetch with the correct arguements', async () => {
-    //   const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
-    //   const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
-    //   await ApiFetch.fetchSingleMovie(mockUrl, mockData.mockPost);
-    //   expect(window.fetch).toHaveBeenCalledWith(mockUrl, mockData.mockPost);
-    // });
+    it('should call the fetch with the correct arguements', async () => {
+      const mockMovieId = `https://api.themoviedb.org/3/movie/1234?api_key=${apiKey}d5&language=en-US`;
+      const mockUrl = `https://api.themoviedb.org/3/movie/${mockMovieId}?api_key=${apiKey}&language=en-US`
+      await ApiFetch.fetchSingleMovie(mockUrl, mockData.mockPost);
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl, mockData.mockPost);
+    });
     it('should return a parsed version of the result', async () => {
       const expected = await ApiFetch.sendUserLogin();
       expect(expected).toEqual(mockData.mockUser, mockData.mockPost);
@@ -155,6 +159,7 @@ describe('ApiFetch', () => {
       await expect(ApiFetch.sendUserLogin()).rejects.toEqual(Error(mockUserError));
     });
   });
+
   describe('sendNewAccount', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
@@ -179,6 +184,7 @@ describe('ApiFetch', () => {
 
     // }); resolving instead of rejecting
   });
+
   describe('sendFavorite', () => {
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
