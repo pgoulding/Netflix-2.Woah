@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateMovies } from '../../actions';
 import Gallery from '../../components/Gallery/Gallery';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { getMovies } from '../../thunks/getMoviesThunk';
 import Header from '../../containers/Header/Header';
 import MainGallery from '../../components/MainGallery/MainGallery';
@@ -16,6 +16,7 @@ import Search from '../Search/Search';
 import DetailedMovieCard from '../DetailedMovieCard/DetailedMovieCard';
 import apiKey from '../../apikey';
 import Favorites from '../Favorites/Favorites';
+import Error from '../../components/Error/Error';
 
 export class App extends Component {
 	constructor () {
@@ -27,7 +28,9 @@ export class App extends Component {
 	async componentDidMount () {
 		this.getLoadingMovies();
 		const genres = await findGenres();
-		this.setState({ ...genres });
+		this.setState({
+			...genres
+		});
 	}
 
 	populateRoutes = () => {
@@ -49,25 +52,45 @@ export class App extends Component {
 		return (
 			<main>
 				<Header />
-				<Route
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<section>
+								{this.props.movies.now_playing && <MainGallery movies={this.props.movies.now_playing} />}
+								{this.props.movies.popular && <Gallery genre={'popular'} data={this.props.movies.popular} />}
+								{this.props.movies.top_rated && <Gallery genre={'top_rated'} data={this.props.movies.top_rated} />}
+							</section>
+						)}
+					/>
+					<Route path="/favorites" component={Favorites} /> <Route path="/log_in" component={UserLogin} />
+					<Route path="/create_account" component={UserSignup} />{' '}
+					<Route exact path="/genre" component={GenreContainer} />
+					{this.populateRoutes()} <Route path="/search" component={Search} />
+					<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
+					<Route component={Error} />
+					}
+				</Switch>
+				{/* <Route
 					exact
 					path="/"
 					render={() => (
 						<section>
+							
 							{this.props.movies.now_playing && <MainGallery movies={this.props.movies.now_playing} />}
 							{this.props.movies.popular && <Gallery genre={'popular'} data={this.props.movies.popular} />}
 							{this.props.movies.top_rated && <Gallery genre={'top_rated'} data={this.props.movies.top_rated} />}
 						</section>
 					)}
 				/>
-				<Route path="/favorites" component={Favorites} />
-				<Route path="/log_in" component={UserLogin} />
-				<Route path="/create_account" component={UserSignup} />
-				<Route exact path="/genre" component={GenreContainer} />
-				{this.populateRoutes()}
-				<Route path="/search" component={Search} />
+				<Route path="/favorites" component={Favorites} /> <Route path="/log_in" component={UserLogin} />
+				<Route path="/create_account" component={UserSignup} /> <Route exact path="/genre" component={GenreContainer} />
+				{this.populateRoutes()} <Route path="/search" component={Search} />
 				<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
-				{/* <Route component={<Error />} /> */}
+				<Route component={<Error />} />
+				}
+				 */}
 			</main>
 		);
 	}
