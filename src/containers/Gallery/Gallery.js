@@ -27,14 +27,12 @@ export const Gallery = ({ data, genre, user }) => {
 
     return (
       <div
-        onMouseLeave={toggleHover}
-        onMouseEnter={toggleHover}
         key={movie.id}
         className='card'
       >
         <img
           alt={title && ' movie poster '}
-          className='movie-poster-carousel'
+          className='movie-poster'
           src={backdrop_path}
         />
         {user_id && (
@@ -51,7 +49,8 @@ export const Gallery = ({ data, genre, user }) => {
           </button>
         )}
         <div className='details'>
-          <h3> {title} </h3> <p> {overview} </p>
+          <h3> {title} </h3> 
+          <p> {overview} </p>
         </div>
       </div>
     );

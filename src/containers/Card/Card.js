@@ -1,5 +1,5 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
 import { chooseMovie, setFavorites, toggleFavorites } from '../../actions';
 import { Link } from 'react-router-dom';

@@ -77,7 +77,7 @@ export class UserLogin extends Component {
 		return (
 			<div className="form-container">
 				<form className="user-form">
-					<h2> Log In </h2> <label for="email">Email: </label>{' '}
+					<h2> Log In </h2> <label for="email">Email: </label>
 					<input
 						id="email"
 						className={this.state.error ? 'error' : ''}
@@ -85,8 +85,8 @@ export class UserLogin extends Component {
 						value={this.state.email}
 						placeholder="Email"
 						onChange={e => this.handleChange(e)}
-					/>{' '}
-					<label for="password">Password:</label>{' '}
+					/>
+					<label for="password">Password:</label>
 					<input
 						id="password"
 						className={this.state.error ? 'error' : ''}
@@ -95,12 +95,12 @@ export class UserLogin extends Component {
 						value={this.state.password}
 						placeholder="P@$$w0rD"
 						onChange={e => this.handleChange(e)}
-					/>{' '}
+					/>
 					<div className={this.state.error ? '' : 'hiddenError'}>
-						<p> {this.state.error} </p>{' '}
-					</div>{' '}
-					<button onClick={e => this.loginUser(e)}> Submit </button>{' '}
-				</form>{' '}
+						<p> {this.state.error} </p>
+					</div>
+					<button onClick={e => this.loginUser(e)}> Submit </button>
+				</form>
 			</div>
 		);
 	};
