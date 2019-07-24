@@ -2,14 +2,22 @@ header {
   background-color: #9A1717;
   padding-top:10px;
   color: #EAE1E1;
-  /* position: sticky; */
-  /* z-index:2;
-  top:0; */
+
+}
+
+nav > a:hover {
+  text-shadow: 2px 2px 5px white;
 }
 
 h1 {
   margin: 0;
   text-align: center;
+}
+
+img.user-toggle-button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
 }
 
 a{
