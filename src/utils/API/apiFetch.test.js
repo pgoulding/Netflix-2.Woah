@@ -44,15 +44,10 @@ describe('ApiFetch', () => {
         })
       );
     });
-    it('should call the fetch with the correct arguements', async () => {
+    it('should call the fetch with the correct arguments', async () => {
       const mockUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${4}`
       await ApiFetch.fetchSingleGenre(4, mockData.mockGenre);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-    });
-
-    it('should return a parsed version of the result', async () => {
-      const expected = await ApiFetch.fetchSingleGenre(4, mockData.mockGenre);
-      expect(expected).toEqual([ mockData.mockMovie]);
     });
 
     it('should invoke cleanMovies with genreId and results', async () => {
@@ -84,16 +79,18 @@ describe('ApiFetch', () => {
         })
       );
     });
+
     it('should call the fetch with the correct arguements', async () => {
       const mockSearchTerm = 'Toy Story'
       const mockUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${mockSearchTerm}&page=1&include_adult=false`
       await ApiFetch.searchForMovie(mockSearchTerm);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     });
+
     it('should return a parsed version of the result', async () => {
       const mockSearchTerm = 'Toy Story'
       const result = await ApiFetch.searchForMovie(mockSearchTerm);
-      expect(result).toEqual([mockData.mockMovie]);
+      expect(result).toEqual([mockData.mockCleanedMovie]);
 
     });
     it('should invoke cleanMovies with results and searchTerm', () => {
@@ -126,21 +123,24 @@ describe('ApiFetch', () => {
       await ApiFetch.fetchSingleMovie(mockMovieId);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
     });
-    it('should return a parsed version of the result', () => {
-      async () => {
+
+    it('should return a parsed version of the result', async () => {
         const expected = await ApiFetch.fetchSingleMovie();
         expect(expected).toEqual(mockData.mockMovie);
-      }
     });
+
     it('should throw an error if fetch fails', async () => {
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         ok: false
       }))
+
       await expect(ApiFetch.fetchSingleMovie()).rejects.toEqual(Error(mockPromiseError));
     });
+
   });
 
   describe('sendUserLogin', () => {
+
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
@@ -149,27 +149,35 @@ describe('ApiFetch', () => {
         })
       );
     });
+
     it('should call the fetch with the correct arguements', async () => {
-      const mockMovieId = 5;
       const mockUrl =  "http://localhost:3001/api/users/";
       await ApiFetch.sendUserLogin('test@email.com', 1234);
       expect(window.fetch).toHaveBeenCalledWith(mockUrl, mockData.mockPost);
     });
+
     it('should return a parsed version of the result', async () => {
       const expected = await ApiFetch.sendUserLogin();
       expect(expected).toEqual(mockData.mockUser, mockData.mockPost);
       //double check what it should equal
     });
+
     it('should throw an error if fetch fails', async () => {
+      
       const mockUserError = 'Failed to log in; either your email or your password are incorrect. Please try again, or create a new account.'
+
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
         ok: false
       }))
+
       await expect(ApiFetch.sendUserLogin()).rejects.toEqual(Error(mockUserError));
     });
+
   });
 
   describe('sendNewAccount', () => {
+
+
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
@@ -178,29 +186,67 @@ describe('ApiFetch', () => {
         })
       );
     });
-    // it('should call the fetch with the correct arguements', () => {});
-    it('should return a parsed version of the result', () => {
-      async () => {
-        const expected = await ApiFetch.sendNewAccount();
-        expect(expected).toEqual(mockData.mockUser);
-      }
-    });
-    // it('should throw an error if fetch fails', async () => {
-    //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-    //     ok: false
-    //   }))
-    //   await expect(ApiFetch.sendNewAccount()).rejects.toEqual(Error(mockPromiseError));
 
-    // }); resolving instead of rejecting
+    it('should call the fetch with the correct arguements', async () => {
+        const user = {
+          email: 'test@email.com',
+          password: 1234,
+        }
+      const mockUrl = "http://localhost:3001/api/users/new";
+      await ApiFetch.sendNewAccount(user);
+      expect(window.fetch).toHaveBeenCalledWith(mockUrl, mockData.mockPost);
+    });
+
+    it('should throw an error if fetch fails', async () => {
+
+      const mockUserError = 'Failed to log in; either your email or your password are incorrect. Please try again, or create a new account.'
+
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        ok: false
+      }))
+
+      await expect(ApiFetch.sendUserLogin()).rejects.toEqual(Error(mockUserError));
+    });
+
+    // beforeEach(async () => {
+
+    //   beforeEach(() => {
+    //     window.fetch = jest.fn().mockImplementation(() =>
+    //       Promise.resolve({
+    //         ok: true,
+    //         json: () => Promise.resolve(mockData.mockUser)
+    //       })
+
+    //   );
+
+    // });
+
+    // it('should return a parsed version of the result', async () => {
+
+    //     const user = {
+    //       email: 'happy@sad.com',
+    //       password: 'ilikeburritos',
+    //       name: 'coolGui420'
+    //     }
+
+    //   console.log(await ApiFetch.sendNewAccount(user))
+    //     const expected = await ApiFetch.sendNewAccount(user);
+    //     expect(expected).toEqual(mockData.mockUser);
+    //   })
+    });
+
   });
 
   describe('sendFavorite', () => {
+
     beforeEach(() => {
+
       window.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
           ok: true,
-          json: () => Promise.resolve(mockData.mockMovie)
+          json: () => Promise.resolve(mockData.mockCleanedMovie)
         })
+
       );
     });
     //need to make sure mock movies has isFavorited
@@ -209,7 +255,7 @@ describe('ApiFetch', () => {
     // });
     it('should return a parsed version of the result', async () => {
       const expected = await ApiFetch.sendFavorite();
-      expect(expected).toEqual(mockData.mockMovie);
+      expect(expected).toEqual(mockData.mockCleanedMovie);
       //check what it should equal
     });
     it('should throw an error if fetch fails', async () => {
@@ -220,4 +266,3 @@ describe('ApiFetch', () => {
       await expect(ApiFetch.sendFavorite()).rejects.toEqual(Error(mockFavoriteError));
     });
   });
-})
