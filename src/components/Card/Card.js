@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendFavorite, deleteFavorite, fetchUserFavorites } from '../../utils/API/ApiFetch';
-import { chooseMovie, setFavorites, addMovie } from '../../actions';
-import { Link, Redirect } from 'react-router-dom';
+import { chooseMovie, setFavorites, toggleFavorites } from '../../actions';
+import { Link } from 'react-router-dom';
 import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import './Card.scss';
 
-export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
-	const { title, poster_path, overview, movie_id, isFavorited } = movieInfo;
+export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggleFavorites }) => {
+	const { title, poster_path, overview, movie_id, isFavorited, genre } = movieInfo;
 	const { user_id } = user;
 
 	const seeSpecificMovie = () => {
@@ -17,6 +17,9 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 	};
 
 	const toggleFav = async movie => {
+    if (!user.id) {
+			alert('Please log in to favorite a movie!')
+
 		if (user.id) {
 			const favorites = await fetchUserFavorites(user_id);
 			setFavorites(favorites.data);
@@ -24,17 +27,44 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
 
 		if (foundMovie) {
-			deleteFavorite(user_id, movie_id);
+      await deleteFavorite(user_id, movie_id);
+      const favorites = await fetchUserFavorites(user_id);
+			setFavorites(favorites.data);
 		} else if (!foundMovie) {
-			sendFavorite({
+			await sendFavorite({
 				...movieInfo,
 				user_id
 			});
 
 			const favorites = await fetchUserFavorites(user_id);
+
 			setFavorites(favorites.data);
+      
 		} else {
-			console.log('found movie', foundMovie);
+				const favorites = await fetchUserFavorites(user_id);
+				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id)
+				;
+				// console.log('ids', favoriteIds);
+        setFavorites(favorites.data);
+        console.log('genre:', genre)
+        // toggleFavorites({genre, favoriteIds});
+			const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+			if (foundMovie) {
+				await deleteFavorite(user_id, movie_id);
+				const favorites = await fetchUserFavorites(user_id);
+				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
+				setFavorites(favorites.data);
+				// toggleFavorites({genre, favoriteIds});
+			} else if (!foundMovie) {
+				await sendFavorite({
+					...movieInfo,
+					user_id
+				});
+				const favorites = await fetchUserFavorites(user_id);
+				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id);
+				setFavorites(favorites.data);
+        // toggleFavorites({genre, favoriteIds});
+			}
 		}
 		//this should not be a console log
 	};
@@ -65,7 +95,6 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 		</article>
 	);
 };
-
 export const mapStateToProps = ({ user, specificMovie }) => ({
 	user,
 	specificMovie
@@ -73,7 +102,8 @@ export const mapStateToProps = ({ user, specificMovie }) => ({
 
 export const mapDispatchToProps = dispatch => ({
 	chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id)),
-	setFavorites: favorites => dispatch(setFavorites(favorites))
+	setFavorites: favorites => dispatch(setFavorites(favorites)),
+	toggleFavorites: favoriteIds => dispatch(toggleFavorites(favoriteIds))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

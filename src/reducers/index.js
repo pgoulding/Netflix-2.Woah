@@ -5,9 +5,6 @@ import { throwErrorReducer } from './throwErrorReducer';
 import { isLoadingReducer } from './isLoadingReducer';
 import { chooseGenreReducer } from './chooseGenreReducer';
 import { chooseSpecificMovieReducer } from './chooseSpecificMovieReducer';
-import { searchQueryReducer } from './searchQueryReducer'
-import { userFavReducer } from './userFavReducer'
-import { toggleFavoritesReducer } from './toggleFavoritesReducer';
 
 const rootReducer = combineReducers({
   movies: getMoviesReducer,
@@ -15,10 +12,7 @@ const rootReducer = combineReducers({
   isLoading: isLoadingReducer,
   throwError: throwErrorReducer,
   chosenGenre: chooseGenreReducer,
-  specificMovie: chooseSpecificMovieReducer,
-  searchQuery: searchQueryReducer,
-  // userFavorites: userFavReducer
-  toggleFavorites: toggleFavoritesReducer
+  specificMovie: chooseSpecificMovieReducer
 });
 
 export default rootReducer;
