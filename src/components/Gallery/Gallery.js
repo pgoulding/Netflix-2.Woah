@@ -40,7 +40,7 @@ const Gallery = ({ data, genre, user }) => {
 
 	return (
 		<section>
-			<h2>{genre}</h2>
+			<h2> {genre} </h2>
 			<AliceCarousel
 				duration={1000}
 				autoPlay={true}
@@ -58,7 +58,7 @@ const Gallery = ({ data, genre, user }) => {
 	);
 };
 
-const mapStateToProps = ({ movies, user }) => ({
+export const mapStateToProps = ({ movies, user }) => ({
 	movies,
 	user
 });

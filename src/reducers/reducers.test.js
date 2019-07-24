@@ -1,32 +1,12 @@
-import {
-	getMoviesReducer
-} from './getMoviesReducer';
-import {
-	isLoadingReducer
-} from './isLoadingReducer';
-import {
-	throwErrorReducer
-} from './throwErrorReducer';
-import {
-	userReducer
-} from './userReducer';
+import { getMoviesReducer } from './getMoviesReducer';
+import { isLoadingReducer } from './isLoadingReducer';
+import { throwErrorReducer } from './throwErrorReducer';
+import { userReducer } from './userReducer';
 import * as action from '../actions';
-import {
-	chooseGenreReducer
-} from './chooseGenreReducer';
-import {
-	mockMovies,
-	mockMovie,
-	mockGenre,
-	mockUser
-} from '../utils/mockData/mockData';
-import {
-	chooseSpecificMovieReducer
-} from './chooseSpecificMovieReducer';
-import {
-	toggleFavoritesReducer
-} from './toggleFavoritesReducer';
-
+import { chooseGenreReducer } from './chooseGenreReducer';
+import { mockMovies, mockMovie, mockGenre, mockUser } from '../utils/mockData/mockData';
+import { chooseSpecificMovieReducer } from './chooseSpecificMovieReducer';
+import { toggleFavoritesReducer } from './toggleFavoritesReducer';
 
 describe('reducers', () => {
 	describe('chooseGenreReducer', () => {
@@ -35,16 +15,16 @@ describe('reducers', () => {
 			const result = chooseGenreReducer(undefined, {});
 			expect(result).toEqual(expected);
 		});
-		// it('should handle CHOOSE_GENRE', () => {
-		// 	const expected = mockGenre;
-		// 	const result = chooseGenreReducer({
-		// 		type: 'CHOOSE_GENRE',
-		// 		payload: {
-		// 			genre: 'popluar'
-		// 		}
-		// 	});
-		// 	expect(result).toEqual(expected);
-		// })//?not being dispatched/used?
+		it('should handle CHOOSE_GENRE', () => {
+			const expected = mockGenre;
+			const result = chooseGenreReducer(mockGenre, {
+				type: 'CHOOSE_GENRE',
+				payload: {
+					genre: 'popular'
+				}
+			});
+			expect(result).toEqual(expected);
+		});
 	});
 	describe('chooseSpecificMovieReducer', () => {
 		it('should return the initial state', () => {
@@ -75,13 +55,13 @@ describe('reducers', () => {
 			const expected = false;
 			const result = toggleFavoritesReducer(undefined, {});
 			expect(result).toEqual(expected);
-		})
+		});
 		it('should handle TOGGLE_FAVORITE', () => {
 			const expected = false;
-			const result = toggleFavoritesReducer(false, action.toggleFavorite(true))
+			const result = toggleFavoritesReducer(false, action.toggleFavorite(true));
 			expect(result).toEqual(expected);
 		});
-	})
+	});
 	describe('isLoadingReducer', () => {
 		it('should return the initial state', () => {
 			const expected = false;
@@ -113,14 +93,14 @@ describe('reducers', () => {
 			expect(result).toEqual(expected);
 		});
 		it('should handle SIGN_IN', () => {
-			const expected = mockUser
+			const expected = mockUser;
 			const result = userReducer(mockUser, mockUser.id);
 			expect(result).toEqual(expected);
 		});
 		it('should handle SIGN_OUT', () => {
-			const expected = {}
+			const expected = {};
 			const result = userReducer(mockUser, {
-				type: "SIGN_OUT"
+				type: 'SIGN_OUT'
 			});
 			expect(result).toEqual(expected);
 		});
