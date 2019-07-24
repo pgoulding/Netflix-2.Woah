@@ -17,8 +17,6 @@ export class DetailedMovieCard extends Component {
 		const { specificMovie } = this.props;
 		const currentMovie = await fetchSingleMovie(specificMovie.id);
 		this.setState({ currentMovie });
-		await console.log('curr', currentMovie);
-		console.log(this.props);
 	};
 
 	render = () => {
