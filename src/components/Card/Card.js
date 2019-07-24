@@ -11,6 +11,7 @@ import './Card.scss';
 export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggleFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited, genre } = movieInfo;
 	const { user_id } = user;
+
 	const seeSpecificMovie = () => {
 		chooseSpecificMovie(title, movie_id);
 	};
@@ -20,6 +21,27 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
     console.log('movie info: ', movieInfo)
     if (!user.id) {
 			alert('Please log in to favorite a movie!')
+
+		if (user.id) {
+			const favorites = await fetchUserFavorites(user_id);
+			setFavorites(favorites.data);
+		}
+		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
+
+		if (foundMovie) {
+      await deleteFavorite(user_id, movie_id);
+      const favorites = await fetchUserFavorites(user_id);
+			setFavorites(favorites.data);
+		} else if (!foundMovie) {
+			await sendFavorite({
+				...movieInfo,
+				user_id
+			});
+
+			const favorites = await fetchUserFavorites(user_id);
+
+			setFavorites(favorites.data);
+      
 		} else {
 				const favorites = await fetchUserFavorites(user_id);
 				const favoriteIds = await [...favorites.data].map(fave => fave.movie_id)
@@ -46,6 +68,7 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
         // toggleFavorites({genre, favoriteIds});
 			}
 		}
+		//this should not be a console log
 	};
 
 	return (
@@ -58,11 +81,11 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 				</div>
 				<div className="movie-buttons">
 					<Link to={`/movies/${title}`}>
-						<button onClick={() => seeSpecificMovie()}>
+						<button className="specific-movie-btn" onClick={() => seeSpecificMovie()}>
 							<img alt="more details" src={moreDetails} />
 						</button>
 					</Link>
-					<button onClick={() => toggleFav(movie_id)}>
+					<button className="toggle-fav-btn" onClick={() => toggleFav(movie_id)}>
 						<img
 							className="favorite__img-button"
 							alt="favorite this movie"
@@ -74,12 +97,12 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 		</article>
 	);
 };
-
-const mapStateToProps = ({ user }) => ({
-	user
+export const mapStateToProps = ({ user, specificMovie }) => ({
+	user,
+	specificMovie
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
 	chooseSpecificMovie: (title, movie_id) => dispatch(chooseMovie(title, movie_id)),
 	setFavorites: favorites => dispatch(setFavorites(favorites)),
 	toggleFavorites: favoriteIds => dispatch(toggleFavorites(favoriteIds))
