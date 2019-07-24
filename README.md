@@ -41,17 +41,15 @@ This project required 1-2 api calls, however the modular code was build to run u
 
 ## Project Challenges
 
-Writing modular code required careful planning and strategic architecture. Creating a flat redux store also proved to be a challenge. Working through merge conflicts was tedious mostly due to text editor formatting differences. The app stlying was up to the developers whereas other projects have had a style comp, so extra effort went into created a cleanly styled app. Lastly, keeping track of local state vs the store was a conceptual hurdle.
+Writing modular code required careful planning and strategic architecture. Creating a flat redux store also proved to be a challenge. Working through merge conflicts was tedious mostly due to text editor formatting differences. The app stlying was up to the developers whereas other projects have had a style comp, so extra effort went into creating a cleanly styled app. Lastly, keeping track of local state vs the store was a conceptual hurdle.
 
 
 ## Project Extensions/Issues
 
 * Only at 47% Test Coverage
 * User Favorites need to be saved to store
-* Create Account Page needs to redirect to Home page after creating an account
 * Redesign the store
 * Change all fetchs to thunks
-*
 
 ## Project Tech Emphasis
 
@@ -71,25 +69,41 @@ Writing modular code required careful planning and strategic architecture. Creat
 
 ## Project Management
 
-The team used a project management tool, Trello, and GitHub issues to manage workflow, along with Slakc to manage remote communication.
+The team used a project management tool, Trello, and GitHub issues to manage workflow, along with Slack to manage remote communication.
 
 ### Trello Board
 
-# Project Comps:
+![Trello]()
+
+## Project Comps:
 
 ### Home Page
 
+![Home Page]()
+
 ### Search
+
+![Search]()
 
 ### Genres
 
+![Genres]()
+
 ### Favorites
+
+![Favorites]()
 
 ### Sign In
 
+![Sign In]()
+
 ### Create Account
 
+![Create Account]()
+
 ### 404 Page
+
+![404 Page]()
 
 
 ## Developers
