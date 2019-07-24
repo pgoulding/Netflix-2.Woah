@@ -3,6 +3,8 @@ import AliceCarousel from 'react-alice-carousel';
 import './MainGallery.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import FavButton from '../../containers/FavButton/FavButton';
+import PropTypes from 'prop-types';
+
 export const MainGallery = ({ movies }) => {
 	const responsive = {
 		0: {
@@ -24,10 +26,10 @@ export const MainGallery = ({ movies }) => {
 
 		return (
 			<div className="mainCard" key={movie.id}>
-				<img className="main-card-image" alt={title && ' movie poster'} src={poster_path} />
+				<img className="main-card-image" alt={title && ' movie poster'} src={poster_path} />{' '}
 				<div className="movie-info">
-					<h3 className="movie-title"> {title} </h3> <p> {overview} </p> <FavButton movieInfo={movie} />
-				</div>
+					<h3 className="movie-title"> {title} </h3> <p> {overview} </p> <FavButton movieInfo={movie} />{' '}
+				</div>{' '}
 			</div>
 		);
 	});
@@ -46,10 +48,15 @@ export const MainGallery = ({ movies }) => {
 				dotsDisabled={true}
 				autoPlayDirection="rtl"
 				autoPlayActionDisabled={false}>
-				{details}
-			</AliceCarousel>
+				{' '}
+				{details}{' '}
+			</AliceCarousel>{' '}
 		</section>
 	);
 };
 
 export default MainGallery;
+
+MainGallery.propTypes = {
+	movies: PropTypes.object
+};

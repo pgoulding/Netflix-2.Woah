@@ -1,5 +1,7 @@
 import React from 'react';
 import './Search.scss';
+import PropTypes from 'prop-types';
+
 export const SearchOutput = ({ query }) => {
 	console.log('search oputput: ', query);
 
@@ -15,3 +17,7 @@ export const SearchOutput = ({ query }) => {
 };
 
 export default SearchOutput;
+
+SearchOutput.propTypes = {
+	query: PropTypes.array
+};
