@@ -24,14 +24,17 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 		const foundMovie = user.favorites.find(favorite => favorite.movie_id === movie_id);
 
 		if (foundMovie) {
-			deleteFavorite(user_id, movie_id);
+      await deleteFavorite(user_id, movie_id);
+      const favorites = await fetchUserFavorites(user_id);
+			setFavorites(favorites.data);
 		} else if (!foundMovie) {
-			sendFavorite({
+			await sendFavorite({
 				...movieInfo,
 				user_id
 			});
 
 			const favorites = await fetchUserFavorites(user_id);
+
 			setFavorites(favorites.data);
 		} else {
 			console.log('found movie', foundMovie);
@@ -65,7 +68,6 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => 
 		</article>
 	);
 };
-
 export const mapStateToProps = ({ user, specificMovie }) => ({
 	user,
 	specificMovie

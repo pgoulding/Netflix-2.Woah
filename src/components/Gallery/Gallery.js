@@ -4,6 +4,8 @@ import { sendFavorite } from '../../utils/API/ApiFetch';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
+import FavButton from '../FavButton/FavButton';
+
 export const Gallery = ({ data, genre, user }) => {
 	const reformatGenre = () => {};
 	const [ hovered, setHovered ] = useState(false);
@@ -19,13 +21,15 @@ export const Gallery = ({ data, genre, user }) => {
 		1024: {
 			items: 3
 		}
-	};
+  };
+  
 
 	let details = data.map(movie => {
 		const { title, overview, backdrop_path } = movie;
-		const { user_id } = user;
+		// const { user_id } = user;
 
 		return (
+
 			<div onMouseLeave={toggleHover} onMouseEnter={toggleHover} key={movie.id} className="card">
 				<img alt={title && ' movie poster '} className="movie-poster-carousel" src={backdrop_path} />
 				{user_id && (
@@ -51,7 +55,7 @@ export const Gallery = ({ data, genre, user }) => {
 			<h2> {genre} </h2>
 			<AliceCarousel
 				duration={1000}
-				autoPlay={false}
+				autoPlay={true}
 				startIndex={1}
 				fadeOutAnimation={true}
 				mouseDragEnabled={true}
