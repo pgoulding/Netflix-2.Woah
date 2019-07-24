@@ -30,24 +30,24 @@ describe('Actions', () => {
     const expectedAction = {
       type: 'CHOOSE_MOVIE',
       payload: {
-        id: mockData.mockMovie.id
+        title: 'Toy Story',
+        id: 1
       }
     }
-    const result = actions.chooseMovie(mockData.mockMovie.id);
+    const result = actions.chooseMovie('Toy Story', 1);
     expect(result).toEqual(expectedAction);
   });
 
-  // it('should have a type of TOGGLE_FAVORITE and a payload of id and favorited', () => {
-  //   const expectedAction = {
-  //     type: 'TOGGLE_FAVORITE',
-  //     payload: {
-  //       id: mockData.mockMovie.id,
-  //       favorited: mockData.mockFavorited
-  //     }
-  //   };
-  //   const result = actions.toggleFavorite(mockData.mockMovie.id, mockData.mockFavorited);
-  //   expect(result).toEqual(expectedAction);
-  // });
+  it('should have a type of TOGGLE_FAVORITES and a payload of id and favorited', () => {
+    const expectedAction = {
+      type: 'TOGGLE_FAVORITES',
+      payload: {
+       favorites: mockData.mockFavorite
+      }
+    };
+    const result = actions.toggleFavorites( mockData.mockFavorite);
+    expect(result).toEqual(expectedAction);
+  });
 
   it('should have a type of SET_FAVORITES and a payload of favorites', () => {
     const expectedAction = {
