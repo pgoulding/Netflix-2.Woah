@@ -34,8 +34,9 @@ export class UserLogin extends Component {
       const results = await userLogin.data;
       this.props.signIn(results);
       if (results) {
+        console.log(this.props)
         const favorites = await fetchUserFavorites(this.props.user.id);
-        // await console.log('fav', favorites);
+        await console.log('fav', favorites);
         this.props.setFavorites(favorites.data);
       }
       await this.setState({

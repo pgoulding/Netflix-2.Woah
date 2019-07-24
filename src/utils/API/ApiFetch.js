@@ -1,7 +1,12 @@
-import { newUserUrl, userSignInURL } from './apiUrls';
+import {
+  newUserUrl,
+  userSignInURL
+} from './apiUrls';
 import apiKey from '../../apikey';
 // import { cleanMovies } from '../cleanerFunction';
-import { cleanMovies } from '../cleanMovies';
+import {
+  cleanMovies
+} from '../cleanMovies';
 
 export const findGenres = async () => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
@@ -20,6 +25,7 @@ export const fetchSingleGenre = async genreID => {
     const response = await fetch(genreUrl);
     const parsed = await response.json();
     const cleanedMovies = await cleanMovies(genreID, parsed.results);
+    //error here
     return cleanedMovies;
   } catch (error) {
     throw Error(error.message);
@@ -75,6 +81,7 @@ const sendUserLogin = async (email, password) => {
 export const fetchUserFavorites = async id => {
   try {
     const response = await fetch(`${userSignInURL}${id}/favorites`);
+    console.log(await response)
     const parsed = await response.json();
     await console.log('favorites', parsed);
     return parsed;
@@ -135,4 +142,8 @@ export const deleteFavorite = async (user_id, movie_id) => {
   }
 };
 
-export { sendNewAccount, sendUserLogin, sendFavorite };
+export {
+  sendNewAccount,
+  sendUserLogin,
+  sendFavorite
+};

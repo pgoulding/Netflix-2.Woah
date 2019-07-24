@@ -40,7 +40,7 @@ export const setFavorites = favorites => ({
 export const signIn = user => ({
   type: 'SIGN_IN',
   payload: {
-    user
+    ...user
   }
 });
 

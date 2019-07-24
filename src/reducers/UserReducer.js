@@ -1,7 +1,10 @@
 import * as user from '../utils/API/ApiFetch';
 
-const userReducer = (state = {}, action) => {
-  const { type, payload } = action;
+export const userReducer = (state = {}, action) => {
+  const {
+    type,
+    payload
+  } = action;
   switch (type) {
     case 'SIGN_IN':
       return {
@@ -10,11 +13,16 @@ const userReducer = (state = {}, action) => {
     case 'SIGN_OUT':
       return {};
     case 'SET_FAVORITES':
-      return {...state, favorites:payload.favorites};
+      return {
+        ...state, favorites: payload.favorites
+      };
     case 'ADD_FAVORITE':
-      return {...state, favorites: [...state.favorites, payload.movie] }
-    default:
-      return state;
+      return {
+        ...state, favorites: [...state.favorites, payload.movie]
+      }
+      //move to another reducer
+      default:
+        return state;
   }
 };
 
