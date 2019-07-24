@@ -9,12 +9,13 @@ import {
 describe('cleanMovies', () => {
   it('should return a cleaned movie', () => {
     const expected = [{
-      movie_id: 420818,
+      ...mockMovie,
+      genre: mockGenre,
+      movie_id: mockMovie.id,
       isFavorited: false,
-      poster_path: "http://image.tmdb.org/t/p/w300\/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
-      backdrop_path: "http://image.tmdb.org/t/p/original\/1TUg5pO1VZ4B0Q1amk3OlXvlpXV.jpg"
+      poster_path: `http://image.tmdb.org/t/p/w300${mockMovie.poster_path}`,
+      backdrop_path: `http://image.tmdb.org/t/p/original${mockMovie.backdrop_path}`
     }]
-    //incomplete
     const result = cleanMovies(mockGenre, [mockMovie]);
     expect(result).toEqual(expected);
   })

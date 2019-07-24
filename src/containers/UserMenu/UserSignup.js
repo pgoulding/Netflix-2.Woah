@@ -97,11 +97,7 @@ export const mapStateToProps = store => ({
 	user: store.user
 });
 
-export const mapDispatchToProps = dispatch => ({
-	signIn: results => dispatch(signIn(results))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserSignup);
+export default connect(mapStateToProps)(UserSignup);
 
 UserSignup.propTypes = {
 	user: PropTypes.object,

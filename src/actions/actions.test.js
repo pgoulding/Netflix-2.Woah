@@ -64,7 +64,7 @@ describe('Actions', () => {
     const expectedAction = {
       type: 'SIGN_IN',
       payload: {
-        user: mockData.mockUser
+        ...mockData.mockUser
       }
     };
     const result = actions.signIn(mockData.mockUser);

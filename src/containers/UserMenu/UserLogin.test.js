@@ -10,13 +10,13 @@ import {
 import React from 'react';
 import {mockUser, mockMovies} from '../../utils/mockData/mockData';
 
-describe('DetailedMovieCard', () => {
+describe('UserLogin', () => {
       describe('component', () => {
         let wrapper, instance, mockFavorites;
 
         beforeEach(() => {
           mockFavorites = mockMovies
-          wrapper = shallow( < UserLogin /> );
+          wrapper = shallow( < UserLogin user={mockUser}/> );
           instance = wrapper.instance()
         });
 
@@ -25,7 +25,7 @@ describe('DetailedMovieCard', () => {
         });
 
         it('should have a default state', () => {
-          wrapper = shallow( <UserLogin/> , {
+          wrapper = shallow( <UserLogin user={mockUser}/> , {
               disableLifecycleMethods: true
             }
           );
@@ -67,3 +67,4 @@ describe('DetailedMovieCard', () => {
           });  
         });
       });
+    });

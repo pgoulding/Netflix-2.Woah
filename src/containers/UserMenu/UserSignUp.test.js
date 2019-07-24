@@ -1,7 +1,6 @@
 import {
-  UserSignUp,
-  mapStateToProps,
-  mapDispatchToProps
+  UserSignup,
+  mapStateToProps
 }
 from './UserSignup';
 import {
@@ -12,19 +11,19 @@ import {mockUser} from '../../utils/mockData/mockData';
 import {signIn} from '../../actions';
 
 
-describe('UserSignUp', () => {
+describe('UserSignup', () => {
       describe('component', () => {
         let wrapper, instance;
 
         beforeEach(() => {
-          wrapper = shallow( < UserSignUp /> );
+          wrapper = shallow( < UserSignup /> );
           instance = wrapper.instance()
         });
         it('should match snapshot', () => {
           expect(wrapper).toMatchSnapshot();
         });
         it('should have a default state', () => {
-          wrapper = shallow( <UserSignUp/>, {
+          wrapper = shallow( <UserSignup/>, {
               disableLifecycleMethods: true
             }
           );
@@ -42,16 +41,8 @@ describe('UserSignUp', () => {
               user: mockUser
             }
             const mappedProps = mapStateToProps(mockState);
-            expect(mappedProps).toEqual(mockUser);
+            expect(mappedProps).toEqual(mockState);
           });
         });
-        describe('mapDispatchToProps', () => {
-          it('should call dispatch with a signIn action when signIn is called', () => {
-            const mockDispatch = jest.fn();
-            const actionToDispatch = signIn(mockResults);
-            const mappedProps = mapDispatchToProps(mockDispatch);
-            mappedProps.signIn(mockResults);
-            expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-          });
-        });
-      });
+    });
+  });

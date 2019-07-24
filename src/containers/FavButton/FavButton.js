@@ -7,7 +7,8 @@ import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './FavButton.scss'
+import './FavButton.scss';
+
 export const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, movie_id, isFavorited } = movieInfo;
 	const { user_id } = user;
