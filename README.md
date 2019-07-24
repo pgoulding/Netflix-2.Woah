@@ -21,13 +21,13 @@ Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## Table of Contents
-* [Description](# Description)
-* [Project Successes](Project Successes)
-* [Project Challenges](Project Challenges)
-* [ Project Extensions/Issues](Project Extensions/Issues)
-* [Project Tech Emphasis](Project Tech Emphasis)
-* [Project Management](Project Management)
-* [Project Comps](Project Comps)
+* [Description](#Description)
+* [Project Successes](Project-Successes)
+* [Project Challenges](Project-Challenges)
+* [ Project Extensions/Issues](Project-Extensions/Issues)
+* [Project Tech Emphasis](Project-Tech-Emphasis)
+* [Project Management](Project-Management)
+* [Project Comps](Project-Comps)
 * [Developers](Developers)
 
 ## Description
