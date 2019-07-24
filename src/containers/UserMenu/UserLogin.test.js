@@ -9,6 +9,7 @@ import {
 } from 'enzyme';
 import React from 'react';
 import {mockUser, mockMovies} from '../../utils/mockData/mockData';
+import {setFavorites, signIn} from '../../actions';
 
 describe('UserLogin', () => {
       describe('component', () => {
@@ -51,6 +52,7 @@ describe('UserLogin', () => {
 
         describe('mapDispatchToProps', () => {
           it('should call dispatch with a signIn action when signIn is called', () => {
+            const mockResults = mockMovies
             const mockDispatch = jest.fn();
             const actionToDispatch = signIn(mockResults);
             const mappedProps = mapDispatchToProps(mockDispatch);

@@ -22,6 +22,7 @@ import {
 } from '../../actions';
 
 jest.mock('../../utils/API/ApiFetch');
+jest.mock('../../thunks/getMoviesThunk');
 
 describe('App', () => {
 	let wrapper, instance, mockGetMovies;
@@ -33,16 +34,14 @@ describe('App', () => {
 	);
 
 	beforeEach(() => {
-		wrapper = shallow( <
-			App getMovies = {
+		wrapper = shallow( <App getMovies = {
 				mockGetMovies
 			}
 			specificMovie = {
 				{
 					title: 'title'
 				}
-			}
-			/>
+			}/>
 		);
 		instance = wrapper.instance();
 	});
@@ -126,5 +125,3 @@ describe('App', () => {
 		});
 	});
 });
-
-//test populate routes, getLoadingMovies,extension: test routes based on each potential path
