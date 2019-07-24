@@ -31,6 +31,10 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+## Test Coverage
+
+![Test Coverage](./src/images/test-coverage.png)
+
 ## Description
 
 This project is a movie app that allows the user to see now playing, popular, and currently top rated movies. The user can also select a genre to see all of the recommended movies in that genre. Once the user is logged in to their account and viewing movies, they can select a movie to see more information about the movie or favorite the movie. All of their favorite movies will be stored and are viewable upon re-login. If the user does not see a movie they are looking for, they can search for a specific movie. This project was completed in a week.
@@ -73,37 +77,56 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 
 ### Trello Board
 
-![Trello]()
+![Trello](./src/images/trello-board.png)
 
 ## Project Comps:
 
 ### Home Page
 
-![Home Page]()
+![Home Page](./src/images/HomePage.png)
 
 ### Search
 
-![Search]()
+![Search](./src/images/SearchPage.png)
 
 ### Genres
 
-![Genres]()
+![Genres](./src/images/GenrePage.png)
+
+### Genre Page
+
+![Genres](./src/images/GenreSpecificPage.png)
+
+### Movie Card
+
+![Movie Card](./src/images/MovieCardPage.png)
 
 ### Favorites
 
-![Favorites]()
+![Favorites](./src/images/FavoritesPages.png)
+
+### Favorites Error
+
+![Favorites Error](./src/images/FavoriteError.png)
 
 ### Sign In
 
-![Sign In]()
+![Sign In](./src/images/SignUpPage.png)
 
 ### Create Account
 
-![Create Account]()
+![Create Account](./src/images/CreateAccount.png)
 
 ### 404 Page
 
-![404 Page]()
+![404 Page](./src/images/404Page.png)
+
+### GIFS
+
+![GIF](./src/images/betterflix-categories.gif)
+
+
+![GIF](./src/images/betterflix-home-page.gif)
 
 
 ## Developers
