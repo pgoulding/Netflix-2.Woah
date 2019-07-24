@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '../../containers/Card/Card';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export class Favorites extends Component {
 	constructor () {
@@ -40,7 +41,8 @@ export class Favorites extends Component {
 	render = () => {
 		return (
 			<div className="movies-container" onClick={() => this.updateMovies()}>
-				{this.findFaves()}
+				{' '}
+				{this.findFaves()}{' '}
 			</div>
 		);
 	};
@@ -52,3 +54,8 @@ export const mapStateToProps = ({ user, movies }) => ({
 });
 
 export default connect(mapStateToProps, null)(Favorites);
+
+Favorites.propTypes = {
+	user: PropTypes.object,
+	movies: PropTypes.array
+};

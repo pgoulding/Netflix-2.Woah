@@ -7,6 +7,7 @@ import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import './Card.scss';
+import PropTypes from 'prop-types';
 
 export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggleFavorites }) => {
 	const { title, poster_path, overview, movie_id, isFavorited, genre } = movieInfo;
@@ -70,27 +71,27 @@ export const Card = ({ movieInfo, user, chooseSpecificMovie, setFavorites, toggl
 
 	return (
 		<article className={isFavorited ? 'movie-card favorited' : 'movie-card'}>
-			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />
+			<img className="movie-poster" alt={title && ' movie poster'} src={poster_path} />{' '}
 			<div className="movie-info">
-				<h3 className="movie-title"> {title} </h3>
+				<h3 className="movie-title"> {title} </h3>{' '}
 				<div className="movie-overview">
-					<p> {overview} </p>
-				</div>
+					<p> {overview} </p>{' '}
+				</div>{' '}
 				<div className="movie-buttons">
 					<Link to={`/movies/${title}`}>
 						<button className="specific-movie-btn" onClick={() => seeSpecificMovie()}>
-							<img alt="more details" src={moreDetails} />
-						</button>
-					</Link>
+							<img alt="more details" src={moreDetails} />{' '}
+						</button>{' '}
+					</Link>{' '}
 					<button className="toggle-fav-btn" onClick={() => toggleFav(movie_id)}>
 						<img
 							className="favorite__img-button"
 							alt="favorite this movie"
 							src={isFavorited ? filledHeart : emptyHeart}
-						/>
-					</button>
-				</div>
-			</div>
+						/>{' '}
+					</button>{' '}
+				</div>{' '}
+			</div>{' '}
 		</article>
 	);
 };
@@ -107,3 +108,11 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
+
+Card.propTypes = {
+	user: PropTypes.object,
+	specificMovie: PropTypes.object,
+	chooseSpecificMovie: PropTypes.func,
+	setFavorites: PropTypes.func,
+	toggleFavorites: PropTypes.func
+};

@@ -5,6 +5,7 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
 import FavButton from '../FavButton/FavButton';
+import PropTypes from 'prop-types';
 
 export const Gallery = ({ data, genre, user }) => {
 	const reformatGenre = () => {};
@@ -41,7 +42,6 @@ export const Gallery = ({ data, genre, user }) => {
 						Favorite Movie
 					</button>
 				)}
-
 				<div className="details">
 					<h3> {title} </h3> <p> {overview} </p>
 				</div>
@@ -75,3 +75,8 @@ export const mapStateToProps = ({ movies, user }) => ({
 });
 
 export default connect(mapStateToProps)(Gallery);
+
+Gallery.propTypes = {
+	movies: PropTypes.array,
+	user: PropTypes.object
+};

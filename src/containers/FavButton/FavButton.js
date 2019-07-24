@@ -6,6 +6,7 @@ import filledHeart from '../../images/like-filled.png';
 import emptyHeart from '../../images/like-empty.png';
 import moreDetails from '../../images/clapperboard.png';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }) => {
 	const { title, movie_id, isFavorited } = movieInfo;
@@ -51,6 +52,7 @@ export const FavButton = ({ movieInfo, user, chooseSpecificMovie, setFavorites }
 					<img alt="more details" src={moreDetails} />
 				</button>
 			</Link>
+
 			<button onClick={() => toggleFav(movie_id)}>
 				<img className="favorite__img-button" alt="favorite this movie" src={isFavorited ? filledHeart : emptyHeart} />
 			</button>
@@ -69,3 +71,10 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavButton);
+
+FavButton.propTypes = {
+	user: PropTypes.object,
+	specificMovie: PropTypes.object,
+	setFavorites: PropTypes.func,
+	chooseSpecificMovie: PropTypes.func
+};

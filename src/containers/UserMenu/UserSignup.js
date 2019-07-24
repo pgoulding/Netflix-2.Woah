@@ -4,6 +4,8 @@ import { sendNewAccount } from '../../utils//API/ApiFetch';
 import { signIn } from '../../actions';
 import { Redirect } from 'react-router-dom';
 import './UserForm.css';
+import PropTypes from 'prop-types';
+
 export class UserSignup extends Component {
 	constructor () {
 		super();
@@ -62,7 +64,7 @@ export class UserSignup extends Component {
 						placeholder="Name"
 						onChange={e => this.handleChange(e)}
 					/>
-					<label for="email">Email:</label>
+					<label for="email"> Email: </label>
 					<input
 						id="email"
 						className={this.state.error ? 'error' : ''}
@@ -71,7 +73,7 @@ export class UserSignup extends Component {
 						placeholder="Email"
 						onChange={e => this.handleChange(e)}
 					/>
-					<label for="password">Password:</label>
+					<label for="password"> Password: </label>
 					<input
 						id="password"
 						className={this.state.error ? 'error' : ''}
@@ -100,3 +102,8 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSignup);
+
+UserSignup.propTypes = {
+	user: PropTypes.object,
+	signIn: PropTypes.func
+};
