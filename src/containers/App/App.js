@@ -53,7 +53,7 @@ export class App extends Component {
 		return (
 			<main>
 				<Header />
-				<Switch>
+				{/* <Switch> */}
 					<Route
 						exact
 						path="/"
@@ -71,9 +71,9 @@ export class App extends Component {
 					<Route exact path="/genre" component={GenreContainer} /> {this.populateRoutes()}
 					<Route path="/search" component={Search} />
 					<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
-					<Route component={Error} />
+					{/* <Route component={Error} /> */}
 					}
-				</Switch>
+				{/* </Switch> */}
 			</main>
 		);
 	}
