@@ -80,49 +80,5 @@ describe('Card', () => {
 		// 	expect(mockSendFavorites).toHaveBeenCalledWith(mockMovieInfo, mockUser.id);
 		// });
 	});
-	describe('mapStateToProps', () => {
-		it('should return an object with the user and specificMovie', () => {
-			const mockState = {
-				user: {
-					email: 'abc@email.com',
-					password: 'password',
-					id: 1,
-					name: 'jarry'
-				},
-				specificMovie: {
-					title: 'mockTitle',
-					id: 1
-				}
-			};
-			const mappedProps = mapStateToProps(mockState);
-			expect(mappedProps).toEqual(mockState);
-		});
-	});
-	describe('mapDispatchToProps', () => {
-		it('should call dispatch with a chooseMovie action when chooseSpecificMovie is called', () => {
-			const mockDispatch = jest.fn();
-			const actionToDispatch = chooseMovie('Toy Story', 1);
-			const mappedProps = mapDispatchToProps(mockDispatch);
-			mappedProps.chooseSpecificMovie('Toy Story', 1);
-			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-		});
-		it('should call dispatch with a setFavorites action when setFavorites is called', () => {
-			const mockDispatch = jest.fn();
-			const mockFavorites = [
-				{
-					movie: 'Toy Story'
-				},
-				{
-					movie: 'Avengers'
-				},
-				{
-					movie: 'Ice Age'
-				}
-			];
-			const actionToDispatch = setFavorites(mockFavorites);
-			const mappedProps = mapDispatchToProps(mockDispatch);
-			mappedProps.setFavorites(mockFavorites);
-			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-		});
-	});
+	
 });

@@ -10,7 +10,7 @@ import MainGallery from '../../components/MainGallery/MainGallery';
 import UserSignup from '../UserMenu/UserSignup';
 import UserLogin from '../UserMenu/UserLogin';
 import GenreContainer from '../../containers/GenreContainer/GenreContainer';
-import { findGenres, fetchSingleGenre } from '../../utils/API/ApiFetch';
+import { findGenres} from '../../utils/API/ApiFetch';
 import Genre from '../../components/Genre/Genre';
 import Search from '../../components/Search/Search';
 import DetailedMovieCard from '../DetailedMovieCard/DetailedMovieCard';
@@ -72,12 +72,12 @@ export class App extends Component {
 					<Route path="/search" component={Search} />
 					<Route path={`/movies/${this.props.specificMovie.title}`} component={DetailedMovieCard} />
 					<Route component={Error} />
-					}
 				</Switch>
 			</main>
 		);
 	}
 }
+
 export const mapStateToProps = ({ movies, specificMovie }) => ({
 	movies,
 	specificMovie

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { sendFavorite } from '../../utils/API/ApiFetch';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import './Gallery.scss';
@@ -21,10 +20,12 @@ export const Gallery = ({ data, genre, user }) => {
     }
   };
 
+  const reformatGenreName = (genreName) => {
+    return genreName.toUpperCase().split('_').join(' ')
+  }
+
   let details = data.map(movie => {
     const { title, overview, backdrop_path } = movie;
-    const { user_id } = user;
-
     return (
       <div
         key={movie.id}
@@ -46,7 +47,7 @@ export const Gallery = ({ data, genre, user }) => {
 
   return (
     <section>
-      <h2> {genre} </h2>
+      <h2 className="genre-name"> {reformatGenreName(genre)} </h2>
       <AliceCarousel
         duration={1000}
         autoPlay={true}
