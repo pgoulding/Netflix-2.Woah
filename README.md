@@ -107,7 +107,7 @@ The team used a project management tool, Trello, and GitHub issues to manage wor
 
 ### Sign In
 
-![Sign In]./src/images/SignUpPage.png)
+![Sign In](./src/images/SignUpPage.png)
 
 ### Create Account
 
