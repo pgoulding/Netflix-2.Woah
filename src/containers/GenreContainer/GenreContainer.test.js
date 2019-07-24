@@ -1,13 +1,24 @@
-import { GenreContainer, mapDispatchToProps } from './GenreContainer';
-import { shallow } from 'enzyme';
+import {
+	GenreContainer,
+	mapDispatchToProps
+} from './GenreContainer';
+import {
+	shallow
+} from 'enzyme';
 import React from 'react';
-import { mockGenre, mockGenres } from '../../utils/mockData/mockData';
-import { getMovies } from '../../thunks/getMoviesThunk';
+import {
+	mockGenre,
+	mockGenres
+} from '../../utils/mockData/mockData';
+import {
+	getMovies
+} from '../../thunks/getMoviesThunk';
 
 describe('GenreContainer', () => {
-	let wrapper, instance, mockGenres;
+	let wrapper, instance, mockGenres, mockFindGenres;
 	beforeEach(() => {
-		wrapper = shallow(<GenreContainer />);
+		mockFindGenres = jest.fn();
+		wrapper = shallow( < GenreContainer / > );
 		instance = wrapper.instance();
 	});
 
@@ -27,7 +38,7 @@ describe('GenreContainer', () => {
 	describe('CDM', () => {
 		it('should invoke findGenres', () => {
 			instance.componentDidMount();
-			expect(findGenres).toHaveBeenCalled();
+			expect(mockFindGenres).toHaveBeenCalled();
 		});
 		it('should set state to genres', async () => {
 			await instance.componentDidMount();

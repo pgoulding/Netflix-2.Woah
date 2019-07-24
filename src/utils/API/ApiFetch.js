@@ -23,10 +23,10 @@ export const fetchSingleGenre = async (genreID, genreName) => {
   try {
     const response = await fetch(genreUrl);
     const parsed = await response.json();
-    const cleanedMovies = await cleanMovies(genreName, parsed.results);
-    //error here
+    const cleanedMovies = cleanMovies(genreName, parsed.results);
     return cleanedMovies;
   } catch (error) {
+    console.log('error', error.message)
     throw Error(error.message);
   }
 };
@@ -39,6 +39,7 @@ export const searchForMovie = async searchTerm => {
     const cleaned = cleanMovies(searchTerm, parsed.results);
     return cleaned;
   } catch (error) {
+    console.log('error', error)
     throw Error(error.message);
   }
 };

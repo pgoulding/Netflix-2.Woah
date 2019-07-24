@@ -34,8 +34,7 @@ export class GenreContainer extends Component {
 					className="category-links"
 					to={`/genre/${genre.name}`}
 					onClick={() => this.handleClick(genre.id, genre.name)}>
-					{' '}
-					{genre.name}{' '}
+					{genre.name}
 				</Link>
 			);
 		});
