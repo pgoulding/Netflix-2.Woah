@@ -1,24 +1,47 @@
-import {FavButton} from './FavButton';
+import {FavButton, mapDispatchToProps, mapStateToProps} from './FavButton';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { mockUser, mockMovie } from '../../utils/mockData/mockData';
+import { mockUser, mockMovie, mockMovies, mockFavorites } from '../../utils/mockData/mockData';
+import {chooseMovie, setFavorites} from '../../actions';
 
 describe('FavButton', () => {
-	let wrapper, mockCurrentUserFavorites;
+	let wrapper, instance;
 
 	beforeEach(() => {
-		mockCurrentUserFavorites = [
-			{ title: 'Toy Story', id: 1 },
-			{ title: 'Toy Story2', id: 2 },
-			{ title: 'Toy Story3', id: 3 }
-		];
 		wrapper = shallow(
-			<FavButton movieData={mockMovie} user_id={mockUser.id} currentUserFavorites={mockCurrentUserFavorites} />
+			<FavButton movieInfo={mockMovie} user={mockUser} chooseSpecificMovie={mockMovie} setFavorites={mockMovies} />
 		);
+		instance = wrapper.instance()
 	});
 	it('should match snapshot', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
-	//mstp
-	//mdtp
+
+	describe('mapStateToProps', () => {
+		it('should return an object with the user and specificMovie', () => {
+			const mockState = {
+				movies: mockMovies,
+				user: mockUser
+			};
+			const mappedProps = mapStateToProps(mockState);
+			expect(mappedProps).toEqual(mockState);
+		});
+	});
+
+	describe('mapDispatchToProps', () => {
+		it('should call dispatch with a chooseMovie action when chooseSpecificMovie is called', () => {
+			const mockDispatch = jest.fn();
+			const actionToDispatch = chooseMovie(mockMovie.title, mockMovie.id);
+			const mappedProps = mapDispatchToProps(mockDispatch);
+			mappedProps.chooseMovie(mockMovie.title, mockMovie.id);
+			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+		});
+		it('should call dispatch with a setFavorites action when setFavorites is called', () => {
+			const mockDispatch = jest.fn();
+			const actionToDispatch = setFavorites(mockFavorites);
+			const mappedProps = mapDispatchToProps(mockDispatch);
+			mappedProps.setFavorites(mockFavorites);
+			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+		});
+	});
 });

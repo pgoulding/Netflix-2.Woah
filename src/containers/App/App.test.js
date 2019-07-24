@@ -120,7 +120,7 @@ describe('App', () => {
 			const mockResults = mockMovies;
 			const actionToDispatch = updateMovies(mockResults, mockGenre);
 			const mappedProps = mapDispatchToProps(mockDispatch);
-			mappedProps.updateMovies(mockResults, mockGenre);
+			mappedProps.updateMovieState(mockResults, mockGenre);
 			expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
 		});
 	});

@@ -10,12 +10,15 @@ import React from 'react';
 import {
 	fetchSingleMovie
 } from '../../utils/API/ApiFetch';
+import {mockMovie} from '../../utils/mockData/mockData';
+
+jest.mock('../../utils/API/ApiFetch');
 
 describe('DetailedMovieCard', () => {
 		let wrapper, instance;
 
 		beforeEach(() => {
-			wrapper = shallow( < DetailedMovieCard /> );
+			wrapper = shallow( < DetailedMovieCard specificMovie={mockMovie}/> );
 			instance = wrapper.instance();
 		});
 		it('should match snapshot', () => {
@@ -26,7 +29,7 @@ describe('DetailedMovieCard', () => {
 	describe('CDM', () => {
 		it('should invoke fetchSingleMovie', () => {
 			instance.componentDidMount();
-			expect(fetchSingleMovie).toHaveBeenCalled();
+			expect(fetchSingleMovie).toHaveBeenCalledWith(mockMovie.id);
 		});
 
 		it('should set state to currentMovie', async () => {
@@ -50,7 +53,7 @@ describe('DetailedMovieCard', () => {
 				const mockDispatch = jest.fn();
 				const actionToDispatch = fetchSingleMovie(1);
 				const mappedProps = mapDispatchToProps(mockDispatch);
-				mappedProps.chooseSpecificMovie(1);
+				mappedProps.fetchSingleMovie(1);
 				expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
 			});
 		});
