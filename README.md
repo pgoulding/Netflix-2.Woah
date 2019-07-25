@@ -50,7 +50,7 @@ Writing modular code required careful planning and strategic architecture. Creat
 
 ## Project Extensions/Issues
 
-* Only at 47% Test Coverage
+* Only at 72% Test Coverage
 * User Favorites need to be saved to store
 * Redesign the store
 * Change all fetchs to thunks
