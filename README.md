@@ -2,15 +2,15 @@
 
 
 ## Table of Contents
-* [Available Scripts](#Available-Scripts)
-* [Description](#Description)
-* [Project Successes](Project-Successes)
-* [Project Challenges](Project-Challenges)
-* [ Project Extensions/Issues](Project-Extensions/Issues)
-* [Project Tech Emphasis](Project-Tech-Emphasis)
-* [Project Management](Project-Management)
-* [Project Comps](Project-Comps)
-* [Developers](Developers)
+* [Available Scripts](#available-scripts)
+* [Description](#description)
+* [Project Successes](#project-successes)
+* [Project Challenges](#project-challenges)
+* [Project Extensions and Issues](#project-extensions-and-issues)
+* [Project Tech Emphasis](#project-tech-emphasis)
+* [Project Management](#project-management)
+* [Project Comps](#project-comps)
+* [Developers](#developers)
 
 ## Available Scripts
 
@@ -48,7 +48,7 @@ This project required 1-2 api calls, however the modular code was build to run u
 Writing modular code required careful planning and strategic architecture. Creating a flat redux store also proved to be a challenge. Working through merge conflicts was tedious mostly due to text editor formatting differences. The app stlying was up to the developers whereas other projects have had a style comp, so extra effort went into creating a cleanly styled app. Lastly, keeping track of local state vs the store was a conceptual hurdle.
 
 
-## Project Extensions/Issues
+## Project Extensions and Issues
 
 * Only at 72% Test Coverage
 * User Favorites need to be saved to store
